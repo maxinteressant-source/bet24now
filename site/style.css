@@ -41,7 +41,7 @@ p{margin:0 0 16px;}
 .btn-lg{padding:16px 34px;font-size:18px;}
 
 /* Hero */
-.hero{background:linear-gradient(135deg,#1a0f2e 0%,#2a1145 60%,#3d1a63 100%);padding:64px 0;text-align:center;}
+.hero{background:linear-gradient(135deg,rgba(26,15,46,.88) 0%,rgba(42,17,69,.86) 60%,rgba(61,26,99,.84) 100%),url('/img/hero-roulette.jpg') center/cover no-repeat;padding:72px 0;text-align:center;}
 .hero h1{font-size:42px;}
 .hero p{color:#d7cfe8;font-size:19px;max-width:640px;margin:0 auto 26px;}
 
@@ -89,6 +89,12 @@ table.compare tr.is-soon td{color:var(--muted);}
 .mini-card:hover{border-color:var(--gold);text-decoration:none;transform:translateY(-2px);}
 .mini-card h3{margin:0 0 8px;font-size:18px;}
 .mini-card p{margin:0;color:var(--muted);font-size:15px;}
+
+/* Artikelbilder */
+figure.article-img{margin:0 0 24px;}
+figure.article-img img{width:100%;height:auto;border-radius:10px;border:1px solid var(--border);display:block;}
+figure.article-img figcaption{font-size:12px;color:var(--muted);margin-top:6px;text-align:right;}
+figure.article-img figcaption a{color:var(--muted);}
 
 /* Breadcrumbs */
 .crumbs{font-size:13px;color:var(--muted);margin-bottom:14px;}
