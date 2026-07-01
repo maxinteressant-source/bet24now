@@ -1,0 +1,13 @@
+# Caddy-Konfiguration – serviert die statische Seite auf dem von Railway gesetzten Port
+:{$PORT:80} {
+	root * /srv
+	encode gzip
+	file_server
+
+	# Saubere URLs: /impressum -> /impressum.html
+	try_files {path} {path}/ {path}.html
+
+	# Cache statischer Assets
+	@static path *.css *.js *.png *.jpg *.jpeg *.svg *.ico *.woff2
+	header @static Cache-Control "public, max-age=604800"
+}
