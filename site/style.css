@@ -87,6 +87,9 @@ p{margin:0 0 16px;}
 .hero h1{font-size:47px;max-width:840px;margin:16px auto 16px;}
 .hero h1 .hl{background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
 .hero p{color:#dcd8ef;font-size:19px;max-width:620px;margin:0 auto 28px;}
+.hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.hero-trust{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-top:26px;color:#c7c2df;font-size:14px;font-weight:500;}
+.hero-trust span{white-space:nowrap;}
 
 /* Cards / Toplist */
 .section{padding:58px 0;}
@@ -121,7 +124,13 @@ table.compare{width:100%;border-collapse:collapse;background:var(--panel);border
 table.compare th,table.compare td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--border);vertical-align:middle;}
 table.compare thead th{background:var(--panel-2);color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.5px;}
 table.compare tbody tr:last-child td{border-bottom:none;}
-table.compare td.rank{font-weight:800;color:var(--gold);font-size:20px;text-align:center;width:44px;}
+table.compare td.rank{width:56px;text-align:center;}
+table.compare td.rank span{display:inline-flex;align-items:center;justify-content:center;
+  width:34px;height:34px;border-radius:50%;font-family:var(--font-head);font-weight:800;font-size:15px;color:#1a1205;
+  background:var(--panel-3);}
+table.compare tbody tr:nth-child(1) td.rank span{background:linear-gradient(135deg,#ffe08a,#f5a623);box-shadow:0 3px 10px rgba(245,166,35,.45);}
+table.compare tbody tr:nth-child(2) td.rank span{background:linear-gradient(135deg,#eef1f8,#aeb7c9);color:#20242e;}
+table.compare tbody tr:nth-child(3) td.rank span{background:linear-gradient(135deg,#e6a86b,#b9702f);color:#fff;}
 table.compare td.bonus{color:var(--green);font-weight:700;}
 table.compare tr.is-top{background:linear-gradient(90deg,rgba(255,201,60,.09),rgba(255,201,60,.02));box-shadow:inset 3px 0 0 var(--gold);}
 table.compare tr.is-soon td{color:var(--muted);}
@@ -129,8 +138,12 @@ table.compare tr.is-soon td{color:var(--muted);}
 
 /* Ratgeber-Grid */
 .grid-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-top:18px;}
-.mini-card{display:block;background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:22px;color:var(--text);transition:border-color .15s,transform .15s;}
-.mini-card:hover{border-color:var(--gold);text-decoration:none;transform:translateY(-2px);}
+.mini-card{display:block;background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--border);border-radius:var(--radius);padding:22px 22px 22px 24px;color:var(--text);position:relative;overflow:hidden;transition:border-color .15s,transform .15s,box-shadow .15s;}
+.mini-card::before{content:"";position:absolute;top:0;left:0;bottom:0;width:3px;background:var(--grad-gold);opacity:0;transition:opacity .2s;}
+.mini-card:hover{border-color:var(--border-lt);text-decoration:none;transform:translateY(-2px);box-shadow:var(--shadow-sm);}
+.mini-card:hover::before{opacity:1;}
+.mini-card h3{transition:color .15s;}
+.mini-card:hover h3{color:var(--gold);}
 .mini-card h3{margin:0 0 8px;font-size:18px;}
 .mini-card p{margin:0;color:var(--muted);font-size:15px;}
 
@@ -167,8 +180,15 @@ table.specs tr:last-child th,table.specs tr:last-child td{border-bottom:none;}
 /* Footer */
 .site-footer{border-top:1px solid var(--border);background:linear-gradient(180deg,var(--bg) 0%,#06070d 100%);padding:40px 0;margin-top:48px;font-size:14px;color:var(--muted);}
 .site-footer a{color:var(--muted);}
-.site-footer .resp{background:var(--panel-2);border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin-bottom:20px;font-size:13px;}
-.site-footer .links a{margin-right:18px;}
+.site-footer a:hover{color:var(--gold);}
+.site-footer .resp{background:var(--panel-2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin-bottom:20px;font-size:13px;}
+.footer-cols{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:30px;padding-bottom:28px;margin-bottom:24px;border-bottom:1px solid var(--border);}
+.fcol h4{font-family:var(--font-head);color:#fff;font-size:14px;letter-spacing:.03em;text-transform:uppercase;margin:0 0 14px;}
+.fcol a{display:block;margin-bottom:9px;font-size:14px;}
+.fcol-brand .logo{font-size:22px;margin-bottom:12px;display:inline-block;}
+.fcol-brand p{margin:0;max-width:320px;font-size:14px;line-height:1.6;}
+@media(max-width:760px){ .footer-cols{grid-template-columns:1fr 1fr;gap:24px;} .fcol-brand{grid-column:1 / -1;} }
+@media(max-width:440px){ .footer-cols{grid-template-columns:1fr;} }
 
 /* ---- Design-Ausbau ---- */
 
@@ -200,9 +220,12 @@ table.specs tr:last-child th,table.specs tr:last-child td{border-bottom:none;}
 
 /* Feature-/Test-Karten */
 .grid-4{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));}
-.feature{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:24px 22px;position:relative;transition:border-color .15s,transform .15s;}
-.feature:hover{border-color:var(--gold);transform:translateY(-2px);}
-.feature-num{font-size:15px;font-weight:800;color:var(--gold);letter-spacing:1px;opacity:.9;}
+.feature{background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--border);border-radius:var(--radius);padding:26px 22px;position:relative;overflow:hidden;transition:border-color .15s,transform .15s,box-shadow .15s;}
+.feature::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad-gold);transform:scaleX(0);transform-origin:left;transition:transform .25s ease;}
+.feature:hover{border-color:var(--border-lt);transform:translateY(-3px);box-shadow:var(--shadow-sm);}
+.feature:hover::before{transform:scaleX(1);}
+.feature-num{font-family:var(--font-head);font-size:26px;font-weight:800;letter-spacing:.5px;
+  background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
 .feature h3{margin:8px 0 8px;font-size:18px;}
 .feature p{margin:0;color:var(--muted);font-size:15px;}
 
