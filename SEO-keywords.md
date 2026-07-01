@@ -14,6 +14,9 @@ Ratgeber ziehen Traffic mit Informations-Absicht und verlinken intern auf die Re
 | `ratgeber-bonus-ohne-einzahlung.html` | bonus ohne einzahlung | no deposit bonus, casino bonus ohne einzahlung 2026, gratis startguthaben | Information → kommerziell |
 | `ratgeber-auszahlungsdauer.html` | auszahlungsdauer online casino | wie lange dauert auszahlung casino, schnelle auszahlung casino, kyc verifizierung | Information |
 | `ratgeber-freispiele.html` | freispiele | free spins, freispiele ohne einzahlung, 250 freispiele | Information → kommerziell |
+| `news-gluecksspiel-regulierung-deutschland.html` | glücksspielstaatsvertrag 2021 | online casino deutschland legal, GGL, einsatzlimit online casino, virtuelle automatensteuer | Information |
+| `news-oasis-spielersperre.html` | oasis spielersperre | selbstsperre casino, oasis sperre aufheben, spielersperre online casino | Information (Spielerschutz / E-E-A-T) |
+| `news-online-casino-trends-2026.html` | online casino trends 2026 | crash games, live casino trend, mobile casino 2026 | Information / Outlook |
 
 ## Umgesetzte On-Page-SEO
 - Eindeutige, keyword-optimierte `<title>` (unter ~60 Zeichen) und `<meta description>` (~150 Zeichen) pro Seite.

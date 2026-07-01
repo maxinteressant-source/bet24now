@@ -20,7 +20,7 @@
   // Sanftes Einblenden beim Scrollen (Scroll-Reveal)
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var targets = document.querySelectorAll(
-    ".card, .feature, .mini-card, .usp, figure.article-img, table.compare, .rating-box"
+    ".card, .feature, .mini-card, .news-card, .usp, figure.article-img, table.compare, .rating-box"
   );
   targets.forEach(function (el) { el.classList.add("reveal"); });
   if (reduceMotion || !("IntersectionObserver" in window)) {

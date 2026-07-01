@@ -50,7 +50,9 @@ try {
       $bytes = [System.IO.File]::ReadAllBytes($path)
       $response.ContentType = $ct
       $response.ContentLength64 = $bytes.Length
-      $response.OutputStream.Write($bytes, 0, $bytes.Length)
+      if ($request.HttpMethod -ne 'HEAD') {
+        try { $response.OutputStream.Write($bytes, 0, $bytes.Length) } catch {}
+      }
       Write-Host ("200  /{0}" -f $rel)
     } else {
       $response.StatusCode = 404
