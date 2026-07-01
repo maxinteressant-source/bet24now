@@ -67,6 +67,47 @@ p{margin:0 0 16px;}
 .cons h3{color:#ff6b6b;margin-top:0;}
 .disclosure{background:var(--panel-2);border:1px solid var(--border);border-radius:8px;padding:12px 16px;font-size:13px;color:var(--muted);margin:18px 0;}
 
+/* Buttons – klein */
+.btn-sm{padding:9px 16px;font-size:14px;white-space:nowrap;}
+.score{color:var(--muted);font-size:13px;font-weight:700;}
+
+/* Vergleichstabelle */
+.table-scroll{overflow-x:auto;margin:22px 0 10px;-webkit-overflow-scrolling:touch;}
+table.compare{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;min-width:640px;}
+table.compare th,table.compare td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--border);vertical-align:middle;}
+table.compare thead th{background:var(--panel-2);color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.5px;}
+table.compare tbody tr:last-child td{border-bottom:none;}
+table.compare td.rank{font-weight:800;color:var(--gold);font-size:20px;text-align:center;width:44px;}
+table.compare td.bonus{color:var(--green);font-weight:700;}
+table.compare tr.is-top{background:rgba(245,197,24,.05);}
+table.compare tr.is-soon td{color:var(--muted);}
+.small-link{font-size:13px;}
+
+/* Ratgeber-Grid */
+.grid-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-top:18px;}
+.mini-card{display:block;background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:22px;color:var(--text);transition:border-color .15s,transform .15s;}
+.mini-card:hover{border-color:var(--gold);text-decoration:none;transform:translateY(-2px);}
+.mini-card h3{margin:0 0 8px;font-size:18px;}
+.mini-card p{margin:0;color:var(--muted);font-size:15px;}
+
+/* Breadcrumbs */
+.crumbs{font-size:13px;color:var(--muted);margin-bottom:14px;}
+.crumbs a{color:var(--muted);}
+.crumbs span{color:var(--text);}
+
+/* Bewertungs-Box */
+.rating-box{display:flex;gap:22px;align-items:center;background:var(--panel-2);border:1px solid var(--border);border-radius:10px;padding:20px;margin:6px 0 22px;flex-wrap:wrap;}
+.rating-score{text-align:center;min-width:110px;}
+.rating-score .big{font-size:44px;font-weight:800;color:var(--gold);line-height:1;}
+.rating-score .of{font-size:18px;color:var(--muted);font-weight:700;}
+.rating-verdict{flex:1;min-width:220px;font-size:15px;}
+
+/* Steckbrief / Specs-Tabelle */
+table.specs{width:100%;border-collapse:collapse;background:var(--panel-2);border:1px solid var(--border);border-radius:10px;overflow:hidden;min-width:420px;}
+table.specs th,table.specs td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--border);font-size:15px;}
+table.specs th{color:var(--muted);font-weight:600;width:42%;}
+table.specs tr:last-child th,table.specs tr:last-child td{border-bottom:none;}
+
 /* Footer */
 .site-footer{border-top:1px solid var(--border);background:#0c0e12;padding:34px 0;margin-top:40px;font-size:14px;color:var(--muted);}
 .site-footer a{color:var(--muted);}
