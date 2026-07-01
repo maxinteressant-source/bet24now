@@ -90,6 +90,12 @@ table.compare tr.is-soon td{color:var(--muted);}
 .mini-card h3{margin:0 0 8px;font-size:18px;}
 .mini-card p{margin:0;color:var(--muted);font-size:15px;}
 
+/* Casino-Logos */
+.casino-logo{width:200px;max-width:60%;height:auto;display:block;}
+.casino-logo-sm{width:120px;height:auto;display:block;margin-bottom:4px;}
+.review-logo{width:230px;max-width:70%;height:auto;display:block;margin:0 0 16px;}
+.card .info h3.has-logo{margin:0 0 10px;}
+
 /* Artikelbilder */
 figure.article-img{margin:0 0 24px;}
 figure.article-img img{width:100%;height:auto;border-radius:10px;border:1px solid var(--border);display:block;}
