@@ -3,7 +3,8 @@
 # Danach im Browser oeffnen: http://localhost:8000
 # Stoppen: in diesem Fenster Strg+C druecken.
 
-$port = 8000
+param([int]$Port = 8000)
+$port = $Port
 $root = Join-Path $PSScriptRoot 'site'
 
 $mime = @{
