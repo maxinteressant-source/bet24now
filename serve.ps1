@@ -44,6 +44,7 @@ try {
     $path = Join-Path $root $rel
     if (Test-Path $path -PathType Container) { $path = Join-Path $path 'index.html' }
 
+    $response.KeepAlive = $false
     if (Test-Path $path -PathType Leaf) {
       $ext = [System.IO.Path]::GetExtension($path).ToLower()
       $ct  = $mime[$ext]; if (-not $ct) { $ct = 'application/octet-stream' }
