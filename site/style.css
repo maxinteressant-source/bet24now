@@ -282,3 +282,14 @@ table.specs tr:last-child th,table.specs tr:last-child td{border-bottom:none;}
 @media(max-width:420px){
   .usp-grid{grid-template-columns:1fr;}
 }
+
+/* Angebots-Box (Affiliate-Empfehlung auf Unterseiten) */
+.offer-box{background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--gold);border-radius:var(--radius);padding:26px 28px;margin:30px 0;text-align:center;box-shadow:var(--shadow-sm);}
+.offer-box .offer-badge{display:inline-block;background:var(--gold);color:#1a1400;font-weight:700;font-size:13px;letter-spacing:.5px;padding:4px 14px;border-radius:999px;margin-bottom:12px;}
+.offer-box h3{margin:6px 0 10px;font-size:21px;}
+.offer-box p{color:var(--muted);margin:0 auto 18px;max-width:580px;}
+.offer-box .offer-note{margin-top:14px;font-size:12px;color:var(--muted);}
+@media(max-width:440px){
+  .offer-box{padding:20px 18px;}
+  .offer-box h3{font-size:18px;}
+}
