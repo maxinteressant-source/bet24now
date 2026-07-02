@@ -17,6 +17,31 @@
     });
   }
 
+  // Mobile-Navigation (Hamburger-Menü)
+  var navToggle = document.querySelector(".nav-toggle");
+  var siteHeader = document.querySelector(".site-header");
+  if (navToggle && siteHeader) {
+    navToggle.addEventListener("click", function () {
+      var open = siteHeader.classList.toggle("nav-open");
+      navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      navToggle.setAttribute("aria-label", open ? "Menü schließen" : "Menü öffnen");
+    });
+    // Menü nach Klick auf einen Link schließen
+    siteHeader.querySelectorAll(".nav a").forEach(function (a) {
+      a.addEventListener("click", function () {
+        siteHeader.classList.remove("nav-open");
+        navToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+    // Schließen bei Klick außerhalb
+    document.addEventListener("click", function (e) {
+      if (siteHeader.classList.contains("nav-open") && !siteHeader.contains(e.target)) {
+        siteHeader.classList.remove("nav-open");
+        navToggle.setAttribute("aria-expanded", "false");
+      }
+    });
+  }
+
   // Sanftes Einblenden beim Scrollen (Scroll-Reveal)
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var targets = document.querySelectorAll(
