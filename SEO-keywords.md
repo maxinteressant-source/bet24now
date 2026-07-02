@@ -17,6 +17,9 @@ Ratgeber ziehen Traffic mit Informations-Absicht und verlinken intern auf die Re
 | `news-gluecksspiel-regulierung-deutschland.html` | glücksspielstaatsvertrag 2021 | online casino deutschland legal, GGL, einsatzlimit online casino, virtuelle automatensteuer | Information |
 | `news-oasis-spielersperre.html` | oasis spielersperre | selbstsperre casino, oasis sperre aufheben, spielersperre online casino | Information (Spielerschutz / E-E-A-T) |
 | `news-online-casino-trends-2026.html` | online casino trends 2026 | crash games, live casino trend, mobile casino 2026 | Information / Outlook |
+| `news-zahlungsmethoden-online-casino.html` | casino zahlungsmethoden | paypal casino, paysafecard casino, trustly casino, e-wallet | Information → kommerziell |
+| `news-rtp-auszahlungsquote-slots.html` | rtp erklärt | auszahlungsquote slots, beste rtp slots, volatilität slots | Information |
+| `news-einzahlungslimit-online-casino.html` | einzahlungslimit casino | 1000 euro limit casino, einzahlungslimit erhöhen | Information (Spielerschutz) |
 
 ## Umgesetzte On-Page-SEO
 - Eindeutige, keyword-optimierte `<title>` (unter ~60 Zeichen) und `<meta description>` (~150 Zeichen) pro Seite.
