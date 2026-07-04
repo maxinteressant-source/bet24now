@@ -7,7 +7,11 @@
 	# Saubere URLs: /impressum -> /impressum.html
 	try_files {path} {path}/ {path}.html
 
-	# Cache statischer Assets
-	@static path *.css *.js *.png *.jpg *.jpeg *.svg *.ico *.woff2
-	header @static Cache-Control "public, max-age=604800"
+	# Bilder & Schriften lange cachen (ändern sich selten)
+	@media path *.png *.jpg *.jpeg *.svg *.ico *.woff2 *.webp *.gif
+	header @media Cache-Control "public, max-age=604800"
+
+	# CSS & JS immer neu prüfen, damit Design-Änderungen sofort ankommen
+	@code path *.css *.js
+	header @code Cache-Control "public, max-age=0, must-revalidate"
 }
