@@ -2,10 +2,14 @@
 :{$PORT:80} {
 	root * /srv
 	encode gzip
-	file_server
 
-	# Saubere URLs: /impressum -> /impressum.html
+	# .html-Endungen dauerhaft auf die saubere URL umleiten (301, gegen Duplicate Content)
+	@htmlext path_regexp htmlext ^/(.+)\.html$
+	redir @htmlext /{re.htmlext.1} permanent
+
+	# Saubere URLs intern zur .html-Datei auflösen: /reviews -> /reviews.html
 	try_files {path} {path}/ {path}.html
+	file_server
 
 	# Bilder & Schriften lange cachen (ändern sich selten)
 	@media path *.png *.jpg *.jpeg *.svg *.ico *.woff2 *.webp *.gif
