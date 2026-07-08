@@ -125,3 +125,74 @@
     }
   });
 })();
+
+// Werbeplatzierung: Top-Banner (alle Seiten) + Angebots-Box (Artikelseiten)
+(function () {
+  "use strict";
+  if (document.querySelector(".promo-bar")) return;
+
+  var CASINOS = [
+    { name: "CrocoSlots", bonus: "8.000 € + 400 FS", bonusLong: "Bis 8.000 € + 400 Freispiele", url: "https://crocoslotsmedia.com/aevhr6rrq", logo: "/img/crocoslots-logo.svg" },
+    { name: "BitKingz", bonus: "5.000 € + 500 FS", bonusLong: "Bis 5.000 € + 500 Freispiele", url: "https://www.bitkingzmedia.com/amhlwjvna", logo: "/img/bitkingz-logo.png" }
+  ];
+
+  var css =
+    ".promo-bar{background:linear-gradient(90deg,#1a1205,#2a1c05);border-bottom:1px solid rgba(255,201,60,.35);}" +
+    ".promo-bar-inner{max-width:1140px;margin:0 auto;padding:9px 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center;}" +
+    ".promo-bar-label{color:var(--gold,#ffc93c);font-weight:800;font-family:var(--font-head,sans-serif);font-size:14px;}" +
+    ".promo-chip{display:inline-flex;align-items:center;gap:8px;background:rgba(255,201,60,.1);border:1px solid rgba(255,201,60,.4);color:#fff;padding:6px 8px 6px 13px;border-radius:999px;font-size:13px;font-weight:600;}" +
+    ".promo-chip:hover{background:rgba(255,201,60,.18);text-decoration:none;}" +
+    ".promo-chip b{color:var(--gold,#ffc93c);}" +
+    ".promo-go{color:#1a1205;background:linear-gradient(135deg,#ffd75e,#f5a623);padding:3px 9px;border-radius:999px;font-weight:800;font-size:12px;}" +
+    "@media(max-width:600px){.promo-bar-inner{gap:8px;padding:8px 12px;}.promo-bar-label{width:100%;text-align:center;}.promo-chip{font-size:12px;}}" +
+    ".inline-offers{background:linear-gradient(180deg,var(--panel-2,#1b2035),var(--panel,#141829));border:1px solid rgba(255,201,60,.35);border-radius:14px;padding:22px 20px;margin:34px 0;box-shadow:0 6px 18px rgba(0,0,0,.3);}" +
+    ".inline-offers-title{margin:0 0 16px;text-align:center;font-family:var(--font-head,sans-serif);color:#fff;font-size:20px;}" +
+    ".inline-offers-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}" +
+    ".inline-offer{background:var(--panel,#141829);border:1px solid var(--border,#2a3149);border-radius:12px;padding:18px 16px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:11px;}" +
+    ".inline-offer img{height:42px;width:auto;max-width:160px;object-fit:contain;}" +
+    ".inline-offer-bonus{color:var(--green,#2fd08a);font-weight:700;font-size:15px;}" +
+    ".inline-offer .btn{width:100%;background:linear-gradient(135deg,#ffd75e,#f5a623);color:#1a1205;font-weight:700;font-family:var(--font-head,sans-serif);padding:12px 16px;border-radius:10px;display:block;}" +
+    ".inline-offers-note{margin-top:14px;text-align:center;font-size:12px;color:var(--muted,#98a1bd);}" +
+    "@media(max-width:520px){.inline-offers-grid{grid-template-columns:1fr;}}";
+  var style = document.createElement("style");
+  style.appendChild(document.createTextNode(css));
+  document.head.appendChild(style);
+
+  // 1) Top-Banner auf allen Seiten
+  var bar = document.createElement("div");
+  bar.className = "promo-bar";
+  var chips = CASINOS.map(function (c) {
+    return '<a class="promo-chip" href="' + c.url + '" target="_blank" rel="nofollow sponsored"><b>' + c.name + '</b> ' + c.bonus + ' <span class="promo-go">Sichern →</span></a>';
+  }).join("");
+  bar.innerHTML = '<div class="promo-bar-inner"><span class="promo-bar-label">🔥 Top-Casino-Boni 2026</span>' + chips + '</div>';
+  document.body.insertBefore(bar, document.body.firstChild);
+
+  // 2) Angebots-Box am Ende von Artikelseiten (mit .article)
+  var article = document.querySelector(".article");
+  if (article) {
+    var offers = CASINOS.map(function (c) {
+      return '<div class="inline-offer"><img src="' + c.logo + '" alt="' + c.name + '" loading="lazy"><div class="inline-offer-bonus">' + c.bonusLong + '</div><a class="btn" href="' + c.url + '" target="_blank" rel="nofollow sponsored">Bonus sichern →</a></div>';
+    }).join("");
+    var box = document.createElement("aside");
+    box.className = "inline-offers";
+    box.innerHTML = '<h3 class="inline-offers-title">Unsere Top-Casinos für 2026</h3><div class="inline-offers-grid">' + offers + '</div><div class="inline-offers-note">18+ · Glücksspiel kann süchtig machen · Hilfe unter buwei.de</div>';
+    article.parentNode.insertBefore(box, article.nextSibling);
+  }
+
+  // Logo-Fallback: fehlt ein Casino-Logo (noch), wird der Name als Text gezeigt
+  function logoFallback(img, name) {
+    var fail = function () {
+      if (img.getAttribute("data-fb")) return;
+      img.setAttribute("data-fb", "1");
+      var s = document.createElement("span");
+      s.textContent = name;
+      s.style.cssText = "font-family:var(--font-head,sans-serif);font-weight:800;font-size:22px;color:#fff;letter-spacing:-.01em;";
+      if (img.parentNode) img.parentNode.replaceChild(s, img);
+    };
+    if (img.complete && img.naturalWidth === 0) fail();
+    img.addEventListener("error", fail);
+  }
+  [].forEach.call(document.querySelectorAll("#top-casinos .casino-logo, .inline-offer img"), function (img) {
+    logoFallback(img, img.getAttribute("alt") || "Casino");
+  });
+})();
