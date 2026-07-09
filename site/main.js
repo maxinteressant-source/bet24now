@@ -197,16 +197,65 @@
   });
 })();
 
-// Google Analytics (GA4)
+// Cookie-Consent + Google Analytics (GA4) – GA startet erst nach Zustimmung
 (function () {
-  var id = "G-Q2NP0XXZH2";
-  var s = document.createElement("script");
-  s.async = true;
-  s.src = "https://www.googletagmanager.com/gtag/js?id=" + id;
-  document.head.appendChild(s);
-  window.dataLayer = window.dataLayer || [];
-  function gtag() { window.dataLayer.push(arguments); }
-  window.gtag = gtag;
-  gtag("js", new Date());
-  gtag("config", id);
+  "use strict";
+  var GA_ID = "G-Q2NP0XXZH2";
+  var KEY = "bet24now_consent";
+
+  function loadGA() {
+    if (window.__gaLoaded) return;
+    window.__gaLoaded = true;
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag("js", new Date());
+    gtag("config", GA_ID);
+  }
+
+  var choice = null;
+  try { choice = localStorage.getItem(KEY); } catch (e) {}
+  if (choice === "granted") { loadGA(); return; }
+  if (choice === "denied") { return; }
+
+  var css =
+    ".cookie-consent{position:fixed;left:0;right:0;bottom:0;z-index:9998;background:rgba(13,16,32,.98);border-top:1px solid var(--border,#2a3149);box-shadow:0 -8px 30px rgba(0,0,0,.45);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);}" +
+    ".cookie-consent-inner{max-width:1140px;margin:0 auto;padding:16px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:space-between;}" +
+    ".cookie-consent-text{margin:0;color:var(--muted,#98a1bd);font-size:13.5px;line-height:1.55;flex:1;min-width:240px;}" +
+    ".cookie-consent-text a{color:var(--gold,#ffc93c);}" +
+    ".cookie-consent-actions{display:flex;gap:10px;flex-shrink:0;}" +
+    ".cookie-btn{font-family:var(--font-head,sans-serif);font-weight:700;font-size:14px;padding:11px 22px;border-radius:10px;cursor:pointer;border:1px solid transparent;}" +
+    ".cookie-accept{background:linear-gradient(135deg,#ffd75e,#f5a623);color:#1a1205;}" +
+    ".cookie-decline{background:transparent;color:#eef1fa;border-color:#38416090;}" +
+    "@media(max-width:600px){.cookie-consent-inner{flex-direction:column;align-items:stretch;gap:12px;}.cookie-consent-actions{justify-content:stretch;}.cookie-btn{flex:1;}}";
+  var style = document.createElement("style");
+  style.appendChild(document.createTextNode(css));
+  document.head.appendChild(style);
+
+  var bar = document.createElement("div");
+  bar.className = "cookie-consent";
+  bar.setAttribute("role", "dialog");
+  bar.setAttribute("aria-label", "Cookie-Einwilligung");
+  bar.innerHTML =
+    '<div class="cookie-consent-inner">' +
+      '<p class="cookie-consent-text">Wir verwenden Cookies für anonyme Statistik (Google Analytics), um unsere Seite zu verbessern. Du entscheidest, ob wir das dürfen. Mehr in der <a href="/datenschutz">Datenschutzerklärung</a>.</p>' +
+      '<div class="cookie-consent-actions">' +
+        '<button type="button" class="cookie-btn cookie-decline" data-consent="deny">Ablehnen</button>' +
+        '<button type="button" class="cookie-btn cookie-accept" data-consent="grant">Akzeptieren</button>' +
+      '</div>' +
+    '</div>';
+  document.body.appendChild(bar);
+
+  bar.addEventListener("click", function (e) {
+    var b = e.target.closest ? e.target.closest("[data-consent]") : null;
+    if (!b) return;
+    var grant = b.getAttribute("data-consent") === "grant";
+    try { localStorage.setItem(KEY, grant ? "granted" : "denied"); } catch (e2) {}
+    if (bar.parentNode) bar.parentNode.removeChild(bar);
+    if (grant) loadGA();
+  });
 })();
