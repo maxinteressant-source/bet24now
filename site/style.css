@@ -56,7 +56,7 @@
 *{box-sizing:border-box;}
 html{scroll-behavior:smooth;scroll-padding-top:96px;-webkit-text-size-adjust:100%;scrollbar-gutter:stable;}
 body{margin:0;color:var(--text);line-height:1.7;font-size:17px;background:var(--bg);
-  background-image:var(--grad-hero);background-attachment:fixed;background-repeat:no-repeat;
+  background-image:var(--grad-hero);background-repeat:no-repeat;background-position:top center;
   -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden;}
 /* Promo-Banner: Platz vorab reservieren, damit kein Layout-Sprung (CLS) entsteht */
 body{padding-top:61px;}

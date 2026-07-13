@@ -3,6 +3,19 @@
 	root * /srv
 	encode gzip
 
+	# Sicherheits-Header (gelten für alle Antworten)
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		X-Frame-Options "SAMEORIGIN"
+		-Server
+	}
+
+	# /index und /index.html sind Duplikate der Startseite -> direkt 301 auf die Wurzel
+	redir /index.html / permanent
+	redir /index / permanent
+
 	# .html-Endungen dauerhaft auf die saubere URL umleiten (301, gegen Duplicate Content)
 	@htmlext path_regexp htmlext ^/(.+)\.html$
 	redir @htmlext /{re.htmlext.1} permanent
