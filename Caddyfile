@@ -1,7 +1,7 @@
 # Caddy-Konfiguration – serviert die statische Seite auf dem von Railway gesetzten Port
 :{$PORT:80} {
 	root * /srv
-	encode gzip
+	encode zstd gzip
 
 	# Sicherheits-Header (gelten für alle Antworten)
 	header {
@@ -9,6 +9,8 @@
 		X-Content-Type-Options "nosniff"
 		Referrer-Policy "strict-origin-when-cross-origin"
 		X-Frame-Options "SAMEORIGIN"
+		# Nicht genutzte Browser-Features deaktivieren
+		Permissions-Policy "geolocation=(), camera=(), microphone=(), payment=(), usb=(), interest-cohort=()"
 		-Server
 	}
 
