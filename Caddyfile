@@ -18,8 +18,14 @@
 	redir /index.html / permanent
 	redir /index / permanent
 
-	# .html-Endungen dauerhaft auf die saubere URL umleiten (301, gegen Duplicate Content)
-	@htmlext path_regexp htmlext ^/(.+)\.html$
+	# .html-Endungen dauerhaft auf die saubere URL umleiten (301, gegen Duplicate Content).
+	# Die Bedingung "file" ist wichtig: ohne sie bekaeme JEDE .html-Anfrage einen 301,
+	# auch geloeschte Seiten. Google liefe dann von der Weiterleitung in einen 404,
+	# statt den 404 direkt zu sehen.
+	@htmlext {
+		path_regexp htmlext ^/(.+)\.html$
+		file {path}
+	}
 	redir @htmlext /{re.htmlext.1} permanent
 
 	# Saubere URLs intern zur .html-Datei auflösen: /reviews -> /reviews.html
