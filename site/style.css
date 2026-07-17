@@ -494,3 +494,11 @@ figure.article-img figcaption a{color:var(--faint);}
   .ccard,.preview-card{padding:22px;}
   .offer-box{padding:22px 18px;}
 }
+
+/* Auf schmalen Displays darf ein Button umbrechen. Ohne das sprengt langer
+   Text wie "8.000 € Bonus + 400 Freispiele sichern" die Breite und der
+   CTA wird rechts abgeschnitten (white-space:nowrap in .btn). */
+@media(max-width:560px){
+  .btn{white-space:normal;text-align:center;max-width:100%;}
+  .btn-lg{padding:14px 18px;font-size:15.5px;line-height:1.3;}
+}
