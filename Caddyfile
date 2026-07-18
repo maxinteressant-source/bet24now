@@ -18,6 +18,13 @@
 	redir /index.html / permanent
 	redir /index / permanent
 
+	# Abschliessenden Schraegstrich entfernen: /ratgeber/ lieferte bisher 404.
+	# Externe Links und Direkteingaben mit Slash liefen damit ins Leere und
+	# verschenkten Linkkraft. Die Wurzel "/" ist ausgenommen, weil das Muster
+	# mindestens ein Zeichen vor dem Slash verlangt.
+	@trailingslash path_regexp trailslash ^/(.+)/$
+	redir @trailingslash /{re.trailslash.1} permanent
+
 	# .html-Endungen dauerhaft auf die saubere URL umleiten (301, gegen Duplicate Content).
 	# Die Bedingung "file" ist wichtig: ohne sie bekaeme JEDE .html-Anfrage einen 301,
 	# auch geloeschte Seiten. Google liefe dann von der Weiterleitung in einen 404,
