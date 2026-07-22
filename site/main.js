@@ -264,7 +264,13 @@
 (function () {
   "use strict";
   var article = document.querySelector(".article");
-  var isBlogArticle = article && document.querySelector('.crumbs a[href="/news"]');
+  // Aktiv auf Blog-Artikeln (/news-*) und Ratgeber-Guides (/ratgeber-*),
+  // erkennbar am Breadcrumb-Link zur jeweiligen Uebersicht. Die Uebersichts-
+  // seiten selbst (/news, /ratgeber) haben dort nur einen <span> und sind ausgenommen.
+  var isBlogArticle = article && (
+    document.querySelector('.crumbs a[href="/news"]') ||
+    document.querySelector('.crumbs a[href="/ratgeber"]')
+  );
   if (!isBlogArticle) return;
 
   var wrap = document.querySelector("main.section > .wrap");
