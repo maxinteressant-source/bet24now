@@ -259,3 +259,125 @@
     if (grant) loadGA();
   });
 })();
+
+// Blog-Sidebar (Kategorien + neueste Beiträge) & Teilen-Leiste – nur auf Blog-Artikeln (/news-*)
+(function () {
+  "use strict";
+  var article = document.querySelector(".article");
+  var isBlogArticle = article && document.querySelector('.crumbs a[href="/news"]');
+  if (!isBlogArticle) return;
+
+  var wrap = document.querySelector("main.section > .wrap");
+  if (!wrap) return;
+
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+    });
+  }
+  function fmtDate(iso) {
+    if (!iso) return "";
+    var mo = ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
+    var p = String(iso).split("-");
+    if (p.length !== 3) return iso;
+    return parseInt(p[2], 10) + ". " + mo[parseInt(p[1], 10) - 1] + " " + p[0];
+  }
+
+  // ---- Teilen-Leiste (unabhängig von den Daten, direkt unter dem Artikel) ----
+  var ICON = {
+    facebook: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22v-8h2.7l.4-3.1h-3.1V8.9c0-.9.25-1.5 1.5-1.5h1.6V4.6c-.28-.04-1.23-.12-2.34-.12-2.32 0-3.9 1.42-3.9 4.02v2.24H7.6V14h2.66v8h3.24z"/></svg>',
+    x: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.53 3H20.5l-6.48 7.4L21.5 21h-5.9l-4.62-6.04L5.7 21H2.72l6.93-7.92L2.5 3h6.04l4.18 5.52L17.53 3zm-1.04 16.2h1.64L7.6 4.72H5.85L16.49 19.2z"/></svg>',
+    whatsapp: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.02 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.48 1.34 5L2 22l5.16-1.35c1.46.8 3.1 1.22 4.86 1.22 5.5 0 9.96-4.46 9.96-9.96S17.52 2 12.02 2zm0 18.13c-1.55 0-3.07-.42-4.4-1.2l-.32-.19-3.06.8.82-2.98-.2-.33a8.13 8.13 0 0 1-1.25-4.35c0-4.5 3.66-8.16 8.17-8.16 4.5 0 8.16 3.66 8.16 8.16 0 4.51-3.66 8.17-8.16 8.17zm4.48-6.11c-.25-.13-1.45-.72-1.68-.8-.22-.08-.39-.12-.55.13-.16.24-.63.8-.77.96-.14.16-.28.18-.53.06-.25-.13-1.04-.38-1.98-1.22-.73-.65-1.22-1.46-1.37-1.7-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.12-.14.16-.24.25-.4.08-.17.04-.31-.02-.44-.06-.13-.55-1.33-.76-1.82-.2-.48-.4-.41-.55-.42l-.47-.01c-.16 0-.43.06-.65.31-.22.24-.86.84-.86 2.05 0 1.2.88 2.37 1 2.53.12.16 1.73 2.64 4.19 3.7.58.26 1.04.4 1.4.51.59.19 1.12.16 1.54.1.47-.07 1.45-.59 1.65-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.47-.28z"/></svg>',
+    email: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1H3c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1zm9 7.09 8-5.09H4l8 5.09zM4 8.24V18h16V8.24l-8 5.09-8-5.09z"/></svg>'
+  };
+  var canonical = document.querySelector('link[rel="canonical"]');
+  var shareUrl = canonical ? canonical.href : window.location.href;
+  var shareTitle = (document.title || "").replace(/\s*[|·]\s*Bet24Now\s*$/, "").trim();
+  var eu = encodeURIComponent(shareUrl), et = encodeURIComponent(shareTitle);
+
+  function shareBtn(net, label, href) {
+    var t = net === "email" ? "" : ' target="_blank" rel="noopener"';
+    return '<a class="share-btn share-' + net + '" href="' + href + '" aria-label="' + label + '" title="' + label + '"' + t + ">" + ICON[net] + "</a>";
+  }
+  var shareBar = document.createElement("div");
+  shareBar.className = "share-bar";
+  shareBar.innerHTML =
+    '<span class="share-title">Teilen</span>' +
+    '<div class="share-btns">' +
+      shareBtn("facebook", "Auf Facebook teilen", "https://www.facebook.com/sharer/sharer.php?u=" + eu) +
+      shareBtn("x", "Auf X teilen", "https://twitter.com/intent/tweet?url=" + eu + "&text=" + et) +
+      shareBtn("whatsapp", "Per WhatsApp teilen", "https://api.whatsapp.com/send?text=" + et + "%20" + eu) +
+      shareBtn("email", "Per E-Mail teilen", "mailto:?subject=" + et + "&body=" + eu) +
+    "</div>";
+  article.parentNode.insertBefore(shareBar, article.nextSibling);
+
+  // ---- Zwei-Spalten-Layout + Sidebar aus blog-index.json (dynamisch) ----
+  function restructure() {
+    if (wrap.classList.contains("blog-wrap")) return wrap._aside;
+    var col = document.createElement("div");
+    col.className = "blog-main";
+    while (wrap.firstChild) col.appendChild(wrap.firstChild);
+    wrap.appendChild(col);
+    var aside = document.createElement("aside");
+    aside.className = "blog-sidebar";
+    aside.setAttribute("aria-label", "Kategorien und neueste Beiträge");
+    wrap.appendChild(aside);
+    wrap.style.maxWidth = "";
+    wrap.classList.add("blog-wrap");
+    wrap._aside = aside;
+    return aside;
+  }
+
+  fetch("/blog-index.json", { cache: "no-cache" })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (data) {
+      if (!data || !data.posts) return;
+      var here = window.location.pathname.replace(/\/$/, "");
+      var aside = restructure();
+
+      var cats = (data.categories || []).map(function (c) {
+        return '<li><a href="/news?cat=' + encodeURIComponent(c.name) + '">' +
+          '<span class="cat-name">' + esc(c.name) + "</span>" +
+          '<span class="cat-badge">' + c.count + "</span></a></li>";
+      }).join("");
+      var catCard = '<div class="side-card"><h2 class="side-title">Kategorien</h2><ul class="cat-list">' + cats + "</ul></div>";
+
+      var latest = data.posts.filter(function (p) {
+        return p.url.replace(/\/$/, "") !== here;
+      }).slice(0, 6).map(function (p) {
+        return '<a class="side-post" href="' + p.url + '">' +
+          '<img src="' + p.image + '" alt="" width="66" height="50" loading="lazy">' +
+          '<div class="side-post-body">' +
+            '<p class="side-post-title">' + esc(p.title) + "</p>" +
+            '<span class="side-post-date">' + fmtDate(p.date) + "</span>" +
+          "</div></a>";
+      }).join("");
+      var postCard = '<div class="side-card"><h2 class="side-title">Neueste Beiträge</h2><div class="side-posts">' + latest + "</div></div>";
+
+      aside.innerHTML = catCard + postCard;
+    })
+    .catch(function () {});
+})();
+
+// Kategorie-Filter auf der /news-Übersicht (?cat=…)
+(function () {
+  "use strict";
+  var grid = document.querySelector(".grid-news");
+  if (!grid) return;
+  var cat = new URLSearchParams(window.location.search).get("cat");
+  if (!cat) return;
+  var want = cat.trim().toLowerCase();
+  var shown = 0;
+  [].forEach.call(grid.querySelectorAll(".news-card"), function (card) {
+    var el = card.querySelector(".news-cat");
+    var c = el ? el.textContent.trim().toLowerCase() : "";
+    if (c === want) { card.style.display = ""; shown++; }
+    else { card.style.display = "none"; }
+  });
+  var note = document.createElement("div");
+  note.className = "cat-filter-note";
+  note.innerHTML = "Gefiltert nach Kategorie: <strong>" +
+    cat.replace(/[<>&"]/g, "") + "</strong> (" + shown + " Beiträge) · <a href=\"/news\">Alle Beiträge anzeigen</a>";
+  var lead = document.querySelector(".section-lead") || document.querySelector("h1");
+  if (lead && lead.parentNode) lead.parentNode.insertBefore(note, lead.nextSibling);
+})();

@@ -1,0 +1,419 @@
+{
+    "generatedAt":  "2026-07-22",
+    "total":  53,
+    "categories":  [
+                       {
+                           "name":  "Spiele",
+                           "count":  16
+                       },
+                       {
+                           "name":  "Wissen",
+                           "count":  7
+                       },
+                       {
+                           "name":  "Regulierung",
+                           "count":  6
+                       },
+                       {
+                           "name":  "Zahlungen",
+                           "count":  6
+                       },
+                       {
+                           "name":  "Spielerschutz",
+                           "count":  5
+                       },
+                       {
+                           "name":  "Boni",
+                           "count":  3
+                       },
+                       {
+                           "name":  "Sicherheit",
+                           "count":  3
+                       },
+                       {
+                           "name":  "Trends",
+                           "count":  3
+                       },
+                       {
+                           "name":  "Hintergrund",
+                           "count":  2
+                       },
+                       {
+                           "name":  "Mobil",
+                           "count":  2
+                       }
+                   ],
+    "posts":  [
+                  {
+                      "url":  "/news-casino-betrug-erkennen",
+                      "title":  "Online Casino Betrug erkennen",
+                      "category":  "Sicherheit",
+                      "image":  "/img/ratgeber-sicherheit.webp",
+                      "date":  "2026-07-21"
+                  },
+                  {
+                      "url":  "/news-spielehersteller-vergleich",
+                      "title":  "Spielehersteller im Vergleich",
+                      "category":  "Wissen",
+                      "image":  "/img/blog-slots.webp",
+                      "date":  "2026-07-21"
+                  },
+                  {
+                      "url":  "/news-craps-regeln-anfaenger",
+                      "title":  "Craps Regeln für Anfänger",
+                      "category":  "Spiele",
+                      "image":  "/img/blog-live-casino.webp",
+                      "date":  "2026-07-21"
+                  },
+                  {
+                      "url":  "/news-gluecksspielwerbung-deutschland",
+                      "title":  "Glücksspielwerbung in Deutschland",
+                      "category":  "Regulierung",
+                      "image":  "/img/news-regulierung.webp",
+                      "date":  "2026-07-21"
+                  },
+                  {
+                      "url":  "/news-sofortueberweisung-trustly-casino",
+                      "title":  "Sofortüberweisung, Trustly \u0026 Klarna",
+                      "category":  "Zahlungen",
+                      "image":  "/img/ratgeber-auszahlung.webp",
+                      "date":  "2026-07-21"
+                  },
+                  {
+                      "url":  "/news-game-shows-live-casino",
+                      "title":  "Game Shows im Live Casino",
+                      "category":  "Spiele",
+                      "image":  "/img/blog-live-casino.webp",
+                      "date":  "2026-07-21"
+                  },
+                  {
+                      "url":  "/news-ewallet-casino",
+                      "title":  "E-Wallets: Skrill, Neteller \u0026 Co.",
+                      "category":  "Zahlungen",
+                      "image":  "/img/news-zahlungsmethoden.webp",
+                      "date":  "2026-07-21"
+                  },
+                  {
+                      "url":  "/news-casino-datenschutz-sicherheit",
+                      "title":  "Datenschutz \u0026 Sicherheit im Casino",
+                      "category":  "Sicherheit",
+                      "image":  "/img/ratgeber-sicherheit.webp",
+                      "date":  "2026-07-21"
+                  },
+                  {
+                      "url":  "/news-gluecksspielsucht-angehoerige",
+                      "title":  "Glücksspielsucht: Hilfe für Angehörige",
+                      "category":  "Spielerschutz",
+                      "image":  "/img/news-spielerschutz.webp",
+                      "date":  "2026-07-21"
+                  },
+                  {
+                      "url":  "/news-keno-rubbellose",
+                      "title":  "Keno \u0026 Rubbellose im Casino",
+                      "category":  "Spiele",
+                      "image":  "/img/blog-jackpots.webp",
+                      "date":  "2026-07-21"
+                  },
+                  {
+                      "url":  "/news-psychologie-gluecksspiel",
+                      "title":  "Psychologie des Glücksspiels",
+                      "category":  "Spielerschutz",
+                      "image":  "/img/blog-spielsucht.webp",
+                      "date":  "2026-07-20"
+                  },
+                  {
+                      "url":  "/news-kreditkarte-casino",
+                      "title":  "Kreditkarte im Online Casino",
+                      "category":  "Zahlungen",
+                      "image":  "/img/news-zahlungsmethoden.webp",
+                      "date":  "2026-07-20"
+                  },
+                  {
+                      "url":  "/news-slot-bonus-features",
+                      "title":  "Slot Bonus-Features erklärt",
+                      "category":  "Spiele",
+                      "image":  "/img/ratgeber-freispiele.webp",
+                      "date":  "2026-07-20"
+                  },
+                  {
+                      "url":  "/news-baccarat-regeln-anfaenger",
+                      "title":  "Baccarat Regeln für Anfänger",
+                      "category":  "Spiele",
+                      "image":  "/img/blog-live-casino.webp",
+                      "date":  "2026-07-20"
+                  },
+                  {
+                      "url":  "/news-casino-turniere",
+                      "title":  "Casino-Turniere \u0026 Slot-Rennen",
+                      "category":  "Boni",
+                      "image":  "/img/blog-vip.webp",
+                      "date":  "2026-07-20"
+                  },
+                  {
+                      "url":  "/news-blackjack-basisstrategie",
+                      "title":  "Blackjack Basisstrategie \u0026 Tabelle",
+                      "category":  "Spiele",
+                      "image":  "/img/blog-blackjack.webp",
+                      "date":  "2026-07-20"
+                  },
+                  {
+                      "url":  "/news-poker-regeln-anfaenger",
+                      "title":  "Poker Regeln für Anfänger",
+                      "category":  "Spiele",
+                      "image":  "/img/blog-blackjack.webp",
+                      "date":  "2026-07-20"
+                  },
+                  {
+                      "url":  "/news-slot-volatilitaet",
+                      "title":  "Slot Volatilität \u0026 Varianz erklärt",
+                      "category":  "Wissen",
+                      "image":  "/img/blog-slots.webp",
+                      "date":  "2026-07-20"
+                  },
+                  {
+                      "url":  "/news-casino-lizenzen",
+                      "title":  "Casino Lizenzen im Vergleich",
+                      "category":  "Regulierung",
+                      "image":  "/img/news-regulierung.webp",
+                      "date":  "2026-07-20"
+                  },
+                  {
+                      "url":  "/news-bankroll-management",
+                      "title":  "Bankroll Management im Casino",
+                      "category":  "Spielerschutz",
+                      "image":  "/img/news-spielerschutz.webp",
+                      "date":  "2026-07-20"
+                  },
+                  {
+                      "url":  "/news-crash-games-aviator",
+                      "title":  "Crash Games \u0026 Aviator erklärt",
+                      "category":  "Trends",
+                      "image":  "/img/news-trends.webp",
+                      "date":  "2026-07-20"
+                  },
+                  {
+                      "url":  "/news-apple-pay-google-pay-casino",
+                      "title":  "Apple Pay \u0026 Google Pay im Casino",
+                      "category":  "Zahlungen",
+                      "image":  "/img/news-zahlungsmethoden.webp",
+                      "date":  "2026-07-20"
+                  },
+                  {
+                      "url":  "/news-zufallsgenerator-rng",
+                      "title":  "Zufallsgenerator (RNG) erklärt",
+                      "category":  "Sicherheit",
+                      "image":  "/img/news-regulierung.webp",
+                      "date":  "2026-07-20"
+                  },
+                  {
+                      "url":  "/news-hausvorteil-casino",
+                      "title":  "Hausvorteil im Casino",
+                      "category":  "Wissen",
+                      "image":  "/img/news-rtp.webp",
+                      "date":  "2026-07-20"
+                  },
+                  {
+                      "url":  "/news-roulette-regeln-anfaenger",
+                      "title":  "Roulette Regeln für Anfänger",
+                      "category":  "Spiele",
+                      "image":  "/img/blog-roulette.webp",
+                      "date":  "2026-07-20"
+                  },
+                  {
+                      "url":  "/gluecksspielsteuer",
+                      "title":  "Glücksspielsteuer erklärt",
+                      "category":  "Hintergrund",
+                      "image":  "/img/news-regulierung.webp",
+                      "date":  "2026-07-19"
+                  },
+                  {
+                      "url":  "/casino-streams",
+                      "title":  "Casino Streams: was dahintersteckt",
+                      "category":  "Hintergrund",
+                      "image":  "/img/blog-live-casino.webp",
+                      "date":  "2026-07-17"
+                  },
+                  {
+                      "url":  "/news-online-casino-schwarzmarkt",
+                      "title":  "Online Casino Schwarzmarkt",
+                      "category":  "Regulierung",
+                      "image":  "/img/news-regulierung.webp",
+                      "date":  "2026-07-03"
+                  },
+                  {
+                      "url":  "/news-gluecksspiel-oesterreich",
+                      "title":  "Glücksspiel in Österreich",
+                      "category":  "Regulierung",
+                      "image":  "/img/news-einzahlungslimit.webp",
+                      "date":  "2026-07-03"
+                  },
+                  {
+                      "url":  "/news-casinos-veraendern-staedte",
+                      "title":  "Wie Casinos Städte verändern",
+                      "category":  "Wissen",
+                      "image":  "/img/hero-roulette.webp",
+                      "date":  "2026-07-03"
+                  },
+                  {
+                      "url":  "/news-casinos-im-film",
+                      "title":  "Casinos im Film",
+                      "category":  "Wissen",
+                      "image":  "/img/blog-live-casino.webp",
+                      "date":  "2026-07-03"
+                  },
+                  {
+                      "url":  "/news-groesste-poker-turniere",
+                      "title":  "Die größten Poker-Turniere",
+                      "category":  "Wissen",
+                      "image":  "/img/blog-blackjack.webp",
+                      "date":  "2026-07-03"
+                  },
+                  {
+                      "url":  "/news-slot-symbole",
+                      "title":  "Slot-Symbole erklärt",
+                      "category":  "Spiele",
+                      "image":  "/img/blog-slots.webp",
+                      "date":  "2026-07-03"
+                  },
+                  {
+                      "url":  "/news-slot-strategien",
+                      "title":  "Slot-Strategien: Mythos \u0026 Realität",
+                      "category":  "Spiele",
+                      "image":  "/img/news-rtp.webp",
+                      "date":  "2026-07-03"
+                  },
+                  {
+                      "url":  "/news-live-dealer-evolution",
+                      "title":  "Live-Dealer: die Entwicklung",
+                      "category":  "Spiele",
+                      "image":  "/img/blog-live-casino.webp",
+                      "date":  "2026-07-03"
+                  },
+                  {
+                      "url":  "/news-ki-gluecksspiel",
+                      "title":  "KI im Glücksspiel",
+                      "category":  "Trends",
+                      "image":  "/img/news-trends.webp",
+                      "date":  "2026-07-03"
+                  },
+                  {
+                      "url":  "/news-handy-spielverhalten",
+                      "title":  "Wie das Handy uns beeinflusst",
+                      "category":  "Mobil",
+                      "image":  "/img/blog-casino-apps.webp",
+                      "date":  "2026-07-03"
+                  },
+                  {
+                      "url":  "/news-live-casino-guide",
+                      "title":  "Live Casino Guide 2026",
+                      "category":  "Spiele",
+                      "image":  "/img/blog-live-casino.webp",
+                      "date":  "2026-07-02"
+                  },
+                  {
+                      "url":  "/news-beliebteste-slots-2026",
+                      "title":  "Die beliebtesten Slots 2026",
+                      "category":  "Spiele",
+                      "image":  "/img/blog-slots.webp",
+                      "date":  "2026-07-02"
+                  },
+                  {
+                      "url":  "/news-casino-bonus-arten",
+                      "title":  "Casino-Bonus-Arten im Überblick",
+                      "category":  "Boni",
+                      "image":  "/img/blog-bonus-arten.webp",
+                      "date":  "2026-07-02"
+                  },
+                  {
+                      "url":  "/news-vip-treueprogramme",
+                      "title":  "VIP- \u0026 Treueprogramme",
+                      "category":  "Boni",
+                      "image":  "/img/blog-vip.webp",
+                      "date":  "2026-07-02"
+                  },
+                  {
+                      "url":  "/news-roulette-strategien",
+                      "title":  "Roulette-Strategien im Überblick",
+                      "category":  "Spiele",
+                      "image":  "/img/blog-roulette.webp",
+                      "date":  "2026-07-02"
+                  },
+                  {
+                      "url":  "/news-blackjack-anfaenger",
+                      "title":  "Blackjack für Anfänger",
+                      "category":  "Spiele",
+                      "image":  "/img/blog-blackjack.webp",
+                      "date":  "2026-07-02"
+                  },
+                  {
+                      "url":  "/news-paysafecard-casino",
+                      "title":  "Mit Paysafecard einzahlen",
+                      "category":  "Zahlungen",
+                      "image":  "/img/blog-paysafecard.webp",
+                      "date":  "2026-07-02"
+                  },
+                  {
+                      "url":  "/news-casino-apps-mobiles-spielen",
+                      "title":  "Casino-Apps \u0026 mobiles Spielen",
+                      "category":  "Mobil",
+                      "image":  "/img/blog-casino-apps.webp",
+                      "date":  "2026-07-02"
+                  },
+                  {
+                      "url":  "/news-progressive-jackpots",
+                      "title":  "Progressive Jackpots erklärt",
+                      "category":  "Spiele",
+                      "image":  "/img/blog-jackpots.webp",
+                      "date":  "2026-07-02"
+                  },
+                  {
+                      "url":  "/news-spielsucht-erkennen-hilfe",
+                      "title":  "Spielsucht erkennen \u0026 Hilfe",
+                      "category":  "Spielerschutz",
+                      "image":  "/img/blog-spielsucht.webp",
+                      "date":  "2026-07-02"
+                  },
+                  {
+                      "url":  "/news-einzahlungslimit-online-casino",
+                      "title":  "Einzahlungslimit: 1.000 € erklärt",
+                      "category":  "Regulierung",
+                      "image":  "/img/news-einzahlungslimit.webp",
+                      "date":  "2026-07-02"
+                  },
+                  {
+                      "url":  "/news-zahlungsmethoden-online-casino",
+                      "title":  "Zahlungsmethoden im Vergleich",
+                      "category":  "Zahlungen",
+                      "image":  "/img/news-zahlungsmethoden.webp",
+                      "date":  "2026-07-02"
+                  },
+                  {
+                      "url":  "/news-rtp-auszahlungsquote-slots",
+                      "title":  "RTP \u0026 Auszahlungsquote erklärt",
+                      "category":  "Wissen",
+                      "image":  "/img/news-rtp.webp",
+                      "date":  "2026-07-02"
+                  },
+                  {
+                      "url":  "/news-online-casino-trends-2026",
+                      "title":  "Online Casino Trends 2026",
+                      "category":  "Trends",
+                      "image":  "/img/news-trends.webp",
+                      "date":  "2026-07-01"
+                  },
+                  {
+                      "url":  "/news-oasis-spielersperre",
+                      "title":  "OASIS Spielersperre erklärt",
+                      "category":  "Spielerschutz",
+                      "image":  "/img/news-spielerschutz.webp",
+                      "date":  "2026-06-25"
+                  },
+                  {
+                      "url":  "/news-gluecksspiel-regulierung-deutschland",
+                      "title":  "Glücksspiel-Regulierung 2026",
+                      "category":  "Regulierung",
+                      "image":  "/img/news-regulierung.webp",
+                      "date":  "2026-06-18"
+                  }
+              ]
+}
