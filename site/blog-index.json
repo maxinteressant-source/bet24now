@@ -1,22 +1,22 @@
 {
-    "generatedAt":  "2026-07-22",
-    "total":  53,
+    "generatedAt":  "2026-07-23",
+    "total":  58,
     "categories":  [
                        {
                            "name":  "Spiele",
-                           "count":  16
+                           "count":  17
                        },
                        {
                            "name":  "Wissen",
-                           "count":  7
+                           "count":  9
                        },
                        {
                            "name":  "Regulierung",
-                           "count":  6
+                           "count":  7
                        },
                        {
                            "name":  "Zahlungen",
-                           "count":  6
+                           "count":  7
                        },
                        {
                            "name":  "Spielerschutz",
@@ -44,6 +44,41 @@
                        }
                    ],
     "posts":  [
+                  {
+                      "url":  "/news-slots-hohe-auszahlungsquote",
+                      "title":  "Slots mit hoher Auszahlungsquote",
+                      "category":  "Wissen",
+                      "image":  "/img/news-rtp.webp",
+                      "date":  "2026-07-22"
+                  },
+                  {
+                      "url":  "/news-auszahlungslimit-casino",
+                      "title":  "Auszahlungslimits im Online Casino",
+                      "category":  "Zahlungen",
+                      "image":  "/img/ratgeber-auszahlung.webp",
+                      "date":  "2026-07-22"
+                  },
+                  {
+                      "url":  "/news-wie-funktioniert-online-casino",
+                      "title":  "Wie funktioniert ein Online Casino?",
+                      "category":  "Wissen",
+                      "image":  "/img/news-trends.webp",
+                      "date":  "2026-07-22"
+                  },
+                  {
+                      "url":  "/news-casino-mit-vpn",
+                      "title":  "Casino mit VPN: Risiken \u0026 Rechtslage",
+                      "category":  "Regulierung",
+                      "image":  "/img/ratgeber-sicherheit.webp",
+                      "date":  "2026-07-22"
+                  },
+                  {
+                      "url":  "/news-sic-bo-regeln",
+                      "title":  "Sic Bo Regeln für Anfänger",
+                      "category":  "Spiele",
+                      "image":  "/img/blog-live-casino.webp",
+                      "date":  "2026-07-22"
+                  },
                   {
                       "url":  "/news-casino-betrug-erkennen",
                       "title":  "Online Casino Betrug erkennen",
