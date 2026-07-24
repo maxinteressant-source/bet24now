@@ -1,33 +1,33 @@
 {
-    "generatedAt":  "2026-07-23",
-    "total":  58,
+    "generatedAt":  "2026-07-24",
+    "total":  63,
     "categories":  [
                        {
                            "name":  "Spiele",
-                           "count":  17
+                           "count":  18
                        },
                        {
                            "name":  "Wissen",
-                           "count":  9
+                           "count":  10
                        },
                        {
                            "name":  "Regulierung",
-                           "count":  7
+                           "count":  8
                        },
                        {
                            "name":  "Zahlungen",
-                           "count":  7
+                           "count":  8
                        },
                        {
                            "name":  "Spielerschutz",
                            "count":  5
                        },
                        {
-                           "name":  "Boni",
-                           "count":  3
+                           "name":  "Sicherheit",
+                           "count":  4
                        },
                        {
-                           "name":  "Sicherheit",
+                           "name":  "Boni",
                            "count":  3
                        },
                        {
@@ -44,6 +44,41 @@
                        }
                    ],
     "posts":  [
+                  {
+                      "url":  "/news-video-poker-regeln",
+                      "title":  "Video Poker: Regeln \u0026 Strategie",
+                      "category":  "Spiele",
+                      "image":  "/img/blog-blackjack.webp",
+                      "date":  "2026-07-22"
+                  },
+                  {
+                      "url":  "/news-gluecksspiel-schweiz",
+                      "title":  "Glücksspiel in der Schweiz",
+                      "category":  "Regulierung",
+                      "image":  "/img/news-regulierung.webp",
+                      "date":  "2026-07-22"
+                  },
+                  {
+                      "url":  "/news-gebuehren-online-casino",
+                      "title":  "Gebühren im Online Casino",
+                      "category":  "Zahlungen",
+                      "image":  "/img/news-zahlungsmethoden.webp",
+                      "date":  "2026-07-22"
+                  },
+                  {
+                      "url":  "/news-kontosicherheit-casino",
+                      "title":  "Kontosicherheit im Online Casino",
+                      "category":  "Sicherheit",
+                      "image":  "/img/ratgeber-sicherheit.webp",
+                      "date":  "2026-07-22"
+                  },
+                  {
+                      "url":  "/news-zufall-oder-geschicklichkeit",
+                      "title":  "Zufall oder Geschicklichkeit?",
+                      "category":  "Wissen",
+                      "image":  "/img/hero-roulette.webp",
+                      "date":  "2026-07-22"
+                  },
                   {
                       "url":  "/news-slots-hohe-auszahlungsquote",
                       "title":  "Slots mit hoher Auszahlungsquote",
