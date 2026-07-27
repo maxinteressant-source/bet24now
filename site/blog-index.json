@@ -1,14 +1,14 @@
 {
-    "generatedAt":  "2026-07-24",
-    "total":  63,
+    "generatedAt":  "2026-07-27",
+    "total":  68,
     "categories":  [
                        {
                            "name":  "Spiele",
-                           "count":  18
+                           "count":  20
                        },
                        {
                            "name":  "Wissen",
-                           "count":  10
+                           "count":  11
                        },
                        {
                            "name":  "Regulierung",
@@ -23,6 +23,10 @@
                            "count":  5
                        },
                        {
+                           "name":  "Hintergrund",
+                           "count":  4
+                       },
+                       {
                            "name":  "Sicherheit",
                            "count":  4
                        },
@@ -35,15 +39,46 @@
                            "count":  3
                        },
                        {
-                           "name":  "Hintergrund",
-                           "count":  2
-                       },
-                       {
                            "name":  "Mobil",
                            "count":  2
                        }
                    ],
     "posts":  [
+                  {
+                      "url":  "/news-casino-poker-varianten",
+                      "title":  "Casino Hold’em \u0026 Three Card Poker",
+                      "category":  "Spiele",
+                      "image":  "/img/blog-blackjack.webp",
+                      "date":  "2026-07-22"
+                  },
+                  {
+                      "url":  "/news-online-bingo",
+                      "title":  "Online Bingo: Regeln \u0026 Varianten",
+                      "category":  "Spiele",
+                      "image":  "/img/blog-jackpots.webp",
+                      "date":  "2026-07-22"
+                  },
+                  {
+                      "url":  "/news-casino-mythen",
+                      "title":  "Casino-Mythen im Faktencheck",
+                      "category":  "Wissen",
+                      "image":  "/img/blog-slots.webp",
+                      "date":  "2026-07-22"
+                  },
+                  {
+                      "url":  "/news-geschichte-gluecksspiel",
+                      "title":  "Die Geschichte des Glücksspiels",
+                      "category":  "Hintergrund",
+                      "image":  "/img/blog-roulette.webp",
+                      "date":  "2026-07-22"
+                  },
+                  {
+                      "url":  "/news-casino-skandale",
+                      "title":  "Berühmte Casino-Skandale \u0026 Betrug",
+                      "category":  "Hintergrund",
+                      "image":  "/img/blog-live-casino.webp",
+                      "date":  "2026-07-22"
+                  },
                   {
                       "url":  "/news-video-poker-regeln",
                       "title":  "Video Poker: Regeln \u0026 Strategie",
