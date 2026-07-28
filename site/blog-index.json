@@ -1,14 +1,14 @@
 {
-    "generatedAt":  "2026-07-27",
-    "total":  68,
+    "generatedAt":  "2026-07-28",
+    "total":  73,
     "categories":  [
                        {
                            "name":  "Spiele",
-                           "count":  20
+                           "count":  22
                        },
                        {
                            "name":  "Wissen",
-                           "count":  11
+                           "count":  12
                        },
                        {
                            "name":  "Regulierung",
@@ -19,20 +19,20 @@
                            "count":  8
                        },
                        {
+                           "name":  "Sicherheit",
+                           "count":  5
+                       },
+                       {
                            "name":  "Spielerschutz",
                            "count":  5
                        },
                        {
+                           "name":  "Boni",
+                           "count":  4
+                       },
+                       {
                            "name":  "Hintergrund",
                            "count":  4
-                       },
-                       {
-                           "name":  "Sicherheit",
-                           "count":  4
-                       },
-                       {
-                           "name":  "Boni",
-                           "count":  3
                        },
                        {
                            "name":  "Trends",
@@ -44,6 +44,41 @@
                        }
                    ],
     "posts":  [
+                  {
+                      "url":  "/news-blackjack-side-bets",
+                      "title":  "Blackjack Side Bets erklärt",
+                      "category":  "Spiele",
+                      "image":  "/img/blog-blackjack.webp",
+                      "date":  "2026-07-22"
+                  },
+                  {
+                      "url":  "/news-bonus-spielgewichtung",
+                      "title":  "Bonus-Umsatz: welche Spiele zählen?",
+                      "category":  "Boni",
+                      "image":  "/img/blog-bonus-arten.webp",
+                      "date":  "2026-07-22"
+                  },
+                  {
+                      "url":  "/news-casino-pruefsiegel-zertifikate",
+                      "title":  "Casino-Prüfsiegel \u0026 Zertifikate",
+                      "category":  "Sicherheit",
+                      "image":  "/img/ratgeber-sicherheit.webp",
+                      "date":  "2026-07-22"
+                  },
+                  {
+                      "url":  "/news-slot-paytable-gewinnlinien",
+                      "title":  "Slot-Paytable \u0026 Gewinnlinien lesen",
+                      "category":  "Wissen",
+                      "image":  "/img/blog-slots.webp",
+                      "date":  "2026-07-22"
+                  },
+                  {
+                      "url":  "/news-slingo",
+                      "title":  "Slingo: Slots trifft Bingo",
+                      "category":  "Spiele",
+                      "image":  "/img/blog-jackpots.webp",
+                      "date":  "2026-07-22"
+                  },
                   {
                       "url":  "/news-casino-poker-varianten",
                       "title":  "Casino Hold’em \u0026 Three Card Poker",
