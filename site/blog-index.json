@@ -1,21 +1,21 @@
 {
-    "generatedAt":  "2026-07-28",
-    "total":  73,
+    "generatedAt":  "2026-07-30",
+    "total":  78,
     "categories":  [
                        {
                            "name":  "Spiele",
-                           "count":  22
+                           "count":  23
                        },
                        {
                            "name":  "Wissen",
-                           "count":  12
-                       },
-                       {
-                           "name":  "Regulierung",
-                           "count":  8
+                           "count":  13
                        },
                        {
                            "name":  "Zahlungen",
+                           "count":  9
+                       },
+                       {
+                           "name":  "Regulierung",
                            "count":  8
                        },
                        {
@@ -27,6 +27,10 @@
                            "count":  5
                        },
                        {
+                           "name":  "Trends",
+                           "count":  5
+                       },
+                       {
                            "name":  "Boni",
                            "count":  4
                        },
@@ -35,15 +39,46 @@
                            "count":  4
                        },
                        {
-                           "name":  "Trends",
-                           "count":  3
-                       },
-                       {
                            "name":  "Mobil",
                            "count":  2
                        }
                    ],
     "posts":  [
+                  {
+                      "url":  "/news-dragon-tiger",
+                      "title":  "Dragon Tiger erklärt",
+                      "category":  "Spiele",
+                      "image":  "/img/blog-live-casino.webp",
+                      "date":  "2026-07-28"
+                  },
+                  {
+                      "url":  "/news-social-casinos",
+                      "title":  "Social Casinos erklärt",
+                      "category":  "Trends",
+                      "image":  "/img/blog-casino-apps.webp",
+                      "date":  "2026-07-28"
+                  },
+                  {
+                      "url":  "/news-schufa-gluecksspiel",
+                      "title":  "Schufa \u0026 Glücksspiel",
+                      "category":  "Zahlungen",
+                      "image":  "/img/news-zahlungsmethoden.webp",
+                      "date":  "2026-07-28"
+                  },
+                  {
+                      "url":  "/news-gamification-casino",
+                      "title":  "Gamification im Online Casino",
+                      "category":  "Trends",
+                      "image":  "/img/blog-vip.webp",
+                      "date":  "2026-07-28"
+                  },
+                  {
+                      "url":  "/news-gluecksspiel-vs-investieren",
+                      "title":  "Glücksspiel vs. Investieren",
+                      "category":  "Wissen",
+                      "image":  "/img/news-rtp.webp",
+                      "date":  "2026-07-28"
+                  },
                   {
                       "url":  "/news-blackjack-side-bets",
                       "title":  "Blackjack Side Bets erklärt",
