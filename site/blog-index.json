@@ -1,22 +1,22 @@
 {
-    "generatedAt":  "2026-07-30",
-    "total":  78,
+    "generatedAt":  "2026-07-31",
+    "total":  83,
     "categories":  [
                        {
                            "name":  "Spiele",
-                           "count":  23
+                           "count":  25
                        },
                        {
                            "name":  "Wissen",
-                           "count":  13
+                           "count":  14
                        },
                        {
                            "name":  "Zahlungen",
-                           "count":  9
+                           "count":  10
                        },
                        {
                            "name":  "Regulierung",
-                           "count":  8
+                           "count":  9
                        },
                        {
                            "name":  "Sicherheit",
@@ -44,6 +44,41 @@
                        }
                    ],
     "posts":  [
+                  {
+                      "url":  "/news-plinko-mines-casino",
+                      "title":  "Plinko, Mines \u0026 Co. erklärt",
+                      "category":  "Spiele",
+                      "image":  "/img/news-trends.webp",
+                      "date":  "2026-07-28"
+                  },
+                  {
+                      "url":  "/news-live-casino-studio",
+                      "title":  "Live-Casino-Studio: hinter den Kulissen",
+                      "category":  "Spiele",
+                      "image":  "/img/blog-live-casino.webp",
+                      "date":  "2026-07-28"
+                  },
+                  {
+                      "url":  "/news-jugendschutz-gluecksspiel",
+                      "title":  "Jugendschutz im Glücksspiel",
+                      "category":  "Regulierung",
+                      "image":  "/img/news-spielerschutz.webp",
+                      "date":  "2026-07-28"
+                  },
+                  {
+                      "url":  "/news-aberglaube-gluecksspiel",
+                      "title":  "Aberglaube \u0026 Rituale beim Glücksspiel",
+                      "category":  "Wissen",
+                      "image":  "/img/blog-roulette.webp",
+                      "date":  "2026-07-28"
+                  },
+                  {
+                      "url":  "/news-auszahlung-stornieren",
+                      "title":  "Auszahlung stornieren: die Reverse-Withdrawal-Falle",
+                      "category":  "Zahlungen",
+                      "image":  "/img/ratgeber-auszahlung.webp",
+                      "date":  "2026-07-28"
+                  },
                   {
                       "url":  "/news-dragon-tiger",
                       "title":  "Dragon Tiger erklärt",
