@@ -27,6 +27,8 @@ $handler = {
     $rel = [Uri]::UnescapeDataString($request.Url.AbsolutePath).TrimStart('/')
     if ([string]::IsNullOrEmpty($rel)) { $rel = 'index.html' }
     $path = Join-Path $root $rel
+    # Path-Traversal-Schutz: nur Dateien unterhalb von site/ ausliefern
+    if (-not ([IO.Path]::GetFullPath($path)).StartsWith([IO.Path]::GetFullPath($root), [System.StringComparison]::OrdinalIgnoreCase)) { $path = Join-Path $root '__blocked__' }
     if (Test-Path $path -PathType Container) { $path = Join-Path $path 'index.html' }
     # Saubere URLs wie Caddy: /reviews -> /reviews.html
     if ((-not (Test-Path $path -PathType Leaf)) -and (-not [System.IO.Path]::HasExtension($path)) -and (Test-Path "$path.html" -PathType Leaf)) { $path = "$path.html" }

@@ -110,8 +110,10 @@
       '<p class="age-gate-note">Glücksspiel kann süchtig machen. Kostenlose Hilfe unter <a href="https://www.buwei.de" target="_blank" rel="noopener">buwei.de</a></p>' +
     '</div>';
 
+  if (document.querySelector(".age-gate")) return;
   document.documentElement.classList.add("age-locked");
   document.body.appendChild(ov);
+  var ageYes = ov.querySelector(".age-gate-yes"); if (ageYes) ageYes.focus();
 
   ov.addEventListener("click", function (e) {
     var btn = e.target.closest ? e.target.closest("[data-age]") : null;
@@ -162,7 +164,7 @@
   var bar = document.createElement("div");
   bar.className = "promo-bar";
   var chips = CASINOS.map(function (c) {
-    return '<a class="promo-chip" href="' + c.url + '" target="_blank" rel="nofollow sponsored"><b>' + c.name + '</b> ' + c.bonus + ' <span class="promo-go">Sichern →</span></a>';
+    return '<a class="promo-chip" href="' + c.url + '" target="_blank" rel="nofollow sponsored noopener"><b>' + c.name + '</b> ' + c.bonus + ' <span class="promo-go">Sichern →</span></a>';
   }).join("");
   bar.innerHTML = '<div class="promo-bar-inner"><span class="promo-bar-label">🔥 Top-Casino-Boni 2026</span>' + chips + '</div>';
   document.body.insertBefore(bar, document.body.firstChild);
@@ -171,7 +173,7 @@
   var article = document.querySelector(".article");
   if (article) {
     var offers = CASINOS.map(function (c) {
-      return '<div class="inline-offer"><img src="' + c.logo + '" alt="' + c.name + '" loading="lazy"><div class="inline-offer-bonus">' + c.bonusLong + '</div><a class="btn" href="' + c.url + '" target="_blank" rel="nofollow sponsored">Bonus sichern →</a></div>';
+      return '<div class="inline-offer"><img src="' + c.logo + '" alt="' + c.name + '" loading="lazy"><div class="inline-offer-bonus">' + c.bonusLong + '</div><a class="btn" href="' + c.url + '" target="_blank" rel="nofollow sponsored noopener">Bonus sichern →</a></div>';
     }).join("");
     var box = document.createElement("aside");
     box.className = "inline-offers";
@@ -238,6 +240,7 @@
 
   var bar = document.createElement("div");
   bar.className = "cookie-consent";
+  if (document.querySelector(".cookie-consent")) return;
   bar.setAttribute("role", "dialog");
   bar.setAttribute("aria-label", "Cookie-Einwilligung");
   bar.innerHTML =
@@ -286,10 +289,11 @@
     var mo = ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
     var p = String(iso).split("-");
     if (p.length !== 3) return iso;
-    return parseInt(p[2], 10) + ". " + mo[parseInt(p[1], 10) - 1] + " " + p[0];
+    var mn = mo[parseInt(p[1], 10) - 1]; if (!mn) return iso; return parseInt(p[2], 10) + ". " + mn + " " + p[0];
   }
 
   // ---- Teilen-Leiste (unabhängig von den Daten, direkt unter dem Artikel) ----
+  if (document.querySelector(".share-bar")) return;
   var ICON = {
     facebook: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 22v-8h2.7l.4-3.1h-3.1V8.9c0-.9.25-1.5 1.5-1.5h1.6V4.6c-.28-.04-1.23-.12-2.34-.12-2.32 0-3.9 1.42-3.9 4.02v2.24H7.6V14h2.66v8h3.24z"/></svg>',
     x: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.53 3H20.5l-6.48 7.4L21.5 21h-5.9l-4.62-6.04L5.7 21H2.72l6.93-7.92L2.5 3h6.04l4.18 5.52L17.53 3zm-1.04 16.2h1.64L7.6 4.72H5.85L16.49 19.2z"/></svg>',
@@ -338,7 +342,8 @@
     .then(function (r) { return r.ok ? r.json() : null; })
     .then(function (data) {
       if (!data || !data.posts) return;
-      var here = window.location.pathname.replace(/\/$/, "");
+      var norm = function (u) { return String(u).replace(/\.html$/, "").replace(/\/$/, ""); };
+      var here = norm(window.location.pathname);
       var aside = restructure();
 
       var cats = (data.categories || []).map(function (c) {
@@ -349,10 +354,10 @@
       var catCard = '<div class="side-card"><h2 class="side-title">Kategorien</h2><ul class="cat-list">' + cats + "</ul></div>";
 
       var latest = data.posts.filter(function (p) {
-        return p.url.replace(/\/$/, "") !== here;
+        return norm(p.url) !== here;
       }).slice(0, 6).map(function (p) {
-        return '<a class="side-post" href="' + p.url + '">' +
-          '<img src="' + p.image + '" alt="" width="66" height="50" loading="lazy">' +
+        return '<a class="side-post" href="' + esc(p.url) + '">' +
+          '<img src="' + esc(p.image) + '" alt="" width="66" height="50" loading="lazy">' +
           '<div class="side-post-body">' +
             '<p class="side-post-title">' + esc(p.title) + "</p>" +
             '<span class="side-post-date">' + fmtDate(p.date) + "</span>" +
@@ -373,6 +378,7 @@
   var cat = new URLSearchParams(window.location.search).get("cat");
   if (!cat) return;
   var want = cat.trim().toLowerCase();
+  if (!want) return;
   var shown = 0;
   [].forEach.call(grid.querySelectorAll(".news-card"), function (card) {
     var el = card.querySelector(".news-cat");
@@ -383,7 +389,7 @@
   var note = document.createElement("div");
   note.className = "cat-filter-note";
   note.innerHTML = "Gefiltert nach Kategorie: <strong>" +
-    cat.replace(/[<>&"]/g, "") + "</strong> (" + shown + " Beiträge) · <a href=\"/news\">Alle Beiträge anzeigen</a>";
+    cat.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;") + "</strong> (" + shown + " Beiträge) · <a href=\"/news\">Alle Beiträge anzeigen</a>";
   var lead = document.querySelector(".section-lead") || document.querySelector("h1");
   if (lead && lead.parentNode) lead.parentNode.insertBefore(note, lead.nextSibling);
 })();

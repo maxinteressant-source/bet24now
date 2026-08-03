@@ -16,7 +16,7 @@
   <meta property="og:image" content="https://bet24now.com/og-image.png">
   <link rel="icon" href="/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="stylesheet" href="/style.css?v=22">
+  <link rel="stylesheet" href="/style.css?v=23">
   <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-400.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-700.woff2" crossorigin>
   <style>
@@ -171,7 +171,7 @@
   </footer>
 
   <button id="toTop" class="to-top" aria-label="Nach oben scrollen" title="Nach oben">↑</button>
-  <script src="/main.js?v=22" defer></script>
+  <script src="/main.js?v=23" defer></script>
   <script>
   (function(){
     var f=document.getElementById('c-factor'),b=document.getElementById('c-bonus'),
@@ -179,6 +179,7 @@
         tOut=document.getElementById('c-turnover'),rOut=document.getElementById('c-rounds'),
         fair=document.getElementById('c-fair');
     var nf=new Intl.NumberFormat('de-DE',{maximumFractionDigits:0});
+    var nf2=new Intl.NumberFormat('de-DE',{minimumFractionDigits:0,maximumFractionDigits:2});
     function num(el){var v=parseFloat((el.value||'').replace(',','.'));return isNaN(v)||v<0?0:v;}
     function base(){var r=document.querySelector('input[name="c-base"]:checked');return r?r.value:'bonus';}
     function calc(){
@@ -186,7 +187,7 @@
       var basis=base()==='both'?bonus+dep:bonus;
       var turnover=basis*factor;
       tOut.textContent=nf.format(turnover)+' €';
-      if(stake>0){rOut.textContent='≈ '+nf.format(turnover/stake)+' Runden à '+nf.format(stake)+' €';}
+      if(stake>0){rOut.textContent='≈ '+nf.format(turnover/stake)+' Runden à '+nf2.format(stake)+' €';}
       else{rOut.textContent='';}
       var lvl,txt;
       if(factor<=0){lvl='ok';txt='Gib einen Umsatzfaktor ein';}

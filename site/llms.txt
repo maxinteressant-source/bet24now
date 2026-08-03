@@ -1,6 +1,6 @@
 # Bet24Now
 
-> Bet24Now ist ein unabhängiges deutschsprachiges Vergleichsportal für Online Casinos. Wir testen Anbieter nach sechs gewichteten Kriterien – Sicherheit & Lizenz (25 %), Bonus (20 %), Auszahlungen (20 %), Spiele (15 %), Support (10 %) und Mobile (10 %) – und veröffentlichen ehrliche Tests, Bonus-Vergleiche und verständliche Ratgeber. Zielgruppe: Spieler ab 18 Jahren in Deutschland und Österreich. Bet24Now finanziert sich über Affiliate-Links; das beeinflusst die Bewertungen nicht.
+> Bet24Now ist ein unabhängiges deutschsprachiges Vergleichsportal für Online Casinos. Wir testen Anbieter nach sechs gewichteten Kriterien – Sicherheit & Lizenz (25 %), Bonus (20 %), Auszahlungen (20 %), Spiele (15 %), Support (10 %) und Mobile (10 %) – und veröffentlichen ehrliche Tests, Bonus-Vergleiche, Spiel-Guides und verständliche Ratgeber. Zielgruppe: Spieler ab 18 Jahren in Deutschland und Österreich. Bet24Now finanziert sich über Affiliate-Links; das beeinflusst die Bewertungen nicht.
 
 ## Test & Vergleich
 - [Online Casino Vergleich 2026](https://bet24now.com/): Testsieger nach sechs gewichteten Kriterien, laufend aktualisiert.
@@ -12,18 +12,44 @@
 - [CrocoSlots Test 2026](https://bet24now.com/review-crocoslots): Testsieger, Trust Score 4,9/5. Curaçao-Lizenz, 10.000+ Spiele, Krypto-Zahlungen.
 - [BitKingz Test 2026](https://bet24now.com/review-bitkingz): Trust Score 4,8/5. Slots und Live-Casino, mobiles Spielen.
 
+## Spiele-Guides
+- [Casino Spiele im Überblick](https://bet24now.com/casino-spiele): alle Spielarten mit Hausvorteil im Vergleich.
+- [Online Blackjack](https://bet24now.com/online-blackjack): Regeln, Basisstrategie und Varianten.
+- [Online Roulette](https://bet24now.com/online-roulette): Regeln, Wetten und Varianten im Vergleich.
+- [Online Poker](https://bet24now.com/online-poker): Texas Hold'em, Handrangfolge, Strategie-Grundlagen.
+- [Online Baccarat](https://bet24now.com/online-baccarat): Regeln und der niedrigste Hausvorteil.
+- [Online Bingo](https://bet24now.com/online-bingo): Regeln, Varianten und Chancen.
+- [Live Casino Guide](https://bet24now.com/ratgeber-live-casino): Spiele mit echten Dealern.
+- [Megaways Slots](https://bet24now.com/megaways-slots): wie die bis zu 117.649 Gewinnwege entstehen.
+
 ## Ratgeber & Wissen
 - [Casino-Glossar A–Z](https://bet24now.com/glossar): über 40 Fachbegriffe erklärt (RTP, Wild, Scatter, Volatilität, Wagering, Megaways, RNG).
 - [Umsatzbedingungen einfach erklärt](https://bet24now.com/ratgeber-umsatzbedingungen): was „40x Wagering" bedeutet.
+- [Umsatzbedingungen-Rechner](https://bet24now.com/umsatzbedingungen-rechner): kostenloses Tool zur Bonus-Berechnung.
 - [Casino-Bonus-Guide](https://bet24now.com/ratgeber-casino-bonus-guide): Bonusarten, Bedingungen und Tipps.
 - [Online Slots Guide](https://bet24now.com/ratgeber-online-slots-guide): RTP, Volatilität und Slot-Features.
 - [Sichere Online Casinos erkennen](https://bet24now.com/ratgeber-sichere-online-casinos): Lizenz, Spielerschutz, Warnsignale.
+- [Casino-Konto erstellen](https://bet24now.com/ratgeber-konto-erstellen): Registrierung und Verifizierung Schritt für Schritt.
+- [Limits einrichten](https://bet24now.com/ratgeber-limits-einrichten): Einzahlungs-, Verlust- und Zeitlimit richtig nutzen.
 
 ## Recht & Zahlungen in Deutschland
 - [Legale Online Casinos in Deutschland 2026](https://bet24now.com/online-casino-deutschland-legal): was der Glücksspielstaatsvertrag erlaubt.
+- [Casino Lizenzen im Vergleich](https://bet24now.com/news-casino-lizenzen): GGL, MGA und Curaçao erklärt.
+- [Glücksspiel-Regulierung Deutschland](https://bet24now.com/news-gluecksspiel-regulierung-deutschland): GlüStV, GGL und die wichtigsten Regeln.
 - [Online Casino mit PayPal](https://bet24now.com/online-casino-paypal): Verfügbarkeit und Alternativen.
+- [Zahlungsmethoden im Vergleich](https://bet24now.com/ratgeber-zahlungsmethoden): von E-Wallet bis Banküberweisung.
 - [Casino-Gewinne versteuern](https://bet24now.com/online-casino-gewinne-versteuern): steuerliche Behandlung in Deutschland.
 - [Bonus ohne Umsatzbedingungen](https://bet24now.com/online-casino-bonus-ohne-umsatzbedingungen): wie fair solche Angebote wirklich sind.
+
+## News & Blog
+Über 80 Fachartikel unter https://bet24now.com/news – Auswahl:
+- [Hausvorteil im Casino](https://bet24now.com/news-hausvorteil-casino): welche Spiele die besten Chancen bieten.
+- [RTP & Auszahlungsquote](https://bet24now.com/news-rtp-auszahlungsquote-slots): was die Prozentzahl wirklich bedeutet.
+- [Zufallsgenerator (RNG)](https://bet24now.com/news-zufallsgenerator-rng): sind Online-Slots wirklich fair?
+- [Blackjack Basisstrategie](https://bet24now.com/news-blackjack-basisstrategie): die optimale Strategie-Tabelle.
+- [Psychologie des Glücksspiels](https://bet24now.com/news-psychologie-gluecksspiel): Denkfallen und Gegenmittel.
+- [Casino-Betrug erkennen](https://bet24now.com/news-casino-betrug-erkennen): die häufigsten Maschen.
+- [Casino-Mythen im Faktencheck](https://bet24now.com/news-casino-mythen): die hartnäckigsten Irrtümer.
 
 ## Über uns & Vertrauen
 - [Redaktion](https://bet24now.com/redaktion): unser achtköpfiges Redaktionsteam mit Fachgebieten.
@@ -32,3 +58,5 @@
 
 ## Verantwortungsvolles Spielen
 - [Verantwortungsvolles Spielen](https://bet24now.com/verantwortungsvolles-spielen): 18+, Warnsignale, Limits und Hilfsangebote. Kostenlose Hilfe der BZgA: 0800 1 37 27 00.
+- [Spielsucht erkennen & Hilfe](https://bet24now.com/news-spielsucht-erkennen-hilfe): Warnsignale und Anlaufstellen.
+- [Hilfe für Angehörige](https://bet24now.com/news-gluecksspielsucht-angehoerige): richtig reagieren, sich selbst schützen.

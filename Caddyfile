@@ -10,7 +10,7 @@
 		Referrer-Policy "strict-origin-when-cross-origin"
 		X-Frame-Options "SAMEORIGIN"
 		# Nicht genutzte Browser-Features deaktivieren
-		Permissions-Policy "geolocation=(), camera=(), microphone=(), payment=(), usb=(), interest-cohort=()"
+		Permissions-Policy "geolocation=(), camera=(), microphone=(), payment=(), usb=()"
 		-Server
 	}
 
@@ -23,7 +23,7 @@
 	# verschenkten Linkkraft. Die Wurzel "/" ist ausgenommen, weil das Muster
 	# mindestens ein Zeichen vor dem Slash verlangt.
 	@trailingslash path_regexp trailslash ^/(.+)/$
-	redir @trailingslash /{re.trailslash.1} permanent
+	redir @trailingslash /{re.trailslash.1}?{query} permanent
 
 	# .html-Endungen dauerhaft auf die saubere URL umleiten (301, gegen Duplicate Content).
 	# Die Bedingung "file" ist wichtig: ohne sie bekaeme JEDE .html-Anfrage einen 301,
@@ -33,7 +33,7 @@
 		path_regexp htmlext ^/(.+)\.html$
 		file {path}
 	}
-	redir @htmlext /{re.htmlext.1} permanent
+	redir @htmlext /{re.htmlext.1}?{query} permanent
 
 	# Saubere URLs intern zur .html-Datei auflösen: /reviews -> /reviews.html
 	try_files {path} {path}/ {path}.html
@@ -51,4 +51,8 @@
 	# CSS & JS immer neu prüfen, damit Design-Änderungen sofort ankommen
 	@code path *.css *.js
 	header @code Cache-Control "public, max-age=0, must-revalidate"
+
+	# Sitemap & Blog-Index immer frisch pruefen (ETag macht die Revalidierung guenstig)
+	@data path *.xml *.json
+	header @data Cache-Control "public, max-age=0, must-revalidate"
 }

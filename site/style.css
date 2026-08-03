@@ -511,7 +511,7 @@ figure.article-img figcaption a{color:var(--faint);}
 .blog-main{min-width:0;max-width:820px;}
 
 /* --- Sticky-Sidebar --- */
-.blog-sidebar{position:sticky;top:88px;align-self:start;display:flex;flex-direction:column;gap:20px;}
+.blog-sidebar{position:sticky;top:88px;align-self:start;display:flex;flex-direction:column;gap:20px;max-height:calc(100vh - 104px);overflow-y:auto;scrollbar-width:thin;}
 .side-card{background:var(--glass);border:1px solid var(--border);border-radius:var(--radius);
   box-shadow:var(--shadow-sm);padding:22px 20px;}
 .side-title{font-family:var(--font-head);font-size:12px;font-weight:700;text-transform:uppercase;
@@ -567,7 +567,7 @@ figure.article-img figcaption a{color:var(--faint);}
 /* --- Responsive: Sidebar unter den Artikel, volle Breite --- */
 @media(max-width:960px){
   .blog-wrap{grid-template-columns:1fr;gap:26px;max-width:820px;}
-  .blog-sidebar{position:static;top:auto;}
+  .blog-sidebar{position:static;top:auto;max-height:none;overflow:visible;}
   /* Reihenfolge mobil: 1 Artikel · 2 Teilen · 3 Kategorien · 4 Neueste
      (ergibt sich bereits aus dem DOM: blog-main [Artikel + Teilen], dann Sidebar) */
 }

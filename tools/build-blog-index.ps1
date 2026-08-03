@@ -40,6 +40,7 @@ $seen  = @{}
 
 foreach ($m in $matches) {
   $url = $m.Groups['url'].Value
+  if (@('/news-online-bingo','/news-live-casino-guide','/news-blackjack-anfaenger','/news-roulette-regeln-anfaenger') -contains $url) { continue }   # Canonical-Dubletten nie in den Index
   if ($seen.ContainsKey($url)) { continue }   # Duplikate (falls eine Karte doppelt vorkommt) ueberspringen
   $seen[$url] = $true
 

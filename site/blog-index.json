@@ -1,10 +1,10 @@
 {
-    "generatedAt":  "2026-07-31",
-    "total":  83,
+    "generatedAt":  "2026-08-03",
+    "total":  79,
     "categories":  [
                        {
                            "name":  "Spiele",
-                           "count":  25
+                           "count":  21
                        },
                        {
                            "name":  "Wissen",
@@ -154,13 +154,6 @@
                       "title":  "Casino Hold’em \u0026 Three Card Poker",
                       "category":  "Spiele",
                       "image":  "/img/blog-blackjack.webp",
-                      "date":  "2026-07-22"
-                  },
-                  {
-                      "url":  "/news-online-bingo",
-                      "title":  "Online Bingo: Regeln \u0026 Varianten",
-                      "category":  "Spiele",
-                      "image":  "/img/blog-jackpots.webp",
                       "date":  "2026-07-22"
                   },
                   {
@@ -423,13 +416,6 @@
                       "date":  "2026-07-20"
                   },
                   {
-                      "url":  "/news-roulette-regeln-anfaenger",
-                      "title":  "Roulette Regeln für Anfänger",
-                      "category":  "Spiele",
-                      "image":  "/img/blog-roulette.webp",
-                      "date":  "2026-07-20"
-                  },
-                  {
                       "url":  "/gluecksspielsteuer",
                       "title":  "Glücksspielsteuer erklärt",
                       "category":  "Hintergrund",
@@ -514,13 +500,6 @@
                       "date":  "2026-07-03"
                   },
                   {
-                      "url":  "/news-live-casino-guide",
-                      "title":  "Live Casino Guide 2026",
-                      "category":  "Spiele",
-                      "image":  "/img/blog-live-casino.webp",
-                      "date":  "2026-07-02"
-                  },
-                  {
                       "url":  "/news-beliebteste-slots-2026",
                       "title":  "Die beliebtesten Slots 2026",
                       "category":  "Spiele",
@@ -546,13 +525,6 @@
                       "title":  "Roulette-Strategien im Überblick",
                       "category":  "Spiele",
                       "image":  "/img/blog-roulette.webp",
-                      "date":  "2026-07-02"
-                  },
-                  {
-                      "url":  "/news-blackjack-anfaenger",
-                      "title":  "Blackjack für Anfänger",
-                      "category":  "Spiele",
-                      "image":  "/img/blog-blackjack.webp",
                       "date":  "2026-07-02"
                   },
                   {
