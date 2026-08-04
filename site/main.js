@@ -134,6 +134,7 @@
   if (document.querySelector(".promo-bar")) return;
 
   var CASINOS = [
+    { name: "ShinyWilds", bonus: "1.000 € + 250 FS", bonusLong: "Bis 1.000 € + 250 Freispiele", note: "nur 30x Umsatz", url: "https://partners.shinywildpartners.com/v2/text/28/9/852a697f-7a50-11f1-8d87-cad21936ea85/1", logo: "/img/shinywilds-logo.png?v=1", featured: true },
     { name: "CrocoSlots", bonus: "8.000 € + 400 FS", bonusLong: "Bis 8.000 € + 400 Freispiele", url: "https://crocoslotsmedia.com/aevhr6rrq", logo: "/img/crocoslots-logo.svg?v=1" },
     { name: "BitKingz", bonus: "5.000 € + 500 FS", bonusLong: "Bis 5.000 € + 500 Freispiele", url: "https://www.bitkingzmedia.com/amhlwjvna", logo: "/img/bitkingz-logo.svg?v=1" }
   ];
@@ -145,17 +146,25 @@
     ".promo-chip{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:#f2f4fa;padding:6px 8px 6px 14px;border-radius:999px;font-size:13px;font-weight:500;}" +
     ".promo-chip:hover{background:rgba(255,255,255,.07);border-color:rgba(53,224,161,.4);text-decoration:none;}" +
     ".promo-chip b{color:#fff;font-weight:650;}" +
+    ".promo-chip.is-featured{background:rgba(53,224,161,.11);border-color:rgba(53,224,161,.45);}" +
+    ".promo-chip.is-featured:hover{background:rgba(53,224,161,.17);}" +
+    ".promo-star{color:#35e0a1;font-size:12px;margin-right:-3px;}" +
+    ".promo-note{color:#35e0a1;font-size:12px;font-weight:600;}" +
     ".promo-go{color:#052117;background:linear-gradient(135deg,#43e9ac,#12b884);padding:4px 11px;border-radius:999px;font-weight:700;font-size:12px;}" +
     "@media(max-width:600px){.promo-bar-inner{gap:8px;padding:8px 14px;}.promo-bar-label{width:100%;text-align:center;}.promo-chip{font-size:12px;}}" +
     ".inline-offers{background:rgba(255,255,255,.026);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:26px 24px;margin:36px 0;box-shadow:0 18px 40px -22px rgba(0,0,0,.7);}" +
     ".inline-offers-title{margin:0 0 18px;text-align:center;font-family:var(--font-head,sans-serif);color:#fff;font-size:20px;letter-spacing:-.02em;}" +
-    ".inline-offers-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}" +
-    ".inline-offer{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:15px;padding:20px 16px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px;}" +
+    ".inline-offers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}" +
+    ".inline-offer{position:relative;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:15px;padding:20px 16px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px;}" +
+    ".inline-offer.is-featured{background:rgba(53,224,161,.07);border-color:rgba(53,224,161,.34);}" +
+    ".inline-offer-tag{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#43e9ac,#12b884);color:#052117;font-size:11px;font-weight:700;letter-spacing:.02em;padding:3px 11px;border-radius:999px;white-space:nowrap;}" +
     ".inline-offer img{height:42px;width:auto;max-width:160px;object-fit:contain;}" +
+    ".inline-offer img.is-square{height:56px;max-width:56px;}" +
     ".inline-offer-bonus{color:#35e0a1;font-weight:700;font-size:15px;}" +
+    ".inline-offer-note{color:#9ba3b4;font-size:12.5px;margin-top:-6px;}" +
     ".inline-offer .btn{width:100%;background:linear-gradient(135deg,#43e9ac,#12b884);color:#052117;font-weight:650;font-family:var(--font-head,sans-serif);padding:12px 16px;border-radius:12px;display:block;border:1px solid rgba(255,255,255,.14);}" +
     ".inline-offers-note{margin-top:16px;text-align:center;font-size:12px;color:#6b7285;}" +
-    "@media(max-width:520px){.inline-offers-grid{grid-template-columns:1fr;}}";
+    "@media(max-width:760px){.inline-offers-grid{grid-template-columns:1fr;gap:20px;}}";
   var style = document.createElement("style");
   style.appendChild(document.createTextNode(css));
   document.head.appendChild(style);
@@ -164,7 +173,11 @@
   var bar = document.createElement("div");
   bar.className = "promo-bar";
   var chips = CASINOS.map(function (c) {
-    return '<a class="promo-chip" href="' + c.url + '" target="_blank" rel="nofollow sponsored noopener"><b>' + c.name + '</b> ' + c.bonus + ' <span class="promo-go">Sichern →</span></a>';
+    return '<a class="promo-chip' + (c.featured ? " is-featured" : "") + '" href="' + c.url + '" target="_blank" rel="nofollow sponsored noopener">' +
+      (c.featured ? '<span class="promo-star" aria-hidden="true">★</span>' : "") +
+      '<b>' + c.name + '</b> ' + c.bonus +
+      (c.note ? ' <span class="promo-note">' + c.note + '</span>' : "") +
+      ' <span class="promo-go">Sichern →</span></a>';
   }).join("");
   bar.innerHTML = '<div class="promo-bar-inner"><span class="promo-bar-label">🔥 Top-Casino-Boni 2026</span>' + chips + '</div>';
   document.body.insertBefore(bar, document.body.firstChild);
@@ -173,7 +186,12 @@
   var article = document.querySelector(".article");
   if (article) {
     var offers = CASINOS.map(function (c) {
-      return '<div class="inline-offer"><img src="' + c.logo + '" alt="' + c.name + '" loading="lazy"><div class="inline-offer-bonus">' + c.bonusLong + '</div><a class="btn" href="' + c.url + '" target="_blank" rel="nofollow sponsored noopener">Bonus sichern →</a></div>';
+      return '<div class="inline-offer' + (c.featured ? " is-featured" : "") + '">' +
+        (c.featured ? '<span class="inline-offer-tag">★ Testsieger</span>' : "") +
+        '<img class="' + (/\.png(\?|$)/.test(c.logo) ? "is-square" : "") + '" src="' + c.logo + '" alt="' + c.name + '" loading="lazy">' +
+        '<div class="inline-offer-bonus">' + c.bonusLong + '</div>' +
+        (c.note ? '<div class="inline-offer-note">' + c.note + '</div>' : "") +
+        '<a class="btn" href="' + c.url + '" target="_blank" rel="nofollow sponsored noopener">Bonus sichern →</a></div>';
     }).join("");
     var box = document.createElement("aside");
     box.className = "inline-offers";

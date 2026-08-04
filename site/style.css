@@ -228,6 +228,7 @@ strong{color:#fff;font-weight:650;}
   border-radius:9px;color:var(--muted);background:var(--glass);border:1px solid var(--border);}
 .ccard.is-top .ccard-rank{color:var(--green-ink);background:var(--grad-green);border-color:transparent;}
 .ccard-logo{height:46px;max-width:150px;object-fit:contain;object-position:left center;}
+.ccard-logo.is-square{height:64px;max-width:64px;}
 .ccard-score{margin-left:auto;text-align:center;}
 .ccard-score .lbl{display:block;font-size:10px;color:var(--faint);text-transform:uppercase;letter-spacing:.1em;margin-top:6px;}
 .ccard-stars{display:flex;align-items:center;gap:9px;margin-bottom:16px;}
@@ -347,6 +348,8 @@ table.specs tr:last-child th,table.specs tr:last-child td{border-bottom:none;}
 .casino-logo{width:190px;max-width:60%;height:64px;object-fit:contain;object-position:left center;display:block;}
 .casino-logo-sm{width:120px;height:44px;object-fit:contain;object-position:left center;display:block;margin-bottom:4px;}
 .review-logo{width:220px;max-width:70%;height:auto;display:block;margin:0 0 18px;}
+.review-logo.is-square{width:132px;}
+.casino-logo.is-square{width:64px;max-width:64px;height:64px;}
 .card .info h3.has-logo{margin:0 0 12px;}
 figure.article-img{margin:0 0 26px;}
 figure.article-img img{width:100%;height:auto;border-radius:16px;border:1px solid var(--border);display:block;}
