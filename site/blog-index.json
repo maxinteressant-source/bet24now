@@ -1,22 +1,30 @@
 {
-    "generatedAt":  "2026-08-03",
-    "total":  79,
+    "generatedAt":  "2026-08-04",
+    "total":  84,
     "categories":  [
                        {
                            "name":  "Spiele",
-                           "count":  21
+                           "count":  22
                        },
                        {
                            "name":  "Wissen",
                            "count":  14
                        },
                        {
+                           "name":  "Regulierung",
+                           "count":  10
+                       },
+                       {
                            "name":  "Zahlungen",
                            "count":  10
                        },
                        {
-                           "name":  "Regulierung",
-                           "count":  9
+                           "name":  "Boni",
+                           "count":  5
+                       },
+                       {
+                           "name":  "Hintergrund",
+                           "count":  5
                        },
                        {
                            "name":  "Sicherheit",
@@ -31,19 +39,46 @@
                            "count":  5
                        },
                        {
-                           "name":  "Boni",
-                           "count":  4
-                       },
-                       {
-                           "name":  "Hintergrund",
-                           "count":  4
-                       },
-                       {
                            "name":  "Mobil",
-                           "count":  2
+                           "count":  3
                        }
                    ],
     "posts":  [
+                  {
+                      "url":  "/news-freispiele-ohne-umsatz",
+                      "title":  "Freispiele ohne Umsatzbedingungen",
+                      "category":  "Boni",
+                      "image":  "/img/ratgeber-freispiele.webp",
+                      "date":  "2026-07-28"
+                  },
+                  {
+                      "url":  "/news-turbo-spin-autoplay",
+                      "title":  "Turbo-Spin \u0026 Autoplay",
+                      "category":  "Spiele",
+                      "image":  "/img/blog-slots.webp",
+                      "date":  "2026-07-28"
+                  },
+                  {
+                      "url":  "/news-gluecksspiel-europa-vergleich",
+                      "title":  "Glücksspiel in Europa im Vergleich",
+                      "category":  "Regulierung",
+                      "image":  "/img/news-regulierung.webp",
+                      "date":  "2026-07-28"
+                  },
+                  {
+                      "url":  "/news-mobile-first-casino",
+                      "title":  "Mobile First im Online Casino",
+                      "category":  "Mobil",
+                      "image":  "/img/blog-casino-apps.webp",
+                      "date":  "2026-07-28"
+                  },
+                  {
+                      "url":  "/news-casino-affiliate-branchenblick",
+                      "title":  "Wie Casino-Vergleichsseiten Geld verdienen",
+                      "category":  "Hintergrund",
+                      "image":  "/img/news-trends.webp",
+                      "date":  "2026-07-28"
+                  },
                   {
                       "url":  "/news-plinko-mines-casino",
                       "title":  "Plinko, Mines \u0026 Co. erklärt",
