@@ -134,14 +134,14 @@
   if (document.querySelector(".promo-bar")) return;
 
   var CASINOS = [
-    { name: "ShinyWilds", bonus: "1.000 € + 250 FS", bonusLong: "Bis 1.000 € + 250 Freispiele", note: "nur 30x Umsatz", url: "https://partners.shinywildpartners.com/v2/text/28/9/852a697f-7a50-11f1-8d87-cad21936ea85/1", logo: "/img/shinywilds-logo.png?v=1", featured: true },
+    { name: "ShinyWilds", bonus: "1.000 € + 250 FS", bonusLong: "Bis 1.000 € + 250 Freispiele", note: "30x Umsatz", url: "https://partners.shinywildpartners.com/v2/text/28/9/852a697f-7a50-11f1-8d87-cad21936ea85/1", logo: "/img/shinywilds-logo.png?v=1", featured: true },
     { name: "CrocoSlots", bonus: "8.000 € + 400 FS", bonusLong: "Bis 8.000 € + 400 Freispiele", url: "https://crocoslotsmedia.com/aevhr6rrq", logo: "/img/crocoslots-logo.svg?v=1" },
     { name: "BitKingz", bonus: "5.000 € + 500 FS", bonusLong: "Bis 5.000 € + 500 Freispiele", url: "https://www.bitkingzmedia.com/amhlwjvna", logo: "/img/bitkingz-logo.svg?v=1" }
   ];
 
   var css =
     ".promo-bar{background:rgba(10,12,20,.88);border-bottom:1px solid rgba(255,255,255,.08);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);}" +
-    ".promo-bar-inner{max-width:1180px;margin:0 auto;padding:9px 24px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center;}" +
+    ".promo-bar-inner{max-width:1260px;margin:0 auto;padding:9px 24px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;}" +
     ".promo-bar-label{color:#9ba3b4;font-weight:600;font-family:var(--font-head,sans-serif);font-size:13px;letter-spacing:.01em;}" +
     ".promo-chip{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:#f2f4fa;padding:6px 8px 6px 14px;border-radius:999px;font-size:13px;font-weight:500;}" +
     ".promo-chip:hover{background:rgba(255,255,255,.07);border-color:rgba(53,224,161,.4);text-decoration:none;}" +
@@ -179,7 +179,7 @@
       (c.note ? ' <span class="promo-note">' + c.note + '</span>' : "") +
       ' <span class="promo-go">Sichern →</span></a>';
   }).join("");
-  bar.innerHTML = '<div class="promo-bar-inner"><span class="promo-bar-label">🔥 Top-Casino-Boni 2026</span>' + chips + '</div>';
+  bar.innerHTML = '<div class="promo-bar-inner"><span class="promo-bar-label">🔥 Top-Boni 2026</span>' + chips + '</div>';
   document.body.insertBefore(bar, document.body.firstChild);
 
   // 2) Angebots-Box am Ende von Artikelseiten (mit .article)
