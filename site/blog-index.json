@@ -1,37 +1,37 @@
 {
-    "generatedAt":  "2026-08-04",
-    "total":  84,
+    "generatedAt":  "2026-08-05",
+    "total":  89,
     "categories":  [
                        {
                            "name":  "Spiele",
-                           "count":  22
+                           "count":  23
                        },
                        {
                            "name":  "Wissen",
                            "count":  14
                        },
                        {
+                           "name":  "Zahlungen",
+                           "count":  11
+                       },
+                       {
                            "name":  "Regulierung",
                            "count":  10
                        },
                        {
-                           "name":  "Zahlungen",
-                           "count":  10
-                       },
-                       {
-                           "name":  "Boni",
-                           "count":  5
-                       },
-                       {
                            "name":  "Hintergrund",
-                           "count":  5
+                           "count":  6
                        },
                        {
                            "name":  "Sicherheit",
-                           "count":  5
+                           "count":  6
                        },
                        {
                            "name":  "Spielerschutz",
+                           "count":  6
+                       },
+                       {
+                           "name":  "Boni",
                            "count":  5
                        },
                        {
@@ -44,6 +44,41 @@
                        }
                    ],
     "posts":  [
+                  {
+                      "url":  "/news-casino-konto-loeschen",
+                      "title":  "Casino-Konto löschen, sperren oder pausieren",
+                      "category":  "Spielerschutz",
+                      "image":  "/img/news-spielerschutz.webp",
+                      "date":  "2026-08-04"
+                  },
+                  {
+                      "url":  "/news-casino-konto-gesperrt",
+                      "title":  "Casino-Konto gesperrt: die häufigsten Gründe",
+                      "category":  "Sicherheit",
+                      "image":  "/img/ratgeber-sicherheit.webp",
+                      "date":  "2026-08-04"
+                  },
+                  {
+                      "url":  "/news-spielfehler-malfunction",
+                      "title":  "Spielfehler \u0026 „Malfunction voids all pays\"",
+                      "category":  "Spiele",
+                      "image":  "/img/blog-slots.webp",
+                      "date":  "2026-08-04"
+                  },
+                  {
+                      "url":  "/news-inaktives-casino-konto",
+                      "title":  "Inaktives Casino-Konto: Gebühren \u0026 verfallendes Guthaben",
+                      "category":  "Zahlungen",
+                      "image":  "/img/ratgeber-auszahlung.webp",
+                      "date":  "2026-08-04"
+                  },
+                  {
+                      "url":  "/news-dark-patterns-casino",
+                      "title":  "Dark Patterns im Online Casino",
+                      "category":  "Hintergrund",
+                      "image":  "/img/news-trends.webp",
+                      "date":  "2026-08-04"
+                  },
                   {
                       "url":  "/news-freispiele-ohne-umsatz",
                       "title":  "Freispiele ohne Umsatzbedingungen",
