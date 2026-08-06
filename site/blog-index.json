@@ -1,6 +1,6 @@
 {
-    "generatedAt":  "2026-08-05",
-    "total":  89,
+    "generatedAt":  "2026-08-06",
+    "total":  94,
     "categories":  [
                        {
                            "name":  "Spiele",
@@ -8,7 +8,7 @@
                        },
                        {
                            "name":  "Wissen",
-                           "count":  14
+                           "count":  16
                        },
                        {
                            "name":  "Zahlungen",
@@ -20,19 +20,19 @@
                        },
                        {
                            "name":  "Hintergrund",
-                           "count":  6
+                           "count":  7
                        },
                        {
                            "name":  "Sicherheit",
+                           "count":  7
+                       },
+                       {
+                           "name":  "Boni",
                            "count":  6
                        },
                        {
                            "name":  "Spielerschutz",
                            "count":  6
-                       },
-                       {
-                           "name":  "Boni",
-                           "count":  5
                        },
                        {
                            "name":  "Trends",
@@ -44,6 +44,41 @@
                        }
                    ],
     "posts":  [
+                  {
+                      "url":  "/news-sticky-non-sticky-bonus",
+                      "title":  "Sticky \u0026 Non-Sticky Bonus",
+                      "category":  "Boni",
+                      "image":  "/img/ratgeber-bonus.webp",
+                      "date":  "2026-08-05"
+                  },
+                  {
+                      "url":  "/news-casino-datenprofil",
+                      "title":  "Was Casinos über dich wissen",
+                      "category":  "Hintergrund",
+                      "image":  "/img/news-trends.webp",
+                      "date":  "2026-08-05"
+                  },
+                  {
+                      "url":  "/news-casino-agb-klauseln",
+                      "title":  "Casino-AGB: die Klauseln, die zählen",
+                      "category":  "Wissen",
+                      "image":  "/img/ratgeber-bedingungen.webp",
+                      "date":  "2026-08-05"
+                  },
+                  {
+                      "url":  "/news-spielhistorie-auswerten",
+                      "title":  "Spielhistorie richtig lesen",
+                      "category":  "Wissen",
+                      "image":  "/img/ratgeber-auszahlung.webp",
+                      "date":  "2026-08-05"
+                  },
+                  {
+                      "url":  "/news-casino-schliesst-betreiberwechsel",
+                      "title":  "Wenn ein Casino schließt oder verkauft wird",
+                      "category":  "Sicherheit",
+                      "image":  "/img/ratgeber-sicherheit.webp",
+                      "date":  "2026-08-05"
+                  },
                   {
                       "url":  "/news-casino-konto-loeschen",
                       "title":  "Casino-Konto löschen, sperren oder pausieren",
