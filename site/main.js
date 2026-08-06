@@ -411,3 +411,111 @@
   var lead = document.querySelector(".section-lead") || document.querySelector("h1");
   if (lead && lead.parentNode) lead.parentNode.insertBefore(note, lead.nextSibling);
 })();
+
+// ============================================================
+// Conversion-Tracking: Affiliate-Klicks und Lese-Engagement (GA4)
+// Sendet erst, wenn gtag existiert, also nach erteilter Cookie-Einwilligung.
+// ============================================================
+(function () {
+  "use strict";
+
+  var AFFILIATE_HOSTS = [
+    "partners.shinywildpartners.com",
+    "crocoslotsmedia.com",
+    "bitkingzmedia.com"
+  ];
+
+  function send(name, params) {
+    if (typeof window.gtag !== "function") return;
+    try { window.gtag("event", name, params); } catch (e) {}
+  }
+
+  function isAffiliate(a) {
+    var rel = (a.getAttribute("rel") || "").toLowerCase();
+    if (rel.indexOf("sponsored") > -1) return true;
+    var host = "";
+    try { host = new URL(a.href, location.href).hostname.replace(/^www\./, ""); } catch (e) { return false; }
+    for (var i = 0; i < AFFILIATE_HOSTS.length; i++) {
+      if (host === AFFILIATE_HOSTS[i] || host.indexOf("." + AFFILIATE_HOSTS[i]) > -1) return true;
+    }
+    return false;
+  }
+
+  // Aus welchem Seitenbereich kam der Klick? Das entscheidet, welche Platzierung sich lohnt.
+  function placement(a) {
+    if (a.closest(".promo-bar")) return "promobar";
+    if (a.closest(".inline-offers")) return "angebotsbox";
+    if (a.closest(".preview-card")) return "hero";
+    if (a.closest(".ccard")) return "toplist";
+    if (a.closest(".card")) return "reviews_liste";
+    if (a.closest(".rating-box") || a.closest(".offer-box")) return "review_box";
+    if (a.closest(".article")) return "artikel_text";
+    return "sonstige";
+  }
+
+  // Casino-Name: bevorzugt aus dem Linktext oder dem Logo-Alt in der Umgebung
+  function casinoName(a) {
+    var host = "";
+    try { host = new URL(a.href, location.href).hostname.replace(/^www\./, ""); } catch (e) {}
+    if (host.indexOf("shinywild") > -1) return "ShinyWilds";
+    if (host.indexOf("crocoslots") > -1) return "CrocoSlots";
+    if (host.indexOf("bitkingz") > -1) return "BitKingz";
+    var box = a.closest(".ccard, .card, .inline-offer, .preview-card, .promo-chip");
+    var img = box && box.querySelector("img[alt]");
+    if (img && img.alt) return img.alt.trim();
+    var b = box && box.querySelector("b");
+    if (b && b.textContent) return b.textContent.trim().slice(0, 40);
+    return host || "unbekannt";
+  }
+
+  function onClick(e) {
+    var a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+    if (!a) return;
+
+    if (isAffiliate(a)) {
+      send("affiliate_click", {
+        casino: casinoName(a),
+        placement: placement(a),
+        link_url: a.href,
+        page_path: location.pathname
+      });
+      return;
+    }
+
+    // Klick auf einen internen Review-Link zeigt Kaufabsicht, auch ohne Ausleitung
+    var href = a.getAttribute("href") || "";
+    if (href.indexOf("/review-") === 0) {
+      send("review_click", {
+        review: href.replace("/review-", ""),
+        placement: placement(a),
+        page_path: location.pathname
+      });
+    }
+  }
+
+  document.addEventListener("click", onClick, true);
+  document.addEventListener("auxclick", function (e) { if (e.button === 1) onClick(e); }, true);
+
+  // Lese-Engagement: meldet einmal pro Seite, dass der Artikel wirklich gelesen wurde.
+  // 50 % Scrolltiefe UND mindestens 30 Sekunden auf der Seite.
+  (function () {
+    var article = document.querySelector(".article");
+    if (!article) return;
+    var deep = false, longEnough = false, fired = false;
+
+    setTimeout(function () { longEnough = true; maybe(); }, 30000);
+
+    function maybe() {
+      if (fired || !deep || !longEnough) return;
+      fired = true;
+      send("artikel_gelesen", { page_path: location.pathname });
+      window.removeEventListener("scroll", onScroll);
+    }
+    function onScroll() {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      if (h > 0 && (window.scrollY / h) >= 0.5) { deep = true; maybe(); }
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  })();
+})();
