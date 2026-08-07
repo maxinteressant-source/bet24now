@@ -1,6 +1,6 @@
 {
-    "generatedAt":  "2026-08-06",
-    "total":  94,
+    "generatedAt":  "2026-08-07",
+    "total":  99,
     "categories":  [
                        {
                            "name":  "Spiele",
@@ -8,7 +8,7 @@
                        },
                        {
                            "name":  "Wissen",
-                           "count":  16
+                           "count":  17
                        },
                        {
                            "name":  "Zahlungen",
@@ -20,19 +20,19 @@
                        },
                        {
                            "name":  "Hintergrund",
-                           "count":  7
+                           "count":  8
                        },
                        {
                            "name":  "Sicherheit",
-                           "count":  7
+                           "count":  8
                        },
                        {
                            "name":  "Boni",
-                           "count":  6
+                           "count":  7
                        },
                        {
                            "name":  "Spielerschutz",
-                           "count":  6
+                           "count":  7
                        },
                        {
                            "name":  "Trends",
@@ -44,6 +44,41 @@
                        }
                    ],
     "posts":  [
+                  {
+                      "url":  "/news-casino-white-label",
+                      "title":  "Warum viele Casinos gleich aussehen",
+                      "category":  "Hintergrund",
+                      "image":  "/img/news-trends.webp",
+                      "date":  "2026-08-06"
+                  },
+                  {
+                      "url":  "/news-auszahlung-blockiert-trotz-verifizierung",
+                      "title":  "Verifiziert, Auszahlung kommt trotzdem nicht",
+                      "category":  "Sicherheit",
+                      "image":  "/img/ratgeber-auszahlung.webp",
+                      "date":  "2026-08-06"
+                  },
+                  {
+                      "url":  "/news-casino-bonus-streit",
+                      "title":  "Wenn Bonusgewinne gestrichen werden",
+                      "category":  "Boni",
+                      "image":  "/img/ratgeber-bonus.webp",
+                      "date":  "2026-08-06"
+                  },
+                  {
+                      "url":  "/news-casino-werbung-abbestellen",
+                      "title":  "Casino-Werbung wirksam stoppen",
+                      "category":  "Spielerschutz",
+                      "image":  "/img/news-spielerschutz.webp",
+                      "date":  "2026-08-06"
+                  },
+                  {
+                      "url":  "/news-casino-support-testen",
+                      "title":  "Den Support in 15 Minuten testen",
+                      "category":  "Wissen",
+                      "image":  "/img/ratgeber-sicherheit.webp",
+                      "date":  "2026-08-06"
+                  },
                   {
                       "url":  "/news-sticky-non-sticky-bonus",
                       "title":  "Sticky \u0026 Non-Sticky Bonus",
