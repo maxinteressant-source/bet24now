@@ -1,7 +1,19 @@
 /* ============================================================
-   Bet24Now — Design System v2 · "Editorial Desk"
-   Dunkles Ink-Interface · Poppins-Headlines · Gold für Bewertungen,
-   Grün ausschliesslich für Aktionen · Hairlines statt Box-in-Box
+   Bet24Now — Design System v2.1 · "Editorial Desk"
+   Dunkles Ink-Interface · Poppins-Headlines · Hairlines statt Box-in-Box.
+
+   FARBROLLEN (Stand v2.1, an die tatsaechliche Verwendung angeglichen):
+   - Gold  = Bewertung. Score-Ringe, Sterne, Testsieger-Auszeichnung.
+             Textfarbe auf Gold ist --gold-ink.
+   - Gruen = Marke und Aktion. Buttons und Links, dazu Marken-Akzente
+             wie .eyebrow und .news-cat. Die frueher notierte Regel
+             "gruen ausschliesslich fuer Klickbares" galt an 18 Selektoren
+             nicht und wurde hier ehrlich nachgezogen statt erzwungen.
+   - Rot   = Einschraenkung. Nachteile und Contra-Punkte.
+
+   LICHT & TIEFE (neu in v2.1): Flaechen tragen eine Lichtkante an der
+   Oberkante (--edge) statt zusaetzlicher Rahmen. Der Testsieger hebt sich
+   ueber eine warme Flaeche plus --lift-gold ab, nicht nur ueber das Eckband.
    (Alle Token- und Klassennamen bleiben kompatibel.)
    ============================================================ */
 @font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:optional;src:url('/fonts/inter-400.woff2') format('woff2');}
@@ -44,6 +56,14 @@
   --shadow:0 34px 70px -34px rgba(0,0,0,.85);
   --shadow-sm:0 14px 32px -20px rgba(0,0,0,.75);
   --ring:0 0 0 1px var(--border);
+  /* Licht & Tiefe (v2.1): Eine Lichtkante an der Oberkante laesst Flaechen
+     im dunklen Interface plastisch wirken, ohne Kaesten zu stapeln. */
+  --edge:inset 0 1px 0 rgba(255,255,255,.07);
+  --edge-lt:inset 0 1px 0 rgba(255,255,255,.12);
+  --lift:0 22px 48px -30px rgba(0,0,0,.92);
+  --lift-gold:0 26px 64px -34px rgba(231,185,121,.30);
+  /* Textfarbe auf goldenem Grund - Gegenstueck zu --green-ink */
+  --gold-ink:#2a1c08;
   --grad-green:linear-gradient(135deg,#43e9ac 0%,#12b884 100%);
   --grad-gold:linear-gradient(135deg,#f0cf9c,#caa05c);
   --grad-hero:radial-gradient(1100px 620px at 82% -12%, rgba(53,224,161,.10), transparent 62%),
@@ -58,9 +78,8 @@ body{margin:0;color:var(--text);line-height:1.68;font-size:17px;background:var(-
   background-image:var(--grad-hero);background-repeat:no-repeat;background-position:top center;
   -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden;}
 /* Promo-Streifen: Hoehe vorab reservieren, damit kein Layout-Sprung entsteht */
-body{padding-top:44px;}
+body{padding-top:48px;}
 .promo-bar{position:absolute;top:0;left:0;right:0;z-index:45;}
-@media(max-width:600px){body{padding-top:48px;}}
 a{color:var(--green);text-decoration:none;transition:color .16s ease;}
 a:hover{color:var(--green-2);}
 img{max-width:100%;height:auto;}
@@ -91,9 +110,9 @@ strong{color:#fff;font-weight:600;}
 /* ---------- Buttons ---------- */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--grad-green);color:var(--green-ink);
   font-weight:650;padding:12px 22px;border-radius:10px;font-size:15px;font-family:var(--font-head);letter-spacing:-.015em;
-  border:none;box-shadow:0 8px 22px -10px rgba(18,184,132,.75);
+  border:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 8px 22px -10px rgba(18,184,132,.75);
   position:relative;overflow:hidden;transition:transform .16s ease,box-shadow .16s ease,filter .16s ease;white-space:nowrap;}
-.btn:hover{transform:translateY(-2px);box-shadow:0 14px 30px -12px rgba(18,184,132,.9);filter:brightness(1.05);text-decoration:none;}
+.btn:hover{transform:translateY(-2px);box-shadow:inset 0 1px 0 rgba(255,255,255,.34),0 14px 30px -12px rgba(18,184,132,.9);filter:brightness(1.05);text-decoration:none;}
 .btn:active{transform:translateY(0);}
 .btn-lg{padding:15px 28px;font-size:16px;border-radius:12px;}
 .btn-sm{padding:8px 15px;font-size:13.5px;border-radius:8px;}
@@ -155,7 +174,7 @@ strong{color:#fff;font-weight:600;}
 .pc-score{margin-left:auto;text-align:center;}
 .score-ring{position:relative;width:60px;height:60px;border-radius:50%;display:grid;place-items:center;
   background:conic-gradient(var(--gold) calc(var(--p,96)*1%),rgba(255,255,255,.07) 0);}
-.score-ring::before{content:"";position:absolute;inset:4px;border-radius:50%;background:#12141d;}
+.score-ring::before{content:"";position:absolute;inset:4px;border-radius:50%;background:var(--ring-bg,var(--panel));}
 .score-ring b{position:relative;z-index:1;font-family:var(--font-head);font-weight:800;font-size:17px;color:#fff;letter-spacing:-.03em;}
 .pc-score .lbl{display:block;font-size:9.5px;color:var(--faint);text-transform:uppercase;letter-spacing:.11em;margin-top:6px;}
 .pc-bonus{background:none;border:none;border-radius:0;padding:0;margin-bottom:16px;}
@@ -178,17 +197,23 @@ strong{color:#fff;font-weight:600;}
 /* ---------- Trust-Strip (USP) ---------- */
 .usp-bar{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:rgba(18,20,29,.5);}
 .usp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;padding:0;}
-.usp{display:flex;align-items:center;gap:13px;padding:22px 24px;}
+.usp{display:flex;align-items:center;gap:13px;padding:22px 24px;transition:background .2s ease;}
 .usp + .usp{border-left:1px solid var(--border);}
-.usp svg{width:20px;height:20px;flex:none;fill:var(--green);background:none;border:none;border-radius:0;padding:0;}
+.usp:hover{background:rgba(255,255,255,.022);}
+/* Icon auf einer eigenen kleinen Flaeche, damit die Leiste nicht wie eine
+   Textzeile mit Symbolen wirkt, sondern wie vier gesetzte Punkte. */
+.usp svg{width:19px;height:19px;flex:none;fill:var(--green);box-sizing:content-box;padding:9px;
+  background:var(--green-soft);border:1px solid rgba(53,224,161,.16);border-radius:10px;}
 .usp strong{display:block;color:#fff;font-size:14px;font-weight:650;line-height:1.3;letter-spacing:-.015em;}
 .usp span{display:block;color:var(--muted);font-size:12.5px;line-height:1.45;margin-top:2px;}
 
 /* ---------- Karten allgemein (Listen-Karte) ---------- */
 .card{background:var(--glass);border:1px solid var(--border);border-radius:var(--radius);
   padding:24px 26px;margin:16px 0;display:flex;gap:24px;align-items:center;flex-wrap:wrap;
-  transition:border-color .18s,background .18s,transform .18s;position:relative;}
-.card:hover{border-color:var(--border-lt);background:var(--glass-2);transform:translateY(-2px);}
+  box-shadow:var(--edge);
+  transition:border-color .18s,background .18s,transform .18s,box-shadow .18s;position:relative;}
+.card:hover{border-color:var(--border-lt);background:var(--glass-2);transform:translateY(-2px);
+  box-shadow:var(--edge-lt),var(--lift);}
 .card .rank{font-family:var(--font-head);font-size:16px;font-weight:800;color:var(--muted);min-width:36px;height:36px;
   display:flex;align-items:center;justify-content:center;background:none;border:1px solid var(--border);border-radius:9px;}
 .card .info{flex:1;min-width:220px;}
@@ -198,24 +223,31 @@ strong{color:#fff;font-weight:600;}
 .stars{color:var(--gold);font-size:14px;letter-spacing:2.5px;}
 .score{color:var(--muted);font-size:13px;font-weight:650;}
 .card-featured{border-color:rgba(231,185,121,.34);background:linear-gradient(180deg,rgba(231,185,121,.05),var(--glass));}
-.featured-tag{position:absolute;top:0;left:24px;transform:translateY(-50%);background:var(--grad-gold);color:#2a1c08;
+.featured-tag{position:absolute;top:0;left:24px;transform:translateY(-50%);background:var(--grad-gold);color:var(--gold-ink);
   font-family:var(--font-head);font-weight:700;font-size:11px;letter-spacing:.04em;padding:5px 12px;border-radius:6px;}
 
 /* ---------- Vergleichs-Produktkarten (Startseite) ---------- */
 .compare-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:18px;margin-top:6px;align-items:stretch;}
-.ccard{position:relative;display:flex;flex-direction:column;background:var(--glass);
+.ccard{position:relative;display:flex;flex-direction:column;
+  background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.014) 38%,var(--glass));
   border:1px solid var(--border);border-radius:var(--radius-lg);padding:0;overflow:hidden;
+  box-shadow:var(--edge);
   transition:border-color .18s,transform .18s,box-shadow .18s;}
-.ccard:hover{transform:translateY(-3px);border-color:var(--border-lt);box-shadow:var(--shadow-sm);}
-.ccard.is-top{border-color:rgba(231,185,121,.4);}
+.ccard:hover{transform:translateY(-3px);border-color:var(--border-lt);box-shadow:var(--edge-lt),var(--lift);}
+/* Testsieger: waermere Flaeche, goldener Rand und ein leiser Schein.
+   Der erste Platz soll sich auch ohne das Eckband vom Rest unterscheiden. */
+.ccard.is-top{border-color:rgba(231,185,121,.42);
+  background:linear-gradient(180deg,rgba(231,185,121,.075),rgba(231,185,121,.018) 40%,var(--glass));
+  box-shadow:var(--edge-lt),var(--lift-gold);}
+.ccard.is-top:hover{border-color:rgba(231,185,121,.6);box-shadow:var(--edge-lt),var(--lift),var(--lift-gold);}
 /* Flaches Eckband statt rotiertem Ribbon */
-.ccard-ribbon{position:absolute;top:0;right:0;transform:none;background:var(--grad-gold);color:#2a1c08;
+.ccard-ribbon{position:absolute;top:0;right:0;transform:none;background:var(--grad-gold);color:var(--gold-ink);
   font-family:var(--font-head);font-size:10.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;
   padding:5px 13px;border-radius:0 0 0 10px;z-index:2;}
 .ccard-top{display:flex;align-items:center;gap:13px;margin:0;padding:22px 22px 18px;position:relative;border-bottom:1px solid var(--border);}
 .ccard-rank{font-family:var(--font-head);font-weight:800;font-size:13px;width:26px;height:26px;flex:none;display:grid;place-items:center;
   border-radius:7px;color:var(--faint);background:none;border:1px solid var(--border);}
-.ccard.is-top .ccard-rank{color:#2a1c08;background:var(--grad-gold);border-color:transparent;}
+.ccard.is-top .ccard-rank{color:var(--gold-ink);background:var(--grad-gold);border-color:transparent;}
 /* Einheitliche Logo-Buehne: gleiche Hoehe fuer alle Formate */
 .ccard-logo{height:42px;width:auto;max-width:132px;object-fit:contain;object-position:left center;}
 .ccard-logo.is-square{height:46px;max-width:46px;}
@@ -234,6 +266,9 @@ strong{color:#fff;font-weight:600;}
 .ccard-specs div{background:none;border:none;border-bottom:1px solid var(--border);padding:11px 0;}
 .ccard-specs div:nth-child(odd){padding-right:14px;border-right:1px solid var(--border);}
 .ccard-specs div:nth-child(even){padding-left:14px;}
+/* Eine ueber beide Spalten laufende Zeile darf keinen Mitteltrenner erben.
+   Sie gehoert ans Ende, sonst verschiebt sie die Parität aller folgenden Zeilen. */
+.ccard-specs div.is-wide{grid-column:1/-1;padding-left:0;padding-right:0;border-right:none;}
 .ccard-specs .k{font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:var(--faint);font-weight:600;}
 .ccard-specs b{display:block;font-size:13.5px;color:#fff;font-weight:600;margin-top:2px;letter-spacing:-.012em;}
 .ccard-pros{list-style:none;margin:0;padding:16px 22px 0;display:grid;gap:8px;}
@@ -245,9 +280,12 @@ strong{color:#fff;font-weight:600;}
 .ccard-con{margin:14px 22px 0;padding-top:12px;border-top:1px solid var(--border);font-size:13px;line-height:1.45;color:var(--muted);}
 .ccard-con b{color:var(--red);font-weight:700;}
 .ccard-cta .btn{width:100%;}
-.ccard-cta .rev{display:block;text-align:center;margin-top:11px;font-size:12.5px;color:var(--muted);}
-.ccard-cta .rev a{color:var(--muted);text-decoration:underline;text-underline-offset:3px;}
-.ccard-cta .rev a:hover{color:var(--green-2);}
+.ccard-cta .rev{display:block;text-align:center;margin-top:4px;font-size:12.5px;color:var(--muted);}
+/* Als Block mit Innenabstand, damit die Trefferflaeche auf dem Handy
+   nicht nur 15 px hoch ist. */
+.ccard-cta .rev a{display:block;padding:12px 8px;color:var(--muted);text-decoration:underline;
+  text-underline-offset:3px;border-radius:9px;transition:color .16s,background .16s;}
+.ccard-cta .rev a:hover{color:var(--green-2);background:var(--glass);}
 
 /* ---------- Feature / Methodik ---------- */
 .grid-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;margin-top:22px;
@@ -262,9 +300,18 @@ strong{color:#fff;font-weight:600;}
 
 /* ---------- Mini-Karten (Ratgeber) ---------- */
 .mini-card{display:block;background:var(--glass);border:1px solid var(--border);border-radius:var(--radius);padding:24px;
-  color:var(--text);position:relative;transition:border-color .18s,background .18s,transform .18s;}
+  color:var(--text);position:relative;overflow:hidden;box-shadow:var(--edge);
+  transition:border-color .18s,background .18s,transform .18s,box-shadow .18s;}
+/* Beim Ueberfahren wandert ein gruener Schimmer von oben in die Kachel.
+   Zwoelf gleich aussehende Kacheln brauchen ein Lebenszeichen. */
+.mini-card::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;
+  background:radial-gradient(420px 160px at 50% -30%,var(--green-soft),transparent 70%);
+  transition:opacity .22s ease;}
+.mini-card:hover::before{opacity:1;}
 .mini-card::after{content:"→";position:absolute;top:22px;right:22px;color:var(--faint);transition:color .18s,transform .18s;}
-.mini-card:hover{border-color:var(--border-lt);background:var(--glass-2);transform:translateY(-3px);text-decoration:none;}
+.mini-card:hover{border-color:var(--border-lt);background:var(--glass-2);transform:translateY(-3px);
+  box-shadow:var(--edge-lt),var(--lift);text-decoration:none;}
+.mini-card > *{position:relative;}
 .mini-card:hover::after{color:var(--green);transform:translateX(3px);}
 .mini-card h3{margin:0 0 8px;font-size:17.5px;padding-right:26px;transition:color .18s;}
 .mini-card:hover h3{color:var(--green-2);}
@@ -273,8 +320,13 @@ strong{color:#fff;font-weight:600;}
 /* ---------- News-Karten ---------- */
 .grid-news{grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:20px;background:none;border:none;border-radius:0;overflow:visible;}
 .news-card{display:flex;flex-direction:column;background:var(--glass);border:1px solid var(--border);border-radius:var(--radius);
-  overflow:hidden;color:var(--text);transition:border-color .18s,transform .18s,box-shadow .18s;}
-.news-card:hover{border-color:var(--border-lt);transform:translateY(-3px);box-shadow:var(--shadow-sm);text-decoration:none;}
+  overflow:hidden;color:var(--text);box-shadow:var(--edge);
+  transition:border-color .18s,transform .18s,box-shadow .18s;}
+.news-card:hover{border-color:var(--border-lt);transform:translateY(-3px);box-shadow:var(--edge-lt),var(--lift);text-decoration:none;}
+.news-body h3{transition:color .18s;}
+.news-card:hover .news-body h3{color:var(--green-2);}
+/* Die Bildkante gegen den dunklen Grund absetzen, sonst verlaufen dunkle Fotos ins Nichts. */
+.news-img{box-shadow:inset 0 -1px 0 var(--border);}
 .news-img{aspect-ratio:16/9;overflow:hidden;background:var(--panel-2);}
 .news-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .45s ease;}
 .news-card:hover .news-img img{transform:scale(1.04);}
@@ -314,11 +366,53 @@ strong{color:#fff;font-weight:600;}
 
 /* ---------- Bewertungs-Box ---------- */
 .rating-box{display:flex;gap:24px;align-items:center;background:var(--glass);border:1px solid var(--border);border-radius:var(--radius);
-  padding:24px;margin:6px 0 24px;flex-wrap:wrap;}
+  padding:24px;margin:6px 0 24px;flex-wrap:wrap;box-shadow:var(--edge);}
 .rating-score{text-align:center;min-width:104px;}
 .rating-score .big{font-family:var(--font-head);font-size:48px;font-weight:800;line-height:1;color:var(--gold);letter-spacing:-.045em;}
 .rating-score .of{font-size:17px;color:var(--faint);font-weight:700;}
 .rating-verdict{flex:1;min-width:220px;font-size:15px;line-height:1.62;}
+
+/* ---------- Review-Auftakt ----------
+   Die Review-Seiten begannen bisher mit einem freistehenden Logo und blanker
+   Ueberschrift - der schwaechste Auftakt der ganzen Seite, ausgerechnet auf der
+   wichtigsten Seitenart. Der Kopf fasst jetzt Logo, Note und Titel zusammen. */
+.review-hero{position:relative;overflow:hidden;margin:2px 0 22px;padding:24px 26px 26px;
+  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.015) 44%,var(--glass));
+  border:1px solid var(--border-lt);border-radius:var(--radius-lg);
+  box-shadow:var(--edge-lt),var(--lift);}
+.review-hero::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(560px 260px at 88% -30%,var(--gold-soft),transparent 68%);}
+.review-hero > *{position:relative;}
+.rh-top{display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  padding-bottom:18px;margin-bottom:18px;border-bottom:1px solid var(--border);}
+/* Gemeinsame Buehne, damit hochkant, quadratisch und breit gleich gross wirken */
+.rh-stage{width:92px;height:68px;flex:none;display:grid;place-items:center;padding:9px;
+  background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:14px;box-shadow:var(--edge);}
+.rh-stage img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block;margin:0;}
+.rh-id{min-width:0;}
+.rh-id .badge{margin-bottom:7px;}
+.rh-name{margin:0;font-family:var(--font-head);font-weight:800;font-size:19px;color:#fff;letter-spacing:-.03em;line-height:1.2;}
+.rh-score{margin-left:auto;text-align:center;flex:none;--ring-bg:#181b26;}
+.rh-score .score-ring{width:66px;height:66px;margin:0 auto;}
+.rh-score .score-ring b{font-size:18px;}
+.rh-score .stars{display:block;font-size:12px;letter-spacing:2px;margin-top:7px;}
+.rh-score .lbl{display:block;font-size:9.5px;color:var(--faint);text-transform:uppercase;letter-spacing:.11em;margin-top:5px;}
+.review-hero h1{margin:0 0 12px;font-size:clamp(28px,3.4vw,40px);}
+.review-hero .meta{margin:0;font-size:13.5px;color:var(--muted);}
+@media(max-width:560px){
+  /* Auf schmalen Displays passen Logo, Kennung und Note nicht nebeneinander.
+     Statt die Note umbrechen zu lassen (was den Kopf sehr hoch macht), stehen
+     Logo und Note zusammen in der ersten Zeile, die Kennung darunter. */
+  .rh-top{gap:12px 13px;padding-bottom:15px;margin-bottom:15px;}
+  .rh-stage{width:74px;height:56px;order:1;}
+  .rh-score{order:2;margin-left:auto;}
+  .rh-id{order:3;flex:1 0 100%;}
+  .rh-id .badge{margin-bottom:5px;}
+  .rh-score .score-ring{width:56px;height:56px;}
+  .rh-score .score-ring b{font-size:16px;}
+  .rh-score .stars{margin-top:5px;}
+  .review-hero{padding:20px 18px 22px;}
+}
 
 /* ---------- Tabellen ---------- */
 .table-scroll{overflow-x:auto;margin:22px 0 10px;-webkit-overflow-scrolling:touch;border:1px solid var(--border);border-radius:var(--radius);}
@@ -331,7 +425,7 @@ table.compare tbody tr:hover{background:var(--glass);}
 table.compare td.rank{width:56px;text-align:center;}
 table.compare td.rank span{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:8px;
   font-family:var(--font-head);font-weight:800;font-size:13px;color:#fff;background:none;border:1px solid var(--border-lt);}
-table.compare tbody tr:nth-child(1) td.rank span{background:var(--grad-gold);color:#2a1c08;border-color:transparent;}
+table.compare tbody tr:nth-child(1) td.rank span{background:var(--grad-gold);color:var(--gold-ink);border-color:transparent;}
 table.compare td.bonus{color:#fff;font-weight:700;}
 table.compare tr.is-top{background:var(--gold-soft);}
 table.compare tr.is-soon td{color:var(--faint);}

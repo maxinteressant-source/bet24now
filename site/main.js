@@ -141,8 +141,20 @@
 
   var css =
     ".promo-bar{background:rgba(6,7,13,.94);border-bottom:1px solid rgba(255,255,255,.07);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);}" +
-    ".promo-bar-inner{max-width:1260px;margin:0 auto;padding:6px 24px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center;}" +
-    ".promo-bar-label{color:#7c8499;font-weight:700;font-family:var(--font-head,sans-serif);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;}" +
+    // Nie umbrechen: bei mittleren Breiten (Tablet, kleines Notebook) ergaben
+    // zwei Zeilen 90px Hoehe, waehrend body nur 48px reserviert - die zweite
+    // Zeile schob sich unter den Header. Stattdessen einzeilig und scrollbar.
+    // "safe center" zentriert nur, solange nichts ueberlaeuft; sonst wuerde
+    // der linke Rand unerreichbar abgeschnitten.
+    ".promo-bar-inner{max-width:1260px;margin:0 auto;padding:6px 24px;display:flex;align-items:center;gap:8px;" +
+    "flex-wrap:nowrap;overflow-x:auto;justify-content:center;justify-content:safe center;" +
+    "scrollbar-width:none;-ms-overflow-style:none;}" +
+    ".promo-bar-inner::-webkit-scrollbar{display:none;}" +
+    ".promo-chip{flex:0 0 auto;}" +
+    // flex:0 0 auto, sonst staucht der Flex-Container das Label bei knappem
+    // Platz auf wenige Zeichen Breite und der Text bricht mehrzeilig um -
+    // genau das machte die Leiste bei 1024px 83px statt 48px hoch.
+    ".promo-bar-label{flex:0 0 auto;white-space:nowrap;color:#7c8499;font-weight:700;font-family:var(--font-head,sans-serif);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;}" +
     ".promo-chip{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:#f2f4fa;padding:4px 5px 4px 12px;border-radius:8px;font-size:12.5px;font-weight:500;}" +
     ".promo-chip:hover{background:rgba(255,255,255,.07);border-color:rgba(53,224,161,.4);text-decoration:none;}" +
     ".promo-chip b{color:#fff;font-weight:650;}" +
