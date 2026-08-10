@@ -1,34 +1,34 @@
 {
-    "generatedAt":  "2026-08-07",
-    "total":  99,
+    "generatedAt":  "2026-08-10",
+    "total":  104,
     "categories":  [
                        {
                            "name":  "Spiele",
-                           "count":  23
+                           "count":  24
                        },
                        {
                            "name":  "Wissen",
-                           "count":  17
+                           "count":  18
+                       },
+                       {
+                           "name":  "Regulierung",
+                           "count":  11
                        },
                        {
                            "name":  "Zahlungen",
                            "count":  11
                        },
                        {
-                           "name":  "Regulierung",
-                           "count":  10
+                           "name":  "Sicherheit",
+                           "count":  9
+                       },
+                       {
+                           "name":  "Boni",
+                           "count":  8
                        },
                        {
                            "name":  "Hintergrund",
                            "count":  8
-                       },
-                       {
-                           "name":  "Sicherheit",
-                           "count":  8
-                       },
-                       {
-                           "name":  "Boni",
-                           "count":  7
                        },
                        {
                            "name":  "Spielerschutz",
@@ -44,6 +44,41 @@
                        }
                    ],
     "posts":  [
+                  {
+                      "url":  "/news-casino-privates-gluecksspiel",
+                      "title":  "Privates Glücksspiel: wo die Grenze liegt",
+                      "category":  "Regulierung",
+                      "image":  "/img/news-regulierung.webp",
+                      "date":  "2026-08-10"
+                  },
+                  {
+                      "url":  "/news-casino-datenleck",
+                      "title":  "Wenn ein Casino gehackt wird",
+                      "category":  "Sicherheit",
+                      "image":  "/img/ratgeber-sicherheit.webp",
+                      "date":  "2026-08-10"
+                  },
+                  {
+                      "url":  "/news-slot-rtp-versionen",
+                      "title":  "Derselbe Slot, andere Auszahlungsquote",
+                      "category":  "Spiele",
+                      "image":  "/img/news-rtp.webp",
+                      "date":  "2026-08-10"
+                  },
+                  {
+                      "url":  "/news-casino-ohne-bonus-spielen",
+                      "title":  "Ohne Bonus spielen: lohnt der Verzicht?",
+                      "category":  "Boni",
+                      "image":  "/img/ratgeber-bonus.webp",
+                      "date":  "2026-08-10"
+                  },
+                  {
+                      "url":  "/news-casino-konto-umzug-ausland",
+                      "title":  "Umzug ins Ausland mit Casino-Konto",
+                      "category":  "Wissen",
+                      "image":  "/img/ratgeber-bedingungen.webp",
+                      "date":  "2026-08-10"
+                  },
                   {
                       "url":  "/news-casino-white-label",
                       "title":  "Warum viele Casinos gleich aussehen",
