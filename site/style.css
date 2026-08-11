@@ -350,6 +350,26 @@ strong{color:#fff;font-weight:600;}
 .article a:hover{text-decoration-color:var(--green);}
 .article ul,.article ol{padding-left:22px;}
 .article li{margin-bottom:8px;}
+
+/* ---------- Inhaltsverzeichnis ----------
+   nav.toc steht auf 119 Seiten im Markup, hatte aber nie eine eigene Regel und
+   rendert deshalb als nackte Browser-Aufzaehlung. Die Regeln stehen bewusst
+   NACH ".article ul" - gleiche Spezifitaet, die spaetere gewinnt. */
+.toc{margin:0 0 28px;padding:18px 20px;background:var(--glass);border:1px solid var(--border);
+  border-radius:var(--radius);box-shadow:var(--edge);}
+.toc strong{display:block;font-family:var(--font-head);font-size:11px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-bottom:11px;}
+/* Lange Verzeichnisse (oft 16+ Eintraege) laufen ab Platz zweispaltig. */
+.toc ul{list-style:none;margin:0;padding:0;display:grid;gap:1px;
+  grid-template-columns:repeat(auto-fill,minmax(255px,1fr));}
+.toc li{margin:0;}
+.toc a{display:block;position:relative;padding:7px 0 7px 17px;color:var(--muted);
+  font-size:14.5px;line-height:1.42;transition:color .16s;}
+/* Kurzer Strich statt Aufzaehlungspunkt - passt zur Haarlinien-Sprache. */
+.toc a::before{content:"";position:absolute;left:0;top:calc(.71em + 7px);width:7px;height:1px;
+  background:var(--faint);transition:background .16s,width .16s;}
+.toc a:hover{color:var(--green-2);text-decoration:none;}
+.toc a:hover::before{background:var(--green);width:12px;}
 .article p{max-width:74ch;}
 .meta{color:var(--muted);font-size:13.5px;margin-bottom:18px;}
 .pros-cons{display:flex;gap:18px;flex-wrap:wrap;margin:24px 0;}
