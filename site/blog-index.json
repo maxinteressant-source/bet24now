@@ -1,6 +1,6 @@
 {
-    "generatedAt":  "2026-08-12",
-    "total":  114,
+    "generatedAt":  "2026-08-13",
+    "total":  119,
     "categories":  [
                        {
                            "name":  "Spiele",
@@ -8,11 +8,11 @@
                        },
                        {
                            "name":  "Wissen",
-                           "count":  19
+                           "count":  20
                        },
                        {
                            "name":  "Regulierung",
-                           "count":  14
+                           "count":  15
                        },
                        {
                            "name":  "Zahlungen",
@@ -20,15 +20,15 @@
                        },
                        {
                            "name":  "Sicherheit",
-                           "count":  10
+                           "count":  11
                        },
                        {
                            "name":  "Hintergrund",
-                           "count":  9
+                           "count":  10
                        },
                        {
                            "name":  "Boni",
-                           "count":  8
+                           "count":  9
                        },
                        {
                            "name":  "Spielerschutz",
@@ -44,6 +44,41 @@
                        }
                    ],
     "posts":  [
+                  {
+                      "url":  "/news-casino-insolvenz-guthaben",
+                      "title":  "Wenn das Casino nicht mehr zahlen kann",
+                      "category":  "Sicherheit",
+                      "image":  "/img/ratgeber-auszahlung.webp",
+                      "date":  "2026-08-11"
+                  },
+                  {
+                      "url":  "/news-casino-bonusfristen",
+                      "title":  "Bonusfristen: wessen Uhr läuft",
+                      "category":  "Boni",
+                      "image":  "/img/ratgeber-bonus.webp",
+                      "date":  "2026-08-11"
+                  },
+                  {
+                      "url":  "/news-casino-spielauswahl",
+                      "title":  "Wie die Spieleauswahl zustande kommt",
+                      "category":  "Hintergrund",
+                      "image":  "/img/blog-slots.webp",
+                      "date":  "2026-08-11"
+                  },
+                  {
+                      "url":  "/news-casino-beschwerde-intern",
+                      "title":  "Beschwerde im Casino: der Weg danach",
+                      "category":  "Wissen",
+                      "image":  "/img/ratgeber-bedingungen.webp",
+                      "date":  "2026-08-11"
+                  },
+                  {
+                      "url":  "/news-casino-risikopruefung",
+                      "title":  "Warum nicht jeder dasselbe einreichen muss",
+                      "category":  "Regulierung",
+                      "image":  "/img/news-regulierung.webp",
+                      "date":  "2026-08-11"
+                  },
                   {
                       "url":  "/news-rtp-tischspiele-live-casino",
                       "title":  "Auszahlungsquoten bei Tisch- und Live-Spielen",
