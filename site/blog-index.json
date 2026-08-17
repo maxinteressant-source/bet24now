@@ -1,14 +1,14 @@
 {
-    "generatedAt":  "2026-08-14",
-    "total":  124,
+    "generatedAt":  "2026-08-17",
+    "total":  129,
     "categories":  [
                        {
                            "name":  "Spiele",
-                           "count":  26
+                           "count":  27
                        },
                        {
                            "name":  "Wissen",
-                           "count":  21
+                           "count":  22
                        },
                        {
                            "name":  "Regulierung",
@@ -16,19 +16,19 @@
                        },
                        {
                            "name":  "Zahlungen",
-                           "count":  13
+                           "count":  14
                        },
                        {
                            "name":  "Sicherheit",
-                           "count":  12
+                           "count":  13
+                       },
+                       {
+                           "name":  "Boni",
+                           "count":  10
                        },
                        {
                            "name":  "Hintergrund",
                            "count":  10
-                       },
-                       {
-                           "name":  "Boni",
-                           "count":  9
                        },
                        {
                            "name":  "Spielerschutz",
@@ -44,6 +44,41 @@
                        }
                    ],
     "posts":  [
+                  {
+                      "url":  "/news-casino-spielunterbrechung",
+                      "title":  "Wenn die Runde ohne dich zu Ende geht",
+                      "category":  "Spiele",
+                      "image":  "/img/blog-live-casino.webp",
+                      "date":  "2026-08-11"
+                  },
+                  {
+                      "url":  "/news-casino-namensabweichung",
+                      "title":  "Namensabweichung bei der Auszahlung",
+                      "category":  "Sicherheit",
+                      "image":  "/img/ratgeber-sicherheit.webp",
+                      "date":  "2026-08-11"
+                  },
+                  {
+                      "url":  "/news-casino-willkommenspaket-stufen",
+                      "title":  "Willkommenspaket: die Stufen dahinter",
+                      "category":  "Boni",
+                      "image":  "/img/ratgeber-freispiele.webp",
+                      "date":  "2026-08-11"
+                  },
+                  {
+                      "url":  "/news-casino-beweislage",
+                      "title":  "Wer im Casino-Streit was belegen kann",
+                      "category":  "Wissen",
+                      "image":  "/img/ratgeber-bedingungen.webp",
+                      "date":  "2026-08-11"
+                  },
+                  {
+                      "url":  "/news-casino-fremdwaehrung",
+                      "title":  "Wenn das Konto nicht in Euro rechnet",
+                      "category":  "Zahlungen",
+                      "image":  "/img/news-zahlungsmethoden.webp",
+                      "date":  "2026-08-11"
+                  },
                   {
                       "url":  "/news-casino-gewinne-pfaendung",
                       "title":  "Gewinn bei Kontopfändung: kein Sonderfall",
