@@ -1,6 +1,6 @@
 {
-    "generatedAt":  "2026-08-17",
-    "total":  129,
+    "generatedAt":  "2026-08-18",
+    "total":  134,
     "categories":  [
                        {
                            "name":  "Spiele",
@@ -16,23 +16,23 @@
                        },
                        {
                            "name":  "Zahlungen",
-                           "count":  14
+                           "count":  15
                        },
                        {
                            "name":  "Sicherheit",
-                           "count":  13
+                           "count":  14
+                       },
+                       {
+                           "name":  "Hintergrund",
+                           "count":  11
                        },
                        {
                            "name":  "Boni",
                            "count":  10
                        },
                        {
-                           "name":  "Hintergrund",
-                           "count":  10
-                       },
-                       {
                            "name":  "Spielerschutz",
-                           "count":  8
+                           "count":  10
                        },
                        {
                            "name":  "Trends",
@@ -44,6 +44,41 @@
                        }
                    ],
     "posts":  [
+                  {
+                      "url":  "/news-casino-geraeteerkennung",
+                      "title":  "Geräteerkennung: was dein Browser verrät",
+                      "category":  "Hintergrund",
+                      "image":  "/img/news-trends.webp",
+                      "date":  "2026-08-11"
+                  },
+                  {
+                      "url":  "/news-casino-retargeting",
+                      "title":  "Casino-Werbung, die dir hinterherläuft",
+                      "category":  "Spielerschutz",
+                      "image":  "/img/news-spielerschutz.webp",
+                      "date":  "2026-08-11"
+                  },
+                  {
+                      "url":  "/news-casino-rueckkehr-nach-pause",
+                      "title":  "Zurück ins Konto nach der Spielpause",
+                      "category":  "Spielerschutz",
+                      "image":  "/img/blog-spielsucht.webp",
+                      "date":  "2026-08-11"
+                  },
+                  {
+                      "url":  "/news-casino-doppelbuchung",
+                      "title":  "Zweimal abgebucht, einmal gutgeschrieben",
+                      "category":  "Zahlungen",
+                      "image":  "/img/news-zahlungsmethoden.webp",
+                      "date":  "2026-08-11"
+                  },
+                  {
+                      "url":  "/news-casino-ausweiskopie-schwaerzen",
+                      "title":  "Ausweiskopie: was schwärzen, was nicht",
+                      "category":  "Sicherheit",
+                      "image":  "/img/ratgeber-sicherheit.webp",
+                      "date":  "2026-08-11"
+                  },
                   {
                       "url":  "/news-casino-spielunterbrechung",
                       "title":  "Wenn die Runde ohne dich zu Ende geht",
