@@ -1,38 +1,38 @@
 {
-    "generatedAt":  "2026-08-19",
-    "total":  139,
+    "generatedAt":  "2026-08-20",
+    "total":  144,
     "categories":  [
                        {
                            "name":  "Spiele",
-                           "count":  28
+                           "count":  29
                        },
                        {
                            "name":  "Wissen",
-                           "count":  24
+                           "count":  25
                        },
                        {
                            "name":  "Regulierung",
                            "count":  17
                        },
                        {
+                           "name":  "Sicherheit",
+                           "count":  15
+                       },
+                       {
                            "name":  "Zahlungen",
                            "count":  15
                        },
                        {
-                           "name":  "Sicherheit",
-                           "count":  14
+                           "name":  "Spielerschutz",
+                           "count":  12
+                       },
+                       {
+                           "name":  "Boni",
+                           "count":  11
                        },
                        {
                            "name":  "Hintergrund",
                            "count":  11
-                       },
-                       {
-                           "name":  "Spielerschutz",
-                           "count":  11
-                       },
-                       {
-                           "name":  "Boni",
-                           "count":  10
                        },
                        {
                            "name":  "Trends",
@@ -44,6 +44,41 @@
                        }
                    ],
     "posts":  [
+                  {
+                      "url":  "/news-casino-aktionskalender",
+                      "title":  "Der Aktionskalender hinter den Angeboten",
+                      "category":  "Boni",
+                      "image":  "/img/ratgeber-bonus.webp",
+                      "date":  "2026-08-11"
+                  },
+                  {
+                      "url":  "/news-casino-bonusmissbrauch",
+                      "title":  "Bonusmissbrauch: Absicht oder Versehen",
+                      "category":  "Sicherheit",
+                      "image":  "/img/ratgeber-sicherheit.webp",
+                      "date":  "2026-08-11"
+                  },
+                  {
+                      "url":  "/news-casino-einzahlungsmuster",
+                      "title":  "Das eigene Einzahlungsmuster lesen",
+                      "category":  "Spielerschutz",
+                      "image":  "/img/news-einzahlungslimit.webp",
+                      "date":  "2026-08-11"
+                  },
+                  {
+                      "url":  "/news-casino-spiel-verschwindet",
+                      "title":  "Wenn ein Spiel aus der Lobby verschwindet",
+                      "category":  "Spiele",
+                      "image":  "/img/blog-slots.webp",
+                      "date":  "2026-08-11"
+                  },
+                  {
+                      "url":  "/news-casino-eigene-aufzeichnung",
+                      "title":  "Was die Kontohistorie nicht festhält",
+                      "category":  "Wissen",
+                      "image":  "/img/ratgeber-bedingungen.webp",
+                      "date":  "2026-08-11"
+                  },
                   {
                       "url":  "/news-casino-streitschlichtung",
                       "title":  "Casino-Streit: welche Stelle zuständig?",
