@@ -1,6 +1,6 @@
 {
-    "generatedAt":  "2026-08-21",
-    "total":  149,
+    "generatedAt":  "2026-08-24",
+    "total":  154,
     "categories":  [
                        {
                            "name":  "Spiele",
@@ -8,19 +8,19 @@
                        },
                        {
                            "name":  "Wissen",
-                           "count":  25
+                           "count":  26
                        },
                        {
                            "name":  "Regulierung",
-                           "count":  17
+                           "count":  18
                        },
                        {
                            "name":  "Sicherheit",
-                           "count":  16
+                           "count":  17
                        },
                        {
                            "name":  "Zahlungen",
-                           "count":  16
+                           "count":  17
                        },
                        {
                            "name":  "Spielerschutz",
@@ -36,7 +36,7 @@
                        },
                        {
                            "name":  "Mobil",
-                           "count":  5
+                           "count":  6
                        },
                        {
                            "name":  "Trends",
@@ -44,6 +44,41 @@
                        }
                    ],
     "posts":  [
+                  {
+                      "url":  "/news-casino-barrierefreiheit",
+                      "title":  "Barrierefreiheit: Seite ja, Spiel nein",
+                      "category":  "Wissen",
+                      "image":  "/img/news-trends.webp",
+                      "date":  "2026-08-11"
+                  },
+                  {
+                      "url":  "/news-casino-geraetewechsel",
+                      "title":  "Neues Handy, altes Spielerkonto",
+                      "category":  "Mobil",
+                      "image":  "/img/blog-casino-apps.webp",
+                      "date":  "2026-08-11"
+                  },
+                  {
+                      "url":  "/news-casino-kulanzgutschrift",
+                      "title":  "Unerwartete Gutschrift im Casino-Konto",
+                      "category":  "Zahlungen",
+                      "image":  "/img/ratgeber-auszahlung.webp",
+                      "date":  "2026-08-11"
+                  },
+                  {
+                      "url":  "/news-casino-betreuung-vollmacht",
+                      "title":  "Vollmacht und Betreuung am Spielerkonto",
+                      "category":  "Regulierung",
+                      "image":  "/img/ratgeber-bedingungen.webp",
+                      "date":  "2026-08-11"
+                  },
+                  {
+                      "url":  "/news-casino-stoerungskommunikation",
+                      "title":  "Störung im Casino: was der Umgang zeigt",
+                      "category":  "Sicherheit",
+                      "image":  "/img/ratgeber-sicherheit.webp",
+                      "date":  "2026-08-11"
+                  },
                   {
                       "url":  "/news-casino-minderjaehrig-gespielt",
                       "title":  "Minderjähriger hat gespielt: was tun?",
