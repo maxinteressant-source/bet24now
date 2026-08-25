@@ -1,14 +1,14 @@
 {
-    "generatedAt":  "2026-08-24",
-    "total":  154,
+    "generatedAt":  "2026-08-25",
+    "total":  159,
     "categories":  [
                        {
                            "name":  "Spiele",
-                           "count":  30
+                           "count":  31
                        },
                        {
                            "name":  "Wissen",
-                           "count":  26
+                           "count":  27
                        },
                        {
                            "name":  "Regulierung",
@@ -16,7 +16,7 @@
                        },
                        {
                            "name":  "Sicherheit",
-                           "count":  17
+                           "count":  18
                        },
                        {
                            "name":  "Zahlungen",
@@ -24,11 +24,11 @@
                        },
                        {
                            "name":  "Spielerschutz",
-                           "count":  13
+                           "count":  14
                        },
                        {
                            "name":  "Boni",
-                           "count":  11
+                           "count":  12
                        },
                        {
                            "name":  "Hintergrund",
@@ -44,6 +44,41 @@
                        }
                    ],
     "posts":  [
+                  {
+                      "url":  "/news-casino-vip-betreuer",
+                      "title":  "Wenn dich das Casino beim Namen kennt",
+                      "category":  "Spielerschutz",
+                      "image":  "/img/blog-vip.webp",
+                      "date":  "2026-08-11"
+                  },
+                  {
+                      "url":  "/news-casino-personalisierter-bonus",
+                      "title":  "Personalisierter Bonus erkennen",
+                      "category":  "Boni",
+                      "image":  "/img/ratgeber-bonus.webp",
+                      "date":  "2026-08-11"
+                  },
+                  {
+                      "url":  "/news-slot-freispielwert",
+                      "title":  "Freispielwert: der Einsatz je Spin zählt",
+                      "category":  "Spiele",
+                      "image":  "/img/ratgeber-freispiele.webp",
+                      "date":  "2026-08-11"
+                  },
+                  {
+                      "url":  "/news-casino-fremdes-netzwerk",
+                      "title":  "Fremdes Gerät, fremdes Netz beim Spielen",
+                      "category":  "Sicherheit",
+                      "image":  "/img/ratgeber-sicherheit.webp",
+                      "date":  "2026-08-11"
+                  },
+                  {
+                      "url":  "/news-casino-haushalt-doppelkonto",
+                      "title":  "Zwei Konten an derselben Adresse",
+                      "category":  "Wissen",
+                      "image":  "/img/ratgeber-bedingungen.webp",
+                      "date":  "2026-08-11"
+                  },
                   {
                       "url":  "/news-casino-barrierefreiheit",
                       "title":  "Barrierefreiheit: Seite ja, Spiel nein",
