@@ -1,18 +1,18 @@
 {
-    "generatedAt":  "2026-08-26",
-    "total":  164,
+    "generatedAt":  "2026-09-09",
+    "total":  169,
     "categories":  [
                        {
                            "name":  "Spiele",
-                           "count":  32
+                           "count":  33
                        },
                        {
                            "name":  "Wissen",
-                           "count":  28
+                           "count":  29
                        },
                        {
                            "name":  "Sicherheit",
-                           "count":  19
+                           "count":  20
                        },
                        {
                            "name":  "Regulierung",
@@ -24,7 +24,7 @@
                        },
                        {
                            "name":  "Spielerschutz",
-                           "count":  15
+                           "count":  16
                        },
                        {
                            "name":  "Boni",
@@ -36,7 +36,7 @@
                        },
                        {
                            "name":  "Mobil",
-                           "count":  6
+                           "count":  7
                        },
                        {
                            "name":  "Trends",
@@ -44,6 +44,41 @@
                        }
                    ],
     "posts":  [
+                  {
+                      "url":  "/news-casino-standortpruefung",
+                      "title":  "Standortprüfung: warum der Ort zählt",
+                      "category":  "Sicherheit",
+                      "image":  "/img/news-trends.webp",
+                      "date":  "2026-09-09"
+                  },
+                  {
+                      "url":  "/news-casino-kontowiederherstellung",
+                      "title":  "Ausgesperrt vom eigenen Konto",
+                      "category":  "Wissen",
+                      "image":  "/img/ratgeber-sicherheit.webp",
+                      "date":  "2026-09-09"
+                  },
+                  {
+                      "url":  "/news-casino-gewinnfeed",
+                      "title":  "Gewinn-Feed: Ergebnis ohne Einsatz",
+                      "category":  "Spielerschutz",
+                      "image":  "/img/news-spielerschutz.webp",
+                      "date":  "2026-09-09"
+                  },
+                  {
+                      "url":  "/news-live-casino-tischplatz",
+                      "title":  "Live-Tisch besetzt: Plätze und Limits",
+                      "category":  "Spiele",
+                      "image":  "/img/blog-live-casino.webp",
+                      "date":  "2026-09-09"
+                  },
+                  {
+                      "url":  "/news-casino-tv-konsole",
+                      "title":  "Casino auf Fernseher und Konsole",
+                      "category":  "Mobil",
+                      "image":  "/img/blog-casino-apps.webp",
+                      "date":  "2026-09-09"
+                  },
                   {
                       "url":  "/news-casino-einzahlung-sofort",
                       "title":  "Sofort heißt zugesagt, nicht angekommen",
