@@ -25,8 +25,9 @@
 
   <link rel="icon" href="/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="stylesheet" href="/style.css?v=34">
-  <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-400.woff2" crossorigin>
+  <link rel="stylesheet" href="/style.css?v=35">
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/atkinson-next.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/bodoni-moda.woff2" crossorigin>
 
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -58,96 +59,27 @@
   <header class="site-header">
     <div class="wrap">
       <a class="logo" href="/">Bet<span>24</span>Now</a>
-      <button class="nav-toggle" aria-label="Menue" aria-expanded="false"><span></span><span></span><span></span></button>
-      <nav class="nav">
-        <a href="/">Top Casinos</a>
-        <a href="/reviews">Reviews</a>
+      <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav class="nav" aria-label="Hauptnavigation">
+        <a href="/" aria-current="page">Vergleich</a>
+        <a href="/reviews">Casino-Tests</a>
         <a href="/ratgeber">Ratgeber</a>
-        <a href="/news">News</a>
+        <a href="/news">Magazin</a>
+        <a href="/verantwortungsvolles-spielen">Spielerschutz</a>
       </nav>
     </div>
   </header>
 
   <main>
 
-  <section class="hero">
+  <section class="table" id="top-casinos">
     <div class="wrap">
-      <div class="hero-grid">
-        <div class="hero-copy">
-          <span class="badge">Getestet &amp; verglichen · 2026</span>
-          <h1>Beste Online Casinos 2026 im <span class="hl">ehrlichen Test</span></h1>
-          <p>Wir prüfen Boni, Auszahlungsdauer, Spielauswahl und Sicherheit, damit du auf einen Blick weißt, wo sich das Spielen wirklich lohnt.</p>
-          <div class="hero-cta">
-            <a class="btn btn-lg" href="#top-casinos">Zum Casino-Vergleich →</a>
-            <a class="btn btn-lg btn-ghost" href="#so-testen-wir">So testen wir</a>
-          </div>
-          <div class="hero-trust">
-            <span>Nach offengelegten Kriterien geprüft</span>
-            <span>Über 14.000 € Bonus im Vergleich</span>
-            <span>Seriös &amp; transparent</span>
-          </div>
-        </div>
-
-        <div class="hero-visual">
-          <div class="preview-card">
-            <div class="pc-head">
-              <img class="pc-logo" src="/img/shinywilds-logo.png?v=1" alt="ShinyWilds" width="52" height="52" style="height:52px;width:52px;object-fit:contain;">
-              <div class="pc-score">
-                <div class="score-ring" style="--p:88"><b>4,4</b></div>
-                <span class="lbl">Gesamtnote</span>
-              </div>
-            </div>
-            <div class="pc-bonus">
-              <span class="k">Willkommenspaket</span>
-              <b>1.000 € + 250 Freispiele</b>
-            </div>
-            <div class="pc-rows">
-              <div><span class="k">Umsatz</span><b>30x (niedrig)</b></div>
-              <div><span class="k">Zahlung</span><b>PayPal · Apple Pay</b></div>
-              <div><span class="k">Spiele</span><b>5.000+</b></div>
-              <div><span class="k">Extra</span><b>Wöchentl. Cashback</b></div>
-            </div>
-            <a class="btn" href="https://partners.shinywildpartners.com/v2/text/28/9/852a697f-7a50-11f1-8d87-cad21936ea85/1" target="_blank" rel="nofollow sponsored">Bonus sichern →</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- USP / Trust-Leiste -->
-  <div class="usp-bar">
-    <div class="wrap usp-grid">
-      <div class="usp">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V5l-8-3Zm-1 13-3.5-3.5 1.4-1.4L11 12.2l4.1-4.1 1.4 1.4L11 15Z"/></svg>
-        <div><strong>Transparent getestet</strong><span>Punkte nach offengelegtem Raster, Rangfolge folgt der Note</span></div>
-      </div>
-      <div class="usp">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1 3 5v6c0 5.6 3.8 10.7 9 12 5.2-1.3 9-6.4 9-12V5l-9-4Zm0 6a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 14c-2.3-.6-4.4-2.4-5.6-4.8C7.6 15.2 9.7 14.5 12 14.5s4.4.7 5.6 1.7C16.4 18.6 14.3 20.4 12 21Z"/></svg>
-        <div><strong>Fokus auf Seriosität</strong><span>Lizenz, Auszahlung &amp; Sicherheit im Blick</span></div>
-      </div>
-      <div class="usp">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm1 10.4 4 2.3-.9 1.7L11 13V6h2v6.4Z"/></svg>
-        <div><strong>Regelmäßig geprüft</strong><span>Boni &amp; Konditionen im Blick, Prüfdatum steht in jedem Test</span></div>
-      </div>
-      <div class="usp">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm2 11h-4v-1.5h1V13h-1v-1.5h2.5V16.5h1.5V18Z"/></svg>
-        <div><strong>18+ &amp; verantwortungsvoll</strong><span>Wir spielen und informieren mit Maß</span></div>
-      </div>
-    </div>
-  </div>
-
-  <section class="section" id="top-casinos">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Vergleich</span>
-        <h2 class="h2-accent">Online Casino Vergleich 2026</h2>
-        <p>Unsere Testsieger nach sechs gewichteten Kriterien, transparent bewertet, laufend aktualisiert.</p>
+      <div class="table-head">
+        <h1>Beste Online Casinos 2026 im ehrlichen Test</h1>
+        <p>Drei Anbieter, sechs gewichtete Kriterien, eine Gesamtnote. Die Reihenfolge folgt allein dieser Note, auch dort, wo sie knapp ausfällt.</p>
       </div>
 
-      <p class="disclosure">🔎 Transparenz: Bet24Now finanziert sich über Affiliate-Links. Klickst du auf ein Angebot und meldest dich an, erhalten wir ggf. eine Provision. Das kostet dich nichts und beeinflusst unsere Bewertungen nicht.</p>
-
-      <div class="compare-grid">
-
+      <div class="compare-grid hand">
         <div class="ccard is-top">
           <span class="ccard-ribbon">Testsieger</span>
           <div class="ccard-top">
@@ -178,7 +110,7 @@
           </ul>
           <div class="ccard-con"><b>Nachteil:</b> Keine Lizenz und kein Betreiber ausgewiesen</div>
           <div class="ccard-cta">
-            <a class="btn" href="https://partners.shinywildpartners.com/v2/text/28/9/852a697f-7a50-11f1-8d87-cad21936ea85/1" target="_blank" rel="nofollow sponsored">1.000 € Bonus + 250 Freispiele sichern →</a>
+            <a class="btn" href="https://partners.shinywildpartners.com/v2/text/28/9/852a697f-7a50-11f1-8d87-cad21936ea85/1" target="_blank" rel="nofollow sponsored">1.000 € Bonus + 250 Freispiele sichern</a>
             <span class="rev"><a href="/review-shinywilds">Zum ausführlichen Test</a></span>
           </div>
         </div>
@@ -211,7 +143,7 @@
           </ul>
           <div class="ccard-con"><b>Nachteil:</b> Umsatzbedingung wird nicht veröffentlicht</div>
           <div class="ccard-cta">
-            <a class="btn" href="https://crocoslotsmedia.com/aevhr6rrq" target="_blank" rel="nofollow sponsored">8.000 € Bonus + 400 Freispiele sichern →</a>
+            <a class="btn" href="https://crocoslotsmedia.com/aevhr6rrq" target="_blank" rel="nofollow sponsored">8.000 € Bonus + 400 Freispiele sichern</a>
             <span class="rev"><a href="/review-crocoslots">Zum ausführlichen Test</a></span>
           </div>
         </div>
@@ -244,131 +176,122 @@
           </ul>
           <div class="ccard-con"><b>Nachteil:</b> Umsatzbedingung wird nicht veröffentlicht, Tobique-Lizenz</div>
           <div class="ccard-cta">
-            <a class="btn" href="https://www.bitkingzmedia.com/amhlwjvna" target="_blank" rel="nofollow sponsored">5.000 € Bonus + 500 Freispiele sichern →</a>
+            <a class="btn" href="https://www.bitkingzmedia.com/amhlwjvna" target="_blank" rel="nofollow sponsored">5.000 € Bonus + 500 Freispiele sichern</a>
             <span class="rev"><a href="/review-bitkingz">Zum ausführlichen Test</a></span>
           </div>
         </div>
-
       </div>
 
-      <p class="disclosure" style="border-left-color:var(--gold);">⚖️ Knappes Ergebnis, offen gesagt: Zwischen Platz 1 und Platz 2 liegen nur 0,1 Punkte. ShinyWilds gewinnt allein über die Bonusbedingungen, 30x Umsatz, 30 Tage Frist und 5 € Maximaleinsatz sind öffentlich dokumentiert. Ausgerechnet im schwersten Kriterium „Sicherheit &amp; Lizenz" ist ShinyWilds mit 3,5 der schwächste der drei, weil weder Lizenz noch Betreibergesellschaft ausgewiesen sind. Veröffentlicht CrocoSlots einen Umsatzfaktor von 35 oder darunter, dreht sich die Reihenfolge um.</p>
+      <div class="table-foot">
+        <p class="table-note"><strong>Knappes Ergebnis, offen gesagt:</strong> Zwischen Platz 1 und Platz 2 liegen nur 0,1 Punkte. ShinyWilds gewinnt allein über die Bonusbedingungen, 30x Umsatz, 30 Tage Frist und 5 € Maximaleinsatz sind öffentlich dokumentiert. Ausgerechnet im schwersten Kriterium „Sicherheit &amp; Lizenz“ ist ShinyWilds mit 3,5 der schwächste der drei, weil weder Lizenz noch Betreibergesellschaft ausgewiesen sind. Veröffentlicht CrocoSlots einen Umsatzfaktor von 35 oder darunter, dreht sich die Reihenfolge um.</p>
+        <p class="table-note"><strong>Transparenz:</strong> Bet24Now finanziert sich über Affiliate-Links. Klickst du auf ein Angebot und meldest dich an, erhalten wir gegebenenfalls eine Provision. Das kostet dich nichts und beeinflusst die Bewertung nicht. Mehr dazu im <a href="/affiliate-hinweis">Affiliate-Hinweis</a>.</p>
+      </div>
     </div>
   </section>
 
-  <section class="section section-alt" id="so-testen-wir">
-    <div class="wrap">
-      <div class="section-head center">
-        <span class="eyebrow">Methodik</span>
-        <h2 class="h2-accent">So testen wir Online Casinos</h2>
-        <p>Jedes Casino durchläuft bei uns denselben Check. Diese sechs Kriterien entscheiden über die Bewertung, jedes mit festem Gewicht.</p>
-      </div>
-      <div class="grid-cards grid-4" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr));">
-        <div class="feature">
-          <div class="feature-num">01</div>
-          <h3>Sicherheit &amp; Lizenz</h3>
-          <p><b style="color:var(--green-2);">25 % Gewicht.</b> Wer reguliert den Anbieter, wer betreibt ihn, und wie schnell findest du Limits und Sperroptionen? Das schwerste Kriterium im Test.</p>
-        </div>
-        <div class="feature">
-          <div class="feature-num">02</div>
-          <h3>Bonusbedingungen</h3>
-          <p><b style="color:var(--green-2);">20 % Gewicht.</b> Umsatzfaktor, Frist und Maximaleinsatz, und ob der Anbieter diese Regeln überhaupt öffentlich dokumentiert.</p>
-        </div>
-        <div class="feature">
-          <div class="feature-num">03</div>
-          <h3>Auszahlungen</h3>
-          <p><b style="color:var(--green-2);">20 % Gewicht.</b> Methoden, Limits und Bearbeitungszeit. Wer keine konkreten Fristen nennt, verliert hier Punkte.</p>
-        </div>
-        <div class="feature">
-          <div class="feature-num">04</div>
-          <h3>Spieleangebot</h3>
-          <p><b style="color:var(--green-2);">15 % Gewicht.</b> Slots, Tischspiele und Live-Casino, Umfang und Qualität der eingebundenen Provider.</p>
-        </div>
-        <div class="feature">
-          <div class="feature-num">05</div>
-          <h3>Support</h3>
-          <p><b style="color:var(--green-2);">10 % Gewicht.</b> Erreichbarkeit, Kanäle und Sprache. Volle Punkte gibt es nur mit dokumentiertem Support-Test.</p>
-        </div>
-        <div class="feature">
-          <div class="feature-num">06</div>
-          <h3>Mobile Nutzung</h3>
-          <p><b style="color:var(--green-2);">10 % Gewicht.</b> Wie gut läuft das Casino auf dem Handy, im Browser wie in der App?</p>
-        </div>
-      </div>
-      <p style="text-align:center;margin-top:34px;">
-        <a class="btn btn-lg btn-ghost" href="/testverfahren">Unser Bewertungssystem im Detail →</a>
-      </p>
-    </div>
-  </section>
-
-  <section class="section" id="ratgeber">
+  <section class="section" id="so-testen-wir">
     <div class="wrap">
       <div class="section-head">
-        <span class="eyebrow">Ratgeber</span>
-        <h2 class="h2-accent">Ratgeber, klug &amp; sicher spielen</h2>
-        <p>Verständliches Wissen für bessere Entscheidungen, von Umsatzbedingungen bis Spielerschutz.</p>
+        <h2>So entsteht die Note</h2>
+        <p>Jedes Casino durchläuft denselben Check. Sechs Kriterien mit festem Gewicht ergeben die Gesamtnote, und die Sicherheit zählt am meisten.</p>
       </div>
-      <div class="grid-cards">
-        <a class="mini-card" href="/ratgeber-casino-bonus-guide">
-          <h3>Online Casino Bonus Guide 2026</h3>
-          <p>Alle Bonus-Arten, Umsatzbedingungen und Tipps: so erkennst du faire Angebote.</p>
-        </a>
-        <a class="mini-card" href="/ratgeber-online-slots-guide">
-          <h3>Online Slots Guide 2026</h3>
-          <p>RTP, Volatilität, Features und Strategie-Mythen verständlich erklärt.</p>
-        </a>
-        <a class="mini-card" href="/ratgeber-verantwortungsvoll-spielen">
-          <h3>Verantwortungsvoll spielen</h3>
-          <p>Limits, Warnsignale, OASIS und wo du kostenlose Hilfe findest.</p>
-        </a>
-        <a class="mini-card" href="/ratgeber-online-casino-anfaenger">
-          <h3>Online Casino für Anfänger</h3>
-          <p>Der Schritt-für-Schritt-Einstieg: Anbieterwahl, Anmeldung, erstes Spiel.</p>
-        </a>
-        <a class="mini-card" href="/ratgeber-zahlungsmethoden">
-          <h3>Zahlungsmethoden im Vergleich</h3>
-          <p>Kreditkarte, E-Wallet, Paysafecard &amp; Krypto: Dauer, Gebühren, Sicherheit.</p>
-        </a>
-        <a class="mini-card" href="/ratgeber-live-casino">
-          <h3>Live Casino Guide</h3>
-          <p>Spielen mit echten Dealern: Roulette, Blackjack, Baccarat &amp; Game-Shows.</p>
-        </a>
-        <a class="mini-card" href="/ratgeber-umsatzbedingungen">
-          <h3>Umsatzbedingungen einfach erklärt</h3>
-          <p>Was „40x Wagering" wirklich bedeutet, und wie du faire von unfairen Boni unterscheidest.</p>
-        </a>
-        <a class="mini-card" href="/ratgeber-bonus-ohne-einzahlung">
-          <h3>Bonus ohne Einzahlung</h3>
-          <p>No-Deposit-Boni verständlich erklärt: Wie sie funktionieren und worauf du achten musst.</p>
-        </a>
-        <a class="mini-card" href="/ratgeber-auszahlungsdauer">
-          <h3>Auszahlungsdauer im Online Casino</h3>
-          <p>Wie lange dauert eine Auszahlung wirklich? Methoden im Vergleich und Tipps für schnelles Geld.</p>
-        </a>
-        <a class="mini-card" href="/ratgeber-freispiele">
-          <h3>Freispiele richtig nutzen</h3>
-          <p>Free Spins clever einsetzen: Umsatz, Gewinnlimits und die häufigsten Fallen.</p>
-        </a>
-        <a class="mini-card" href="/ratgeber-sichere-online-casinos">
-          <h3>Sichere Online Casinos erkennen</h3>
-          <p>Lizenz, Spielerschutz und Warnsignale: so findest du seriöse Anbieter, mit Checkliste.</p>
-        </a>
-        <a class="mini-card" href="/glossar">
-          <h3>Casino-Glossar A bis Z</h3>
-          <p>RTP, Wild, Scatter, Wagering &amp; Co., über 40 Fachbegriffe verständlich erklärt.</p>
-        </a>
+      <div class="weights">
+          <div class="w-row">
+            <div class="w-name">Sicherheit &amp; Lizenz</div>
+            <div class="w-bar"><span class="w-track"><i style="width:100%"></i></span><span class="w-val">25&thinsp;%</span></div>
+            <p>Wer reguliert den Anbieter, wer betreibt ihn, und wie schnell findest du Limits und Sperroptionen? Das schwerste Kriterium im Test.</p>
+          </div>
+          <div class="w-row">
+            <div class="w-name">Bonusbedingungen</div>
+            <div class="w-bar"><span class="w-track"><i style="width:80%"></i></span><span class="w-val">20&thinsp;%</span></div>
+            <p>Umsatzfaktor, Frist und Maximaleinsatz, und ob der Anbieter diese Regeln überhaupt öffentlich dokumentiert.</p>
+          </div>
+          <div class="w-row">
+            <div class="w-name">Auszahlungen</div>
+            <div class="w-bar"><span class="w-track"><i style="width:80%"></i></span><span class="w-val">20&thinsp;%</span></div>
+            <p>Methoden, Limits und Bearbeitungszeit. Wer keine konkreten Fristen nennt, verliert hier Punkte.</p>
+          </div>
+          <div class="w-row">
+            <div class="w-name">Spieleangebot</div>
+            <div class="w-bar"><span class="w-track"><i style="width:60%"></i></span><span class="w-val">15&thinsp;%</span></div>
+            <p>Slots, Tischspiele und Live-Casino, Umfang und Qualität der eingebundenen Provider.</p>
+          </div>
+          <div class="w-row">
+            <div class="w-name">Support</div>
+            <div class="w-bar"><span class="w-track"><i style="width:40%"></i></span><span class="w-val">10&thinsp;%</span></div>
+            <p>Erreichbarkeit, Kanäle und Sprache. Volle Punkte gibt es nur mit dokumentiertem Support-Test.</p>
+          </div>
+          <div class="w-row">
+            <div class="w-name">Mobile Nutzung</div>
+            <div class="w-bar"><span class="w-track"><i style="width:40%"></i></span><span class="w-val">10&thinsp;%</span></div>
+            <p>Wie gut läuft das Casino auf dem Handy, im Browser wie in der App?</p>
+          </div>
       </div>
-      <p style="text-align:center;margin-top:34px;">
-        <a class="btn btn-lg btn-ghost" href="/ratgeber">Alle Ratgeber ansehen →</a>
-      </p>
+      <p class="weights-more"><a class="btn btn-ghost" href="/testverfahren">Das Bewertungssystem im Detail</a></p>
     </div>
   </section>
 
-  <section class="section section-alt" id="news">
+  <section class="section section-alt" id="ratgeber">
     <div class="wrap">
       <div class="section-head">
-        <span class="eyebrow">News &amp; Wissen</span>
-        <h2 class="h2-accent">Bleib über aktuelle Glücksspiel-News informiert</h2>
-        <p>Aktualität ist entscheidend: Wir verfolgen Regulierung, Spielerschutz und Trends aus der Welt des iGamings, kompakt und verständlich für dich aufbereitet.</p>
+        <h2>Wo willst du anfangen?</h2>
+        <p>Verständliches Wissen für bessere Entscheidungen, sortiert nach der Frage, die du gerade hast.</p>
+      </div>
+      <div class="hubs">
+        <div class="hub">
+          <h3>Erste Schritte</h3>
+          <p>Für alle, die zum ersten Mal online spielen wollen und wissen möchten, worauf es ankommt.</p>
+          <ul>
+            <li><a href="/ratgeber-online-casino-anfaenger">Online Casino für Anfänger</a></li>
+            <li><a href="/online-casino-deutschland-legal">Was in Deutschland erlaubt ist</a></li>
+            <li><a href="/ratgeber-sichere-online-casinos">Seriöse Anbieter erkennen</a></li>
+            <li><a href="/ratgeber-konto-erstellen">Ein Casino-Konto anlegen</a></li>
+            <li><a href="/glossar">Casino-Glossar von A bis Z</a></li>
+          </ul>
+        </div>
+        <div class="hub">
+          <h3>Bonus verstehen</h3>
+          <p>Was hinter Umsatzfaktor, Frist und Maximaleinsatz steckt, und wie du faire von unfairen Angeboten trennst.</p>
+          <ul>
+            <li><a href="/ratgeber-casino-bonus-guide">Alle Bonusarten im Überblick</a></li>
+            <li><a href="/ratgeber-umsatzbedingungen">Umsatzbedingungen erklärt</a></li>
+            <li><a href="/umsatzbedingungen-rechner">Umsatz-Rechner</a></li>
+            <li><a href="/ratgeber-freispiele">Freispiele richtig nutzen</a></li>
+            <li><a href="/ratgeber-bonus-ohne-einzahlung">Bonus ohne Einzahlung</a></li>
+          </ul>
+        </div>
+        <div class="hub">
+          <h3>Ein- und Auszahlen</h3>
+          <p>Zahlungswege, Bearbeitungszeiten und was du tun kannst, wenn eine Auszahlung hängt.</p>
+          <ul>
+            <li><a href="/ratgeber-zahlungsmethoden">Zahlungsmethoden im Vergleich</a></li>
+            <li><a href="/ratgeber-auszahlungsdauer">Wie lange Auszahlungen dauern</a></li>
+            <li><a href="/online-casino-paypal">Online Casino mit PayPal</a></li>
+            <li><a href="/casino-verifizierung">Verifizierung: Ablauf und Dauer</a></li>
+            <li><a href="/casino-zahlt-nicht-aus">Casino zahlt nicht aus</a></li>
+          </ul>
+        </div>
+        <div class="hub">
+          <h3>Spiele verstehen</h3>
+          <p>Wie Slots, Roulette und Blackjack funktionieren, und warum kein System den Hausvorteil aushebelt.</p>
+          <ul>
+            <li><a href="/ratgeber-online-slots-guide">Online-Slots erklärt</a></li>
+            <li><a href="/news-rtp-auszahlungsquote-slots">RTP und Auszahlungsquote</a></li>
+            <li><a href="/online-roulette">Online Roulette</a></li>
+            <li><a href="/online-blackjack">Online Blackjack</a></li>
+            <li><a href="/ratgeber-live-casino">Live-Casino mit echten Dealern</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="weights-more"><a class="btn btn-ghost" href="/ratgeber">Alle Ratgeber</a></p>
+    </div>
+  </section>
+
+  <section class="section" id="news">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Aus dem Magazin</h2>
+        <p>Regulierung, Spielerschutz, Zahlungen und Spielmechanik: die Grundlagen, auf die sich die übrigen Beiträge stützen.</p>
       </div>
       <div class="grid-cards grid-news">
 
@@ -378,7 +301,7 @@
             <span class="news-cat">Regulierung</span>
             <h3>Glücksspiel-Regulierung 2026: GlüStV &amp; GGL</h3>
             <p>Sind Online Casinos in Deutschland legal? Der Glücksspielstaatsvertrag, die Behörde GGL und die wichtigsten Regeln, verständlich erklärt.</p>
-            <div class="news-meta">Bet24Now-Redaktion · Juni 2026</div>
+            <div class="news-meta">Juni 2026</div>
           </div>
         </a>
 
@@ -388,7 +311,7 @@
             <span class="news-cat">Spielerschutz</span>
             <h3>OASIS Spielersperre erklärt</h3>
             <p>Wie die zentrale Selbstsperre funktioniert, wie lange sie gilt und wie du sie wieder aufheben kannst, dein Schutzinstrument im Überblick.</p>
-            <div class="news-meta">Bet24Now-Redaktion · Juni 2026</div>
+            <div class="news-meta">Juni 2026</div>
           </div>
         </a>
 
@@ -398,7 +321,7 @@
             <span class="news-cat">Trends</span>
             <h3>Online Casino Trends 2026</h3>
             <p>Live-Casino, Crash-Games, Mobile-First und schnellere Auszahlungen: die Entwicklungen, die das iGaming-Jahr 2026 prägen.</p>
-            <div class="news-meta">Bet24Now-Redaktion · Juli 2026</div>
+            <div class="news-meta">Juli 2026</div>
           </div>
         </a>
 
@@ -408,7 +331,7 @@
             <span class="news-cat">Zahlungen</span>
             <h3>Zahlungsmethoden im Vergleich</h3>
             <p>PayPal, Paysafecard, Trustly, E-Wallets &amp; Karte: Welche Methode ist am schnellsten, sichersten und anonymsten?</p>
-            <div class="news-meta">Bet24Now-Redaktion · Juli 2026</div>
+            <div class="news-meta">Juli 2026</div>
           </div>
         </a>
 
@@ -418,7 +341,7 @@
             <span class="news-cat">Wissen</span>
             <h3>RTP &amp; Auszahlungsquote erklärt</h3>
             <p>Was die Prozentzahl wirklich bedeutet, wie die Volatilität hineinspielt und welche Slots am besten zahlen.</p>
-            <div class="news-meta">Bet24Now-Redaktion · Juli 2026</div>
+            <div class="news-meta">Juli 2026</div>
           </div>
         </a>
 
@@ -428,19 +351,40 @@
             <span class="news-cat">Regulierung</span>
             <h3>Einzahlungslimit: 1.000 € erklärt</h3>
             <p>Wie das anbieterübergreifende Monatslimit funktioniert, warum es das gibt und wie du es anpassen kannst.</p>
-            <div class="news-meta">Bet24Now-Redaktion · Juli 2026</div>
+            <div class="news-meta">Juli 2026</div>
           </div>
         </a>
 
       </div>
-      <div class="article" style="max-width:860px;margin:28px auto 0;text-align:center;">
-        <p>Mehr aus unserem Magazin: <a href="/news-psychologie-gluecksspiel">Psychologie des Glücksspiels</a>, <a href="/news-baccarat-regeln-anfaenger">Baccarat Regeln für Anfänger</a>, <a href="/news-slot-bonus-features">Slot Bonus-Features erklärt</a>, <a href="/news-kreditkarte-casino">Kreditkarte im Online Casino</a>, <a href="/news-auszahlungslimit-casino">Auszahlungslimits im Casino</a> und <a href="/news-casino-turniere">Casino-Turniere &amp; Slot-Rennen</a>.</p>
-      </div>
-      <p style="text-align:center;margin-top:34px;">
-        <a class="btn btn-lg btn-ghost" href="/news">Alle News &amp; Ratgeber ansehen →</a>
-      </p>
+      <p class="overview-intro" style="margin-top:26px;">Mehr aus unserem Magazin: <a href="/news-psychologie-gluecksspiel">Psychologie des Glücksspiels</a>, <a href="/news-baccarat-regeln-anfaenger">Baccarat Regeln für Anfänger</a>, <a href="/news-slot-bonus-features">Slot Bonus-Features erklärt</a>, <a href="/news-kreditkarte-casino">Kreditkarte im Online Casino</a>, <a href="/news-auszahlungslimit-casino">Auszahlungslimits im Casino</a> und <a href="/news-casino-turniere">Casino-Turniere &amp; Slot-Rennen</a>.</p>
+      <p class="weights-more"><a class="btn btn-ghost" href="/news">Alle Beiträge im Magazin</a></p>
     </div>
   </section>
+
+  <section class="section" id="spielerschutz">
+    <div class="wrap">
+      <div class="care">
+        <div>
+          <h2>Spielen mit Grenzen</h2>
+          <p>Jedes Casinospiel behält auf Dauer einen Teil der Einsätze. Wer spielt, legt deshalb vorher fest, wie viel Geld und Zeit dafür da ist, und stellt diese Grenze im Konto ein, bevor die erste Runde läuft.</p>
+          <ul>
+            <li><a href="/ratgeber-limits-einrichten">Limits im Konto einrichten</a></li>
+            <li><a href="/news-oasis-spielersperre">Die OASIS-Spielersperre</a></li>
+            <li><a href="/news-spielsucht-erkennen-hilfe">Warnsignale erkennen</a></li>
+            <li><a href="/news-gluecksspielsucht-angehoerige">Hilfe für Angehörige</a></li>
+            <li><a href="/spielschulden-hilfe">Hilfe bei Spielschulden</a></li>
+            <li><a href="/ratgeber-verantwortungsvoll-spielen">Verantwortungsvoll spielen</a></li>
+          </ul>
+        </div>
+        <div class="care-help">
+          <strong>Kostenlose Beratung der BZgA</strong>
+          <a class="tel" href="tel:08001372700">0800 1 37 27 00</a>
+          <p style="margin:6px 0 0;">Online-Beratung und Selbsttests unter <a href="https://www.buwei.de" target="_blank" rel="noopener">buwei.de</a>. Glücksspiel ist erst ab 18 Jahren erlaubt.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   </main>
 
 
@@ -449,32 +393,36 @@
       <div class="footer-cols">
         <div class="fcol fcol-brand">
           <a class="logo" href="/">Bet<span>24</span>Now</a>
-          <p>Ehrliche Online-Casino-Tests, aktuelle Boni und verständliche Ratgeber, für kluge Entscheidungen beim Spielen.</p>
+          <p>Unabhängige Casino-Tests nach offengelegtem Raster und ein Magazin, das erklärt statt verkauft. Spielen nur ab 18.</p>
         </div>
         <div class="fcol">
           <h4>Casinos</h4>
           <a href="/">Casino-Vergleich</a>
-          <a href="/reviews">Reviews</a>
+          <a href="/reviews">Casino-Tests</a>
           <a href="/testverfahren">Testverfahren</a>
+          <a href="/bewertungsmethodik">Bewertungsmethodik</a>
         </div>
         <div class="fcol">
-          <h4>Ratgeber &amp; News</h4>
+          <h4>Wissen</h4>
           <a href="/ratgeber">Ratgeber</a>
-          <a href="/news">News</a>
+          <a href="/news">Magazin</a>
           <a href="/glossar">Glossar</a>
+          <a href="/umsatzbedingungen-rechner">Umsatz-Rechner</a>
+        </div>
+        <div class="fcol">
+          <h4>Spielerschutz</h4>
+          <a href="/verantwortungsvolles-spielen">Verantwortungsvoll spielen</a>
+          <a href="/ratgeber-limits-einrichten">Limits einrichten</a>
+          <a href="/news-oasis-spielersperre">OASIS-Spielersperre</a>
+          <a href="/spielschulden-hilfe">Hilfe bei Spielschulden</a>
         </div>
         <div class="fcol">
           <h4>Über uns</h4>
           <a href="/ueber-uns">Über uns</a>
           <a href="/redaktion">Redaktion</a>
-          <a href="/bewertungsmethodik">Bewertungsmethodik</a>
           <a href="/affiliate-hinweis">Affiliate-Hinweis</a>
-        </div>
-        <div class="fcol">
-          <h4>Rechtliches</h4>
           <a href="/impressum">Impressum</a>
           <a href="/datenschutz">Datenschutz</a>
-          <a href="/verantwortungsvolles-spielen">Verantwortungsvolles Spielen</a>
           <a href="/sitemap">Sitemap</a>
         </div>
       </div>
@@ -485,7 +433,7 @@
   </footer>
 
   <button id="toTop" class="to-top" aria-label="Nach oben scrollen" title="Nach oben">↑</button>
-  <script src="/main.js?v=34" defer></script>
+  <script src="/main.js?v=35" defer></script>
 
 </body>
 </html>

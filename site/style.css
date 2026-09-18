@@ -1,709 +1,635 @@
 /* ============================================================
-   Bet24Now — Design System v2.1 · "Editorial Desk"
-   Dunkles Ink-Interface · Poppins-Headlines · Hairlines statt Box-in-Box.
+   Bet24Now - Design System v3 "Spieltisch"
 
-   FARBROLLEN (Stand v2.1, an die tatsaechliche Verwendung angeglichen):
-   - Gold  = Bewertung. Score-Ringe, Sterne, Testsieger-Auszeichnung.
-             Textfarbe auf Gold ist --gold-ink.
-   - Gruen = Marke und Aktion. Buttons und Links, dazu Marken-Akzente
-             wie .eyebrow und .news-cat. Die frueher notierte Regel
-             "gruen ausschliesslich fuer Klickbares" galt an 18 Selektoren
-             nicht und wurde hier ehrlich nachgezogen statt erzwungen.
-   - Rot   = Einschraenkung. Nachteile und Contra-Punkte.
+   Motiv: die Materialwelt des Casinotischs. Filz als Markenflaeche,
+   Messing fuer Angebot und Testsieger, Spielkarten-Weiss zum Lesen,
+   Kartenrot nur fuer Nachteile. Die Stockfotos zeigen genau diese Welt
+   (Walnussholz, Messing, rot/schwarzes Roulette).
 
-   LICHT & TIEFE (neu in v2.1): Flaechen tragen eine Lichtkante an der
-   Oberkante (--edge) statt zusaetzlicher Rahmen. Der Testsieger hebt sich
-   ueber eine warme Flaeche plus --lift-gold ab, nicht nur ueber das Eckband.
-   (Alle Token- und Klassennamen bleiben kompatibel.)
+   Die eine laute Stelle ist die Rangliste auf der Startseite: drei
+   Spielkarten auf dem Filz. Alles andere ist Papier und Tinte.
+
+   FARBROLLEN
+   - Filz     Marke, Struktur, Links
+   - Messing  Aktion (Angebots-Buttons) und Testsieger
+   - Rot      ausschliesslich Nachteile
+   - Tinte    Lesen
+   Kontraste nach WCAG nachgerechnet: Tinte-3 nur auf Weiss, Messing
+   auf Filz nur gross oder dekorativ.
    ============================================================ */
-/* inter-400.woff2 und inter-700.woff2 sind byte-identisch (gleiche MD5) - eine
-   Variable-Font-Datei, zweimal abgelegt. Ueber zwei URLs laedt der Browser
-   dieselben 48 KB doppelt, also zeigen beide Regeln jetzt auf dieselbe Datei.
-   Die Gewichts-Deskriptoren bleiben absichtlich 400 und 700: die CSS fordert
-   auch 500, 600 und 650 an, und die rasten so weiterhin auf 400 bzw. 700 ein.
-   Ein Achsbereich (100 900) wuerde daraus echte Zwischenschnitte machen und
-   das Schriftbild veraendern. */
-@font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:optional;src:url('/fonts/inter-400.woff2') format('woff2');}
-@font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:optional;src:url('/fonts/inter-400.woff2') format('woff2');}
-@font-face{font-family:'Poppins';font-style:normal;font-weight:700;font-display:optional;src:url('/fonts/poppins-700.woff2') format('woff2');}
-@font-face{font-family:'Poppins';font-style:normal;font-weight:800;font-display:optional;src:url('/fonts/poppins-800.woff2') format('woff2');}
+
+@font-face{font-family:'Bodoni Moda';font-style:normal;font-weight:400 900;font-display:optional;src:url('/fonts/bodoni-moda.woff2') format('woff2');}
+@font-face{font-family:'Atkinson Next';font-style:normal;font-weight:200 800;font-display:optional;src:url('/fonts/atkinson-next.woff2') format('woff2');}
+@font-face{font-family:'Atkinson Next';font-style:italic;font-weight:200 800;font-display:optional;src:url('/fonts/atkinson-next-italic.woff2') format('woff2');}
 
 :root{
-  /* Ink / Surfaces */
-  --bg:#080910;
-  --bg-2:#0b0d15;
-  --panel:#12141d;
-  --panel-2:#161925;
-  --panel-3:#1d2130;
-  --glass:rgba(255,255,255,.03);
-  --glass-2:rgba(255,255,255,.055);
-  --border:rgba(255,255,255,.09);
-  --border-lt:rgba(255,255,255,.17);
-  /* Text — Kontrast angehoben, die alte Sekundaerfarbe war zu dunkel */
-  --text:#f2f4fa;
-  --muted:#aab2c6;
-  --faint:#7c8499;
-  /* Brand */
-  --green:#35e0a1;
-  --green-2:#67ecbe;
-  --green-deep:#12b884;
-  --green-ink:#052117;
-  --green-soft:rgba(53,224,161,.12);
-  --violet:#8ea2ff;
-  --gold:#e7b979;
-  --gold-2:#f0cf9c;
-  --gold-deep:#caa05c;
-  --gold-soft:rgba(231,185,121,.13);
-  --red:#ff6f6f;
-  /* Form — flacher, weniger Blasen-Optik */
-  --radius:16px;
-  --radius-sm:11px;
-  --radius-lg:20px;
-  --maxw:1240px;
-  --shadow:0 34px 70px -34px rgba(0,0,0,.85);
-  --shadow-sm:0 14px 32px -20px rgba(0,0,0,.75);
-  --ring:0 0 0 1px var(--border);
-  /* Licht & Tiefe (v2.1): Eine Lichtkante an der Oberkante laesst Flaechen
-     im dunklen Interface plastisch wirken, ohne Kaesten zu stapeln. */
-  --edge:inset 0 1px 0 rgba(255,255,255,.07);
-  --edge-lt:inset 0 1px 0 rgba(255,255,255,.12);
-  --lift:0 22px 48px -30px rgba(0,0,0,.92);
-  --lift-gold:0 26px 64px -34px rgba(231,185,121,.30);
-  /* Textfarbe auf goldenem Grund - Gegenstueck zu --green-ink */
-  --gold-ink:#2a1c08;
-  --grad-green:linear-gradient(135deg,#43e9ac 0%,#12b884 100%);
-  --grad-gold:linear-gradient(135deg,#f0cf9c,#caa05c);
-  --grad-hero:radial-gradient(1100px 620px at 82% -12%, rgba(53,224,161,.10), transparent 62%),
-              radial-gradient(820px 540px at 4% 4%, rgba(142,162,255,.06), transparent 58%);
-  --font-body:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-  --font-head:'Poppins','Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-  font-family:var(--font-body);
+  /* Material */
+  --filz:#1D4A3C;
+  --filz-hell:#285E4D;
+  --filz-tief:#12302A;
+  --grund:#E9EDE6;
+  --karton:#FFFFFF;
+  --elfenbein:#FBF9F3;
+  --blass-filz:#DDE8E1;
+  --blass-messing:#F6EFDC;
+  /* Tinte */
+  --tinte:#16211C;
+  --tinte-2:#4B5852;
+  --tinte-3:#6A756F;
+  --auf-filz:#F3EFE3;
+  --auf-filz-2:#B9CBC2;
+  /* Akzente */
+  --link:#1C6B50;
+  --messing:#C9A04E;
+  --messing-hell:#D9B568;
+  --messing-text:#86661F;
+  --rot:#A8302A;
+  /* Linien, Radien, Schatten */
+  --linie:rgba(22,33,28,.11);
+  --linie-stark:rgba(22,33,28,.2);
+  --linie-filz:rgba(243,239,227,.16);
+  --r-karte:16px;
+  --r-flaeche:18px;
+  --r-knopf:10px;
+  --r-klein:7px;
+  --schatten-blatt:0 1px 2px rgba(22,33,28,.05),0 14px 34px -20px rgba(22,33,28,.22);
+  --schatten-karte:0 2px 3px rgba(0,0,0,.12),0 26px 48px -24px rgba(0,0,0,.55);
+  --maxw:1200px;
+  --font-text:'Atkinson Next',ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --font-display:'Bodoni Moda','Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
+
+  /* Aliase der alten Token-Namen. glossar.html und umsatzbedingungen-rechner.html
+     haben eigene <style>-Bloecke, und Inline-Stile nutzen var(--green-2),
+     var(--muted), var(--red). Die Namen bleiben, die Werte folgen dem neuen System. */
+  --bg:var(--grund);
+  --bg-2:var(--grund);
+  --panel:var(--karton);
+  --panel-2:#F2F5F0;
+  --panel-3:#E4EAE2;
+  --glass:var(--karton);
+  --glass-2:#F4F7F2;
+  --border:var(--linie);
+  --border-lt:var(--linie-stark);
+  --text:var(--tinte);
+  --muted:var(--tinte-2);
+  --faint:var(--tinte-3);
+  --green:var(--link);
+  --green-2:var(--link);
+  --green-deep:var(--filz);
+  --green-ink:var(--tinte);
+  --green-soft:var(--blass-filz);
+  --gold:var(--messing);
+  --gold-2:var(--messing-text);
+  --gold-deep:var(--messing-text);
+  --gold-soft:var(--blass-messing);
+  --gold-ink:var(--tinte);
+  --red:var(--rot);
+  --radius:var(--r-karte);
+  --radius-sm:var(--r-klein);
+  --radius-lg:var(--r-flaeche);
+  --shadow:var(--schatten-karte);
+  --shadow-sm:var(--schatten-blatt);
+  --font-body:var(--font-text);
+  --font-head:var(--font-display);
 }
+
+/* ---------- Grundlagen ---------- */
 *{box-sizing:border-box;}
-html{scroll-behavior:smooth;scroll-padding-top:110px;-webkit-text-size-adjust:100%;scrollbar-gutter:stable;}
-body{margin:0;color:var(--text);line-height:1.68;font-size:17px;background:var(--bg);
-  background-image:var(--grad-hero);background-repeat:no-repeat;background-position:top center;
-  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden;}
-/* Promo-Streifen: Hoehe vorab reservieren, damit kein Layout-Sprung entsteht */
-body{padding-top:48px;}
-/* Impressum und Datenschutz laden main.js bewusst nicht (keine Skripte auf
-   den Rechtstexten). Dort erscheint deshalb nie eine Promo-Leiste - ohne
-   diese Ausnahme bliebe oben ein leerer 48-px-Streifen stehen. */
+html{scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%;scrollbar-gutter:stable;}
+body{margin:0;background:var(--grund);color:var(--tinte);font-family:var(--font-text);
+  font-size:17.5px;line-height:1.62;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden;}
+/* Platz fuer die Angebotsleiste, die main.js oben einsetzt. Die Hoehe ist fest,
+   damit beim Einblenden nichts springt. */
+body{padding-top:44px;}
 body.no-promo{padding-top:0;}
 .promo-bar{position:absolute;top:0;left:0;right:0;z-index:45;}
-a{color:var(--green);text-decoration:none;transition:color .16s ease;}
-a:hover{color:var(--green-2);}
+a{color:var(--link);text-decoration:none;}
+a:hover{text-decoration:underline;text-underline-offset:3px;}
 img{max-width:100%;height:auto;}
-
-/* ---------- Typografie ---------- */
-h1,h2,h3,h4{font-family:var(--font-head);color:#fff;font-weight:700;letter-spacing:-.025em;line-height:1.14;}
-h1{font-size:clamp(33px,4.6vw,50px);margin:0 0 18px;font-weight:800;letter-spacing:-.038em;line-height:1.06;}
-h2{font-size:clamp(23px,2.9vw,33px);margin:46px 0 14px;font-weight:800;letter-spacing:-.032em;}
-h3{font-size:19.5px;margin:26px 0 9px;font-weight:700;letter-spacing:-.02em;}
-h4{font-size:16px;font-weight:700;}
 p{margin:0 0 16px;}
-strong{color:#fff;font-weight:600;}
-::selection{background:rgba(53,224,161,.28);color:#fff;}
-:focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:6px;}
+strong,b{font-weight:700;}
+::selection{background:var(--messing-hell);color:var(--tinte);}
+:focus-visible{outline:2px solid var(--link);outline-offset:3px;border-radius:4px;}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
 
-/* ---------- Header ---------- */
-.site-header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border);
-  background:rgba(8,9,16,.78);backdrop-filter:blur(20px) saturate(170%);-webkit-backdrop-filter:blur(20px) saturate(170%);}
-.site-header .wrap{display:flex;align-items:center;justify-content:space-between;height:66px;}
-.logo{font-family:var(--font-head);font-weight:800;font-size:21px;color:#fff;letter-spacing:-.04em;}
-.logo span{color:var(--green);}
-.nav{display:flex;align-items:center;gap:2px;}
-.nav a{position:relative;color:var(--muted);padding:8px 14px;font-size:14.5px;font-weight:500;border-radius:8px;
-  transition:color .16s,background .16s;}
-.nav a:hover{color:#fff;background:var(--glass-2);}
+/* ---------- Typografie ----------
+   Bodoni fuer die grossen Ueberschriften und fuer Zahlen, Atkinson fuer alles,
+   was gelesen oder bedient wird. h3 bleibt bewusst in der Textschrift: eine
+   Didone unter 20 px verliert ihre Haarstriche. */
+h1,h2{font-family:var(--font-display);font-weight:700;color:var(--tinte);letter-spacing:-.01em;
+  font-variation-settings:"opsz" 28;line-height:1.08;}
+h1{font-size:clamp(34px,4.8vw,56px);margin:0 0 18px;font-variation-settings:"opsz" 96;}
+h2{font-size:clamp(26px,3vw,36px);margin:52px 0 14px;}
+h3,h4{font-family:var(--font-text);font-weight:700;color:var(--tinte);letter-spacing:-.005em;line-height:1.3;}
+h3{font-size:19.5px;margin:30px 0 8px;}
+h4{font-size:16.5px;}
 
-/* ---------- Buttons ---------- */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--grad-green);color:var(--green-ink);
-  font-weight:650;padding:12px 22px;border-radius:10px;font-size:15px;font-family:var(--font-head);letter-spacing:-.015em;
-  border:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 8px 22px -10px rgba(18,184,132,.75);
-  position:relative;overflow:hidden;transition:transform .16s ease,box-shadow .16s ease,filter .16s ease;white-space:nowrap;}
-.btn:hover{transform:translateY(-2px);box-shadow:inset 0 1px 0 rgba(255,255,255,.34),0 14px 30px -12px rgba(18,184,132,.9);filter:brightness(1.05);text-decoration:none;}
-.btn:active{transform:translateY(0);}
-.btn-lg{padding:15px 28px;font-size:16px;border-radius:12px;}
-.btn-sm{padding:8px 15px;font-size:13.5px;border-radius:8px;}
-.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border-lt);box-shadow:none;}
-.btn-ghost:hover{border-color:var(--green);color:#fff;background:var(--green-soft);box-shadow:none;}
+/* ---------- Kopfzeile ---------- */
+.site-header{position:sticky;top:0;z-index:50;background:var(--filz);border-bottom:1px solid var(--filz-tief);}
+.site-header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:20px;}
+.logo{font-family:var(--font-display);font-weight:800;font-size:25px;color:var(--auf-filz);letter-spacing:-.01em;
+  font-variation-settings:"opsz" 48;line-height:1;}
+.logo span{color:var(--messing-hell);}
+.logo:hover{text-decoration:none;color:#fff;}
+.nav{display:flex;align-items:center;gap:4px;}
+.nav a{color:var(--auf-filz-2);padding:8px 13px;font-size:15.5px;font-weight:600;border-radius:var(--r-klein);
+  position:relative;transition:color .15s;}
+.nav a::after{content:"";position:absolute;left:13px;right:13px;bottom:3px;height:2px;border-radius:2px;
+  background:var(--messing-hell);transform:scaleX(0);transition:transform .18s ease;}
+.nav a:hover{color:#fff;text-decoration:none;}
+.nav a:hover::after,.nav a[aria-current="page"]::after{transform:scaleX(1);}
+.nav a[aria-current="page"],.nav a.is-section{color:#fff;}
+.nav a.is-section::after{transform:scaleX(1);opacity:.55;}
+.nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;padding:0 11px;
+  background:transparent;border:1px solid var(--linie-filz);border-radius:var(--r-klein);cursor:pointer;}
+.nav-toggle span{display:block;height:2px;width:100%;background:var(--auf-filz);border-radius:2px;transition:transform .22s ease,opacity .2s ease;}
 
-/* ---------- Eyebrow / Badge / Pills ---------- */
-.badge{display:inline-flex;align-items:center;gap:8px;background:var(--glass);color:var(--muted);
-  border:1px solid var(--border);border-radius:999px;padding:6px 14px;font-size:12.5px;font-weight:500;letter-spacing:.01em;}
-.badge::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px rgba(53,224,161,.18);}
-.eyebrow{display:inline-block;text-transform:uppercase;letter-spacing:.16em;font-size:11px;font-weight:700;
-  color:var(--green-2);background:none;border:none;padding:0;margin-bottom:4px;}
-.chip{display:inline-flex;align-items:center;gap:7px;background:var(--glass);border:1px solid var(--border);
-  border-radius:9px;padding:8px 12px;font-size:13px;color:var(--text);}
-.chip b{color:#fff;font-weight:650;}
-.chip .k{color:var(--faint);font-size:11px;text-transform:uppercase;letter-spacing:.08em;display:block;line-height:1;margin-bottom:3px;}
+/* ---------- Knoepfe ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--messing);color:var(--tinte);
+  font-family:var(--font-text);font-weight:700;font-size:16px;line-height:1.25;padding:13px 22px;border-radius:var(--r-knopf);
+  border:1px solid rgba(0,0,0,.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 1px 2px rgba(0,0,0,.12);
+  transition:background .15s,transform .15s;white-space:nowrap;cursor:pointer;}
+.btn:hover{background:var(--messing-hell);color:var(--tinte);text-decoration:none;}
+.btn:active{transform:translateY(1px);}
+.btn-lg{padding:15px 26px;font-size:17px;}
+.btn-sm{padding:8px 14px;font-size:14px;}
+.btn-ghost{background:transparent;color:var(--filz);border:1.5px solid var(--filz);box-shadow:none;}
+.btn-ghost:hover{background:var(--filz);color:var(--auf-filz);}
 
-/* ---------- Sections ---------- */
-.section{padding:clamp(46px,5.6vw,78px) 0;}
-.section-alt{background:linear-gradient(180deg,rgba(22,25,37,.42),rgba(8,9,16,0));border-top:1px solid var(--border);}
-.section-lead{color:var(--muted);max-width:660px;margin:-2px 0 10px;font-size:16.5px;}
-.section-head{max-width:720px;margin-bottom:32px;}
+/* ---------- Kennzeichen ----------
+   Kategorie- und Seitenkennzeichen in normaler Schreibung, nicht in
+   gesperrten Grossbuchstaben ueber jeder Ueberschrift. */
+.badge{display:inline-block;background:var(--blass-filz);color:var(--filz);border-radius:var(--r-klein);
+  padding:4px 11px;font-size:14px;font-weight:700;line-height:1.4;margin-bottom:14px;}
+.eyebrow{display:block;color:var(--link);font-size:15px;font-weight:700;margin-bottom:6px;}
+.chip{display:inline-flex;align-items:center;gap:7px;background:var(--karton);border:1px solid var(--linie);
+  border-radius:var(--r-klein);padding:7px 12px;font-size:14px;}
+.chip .k{color:var(--tinte-3);font-size:13px;display:block;line-height:1.1;margin-bottom:2px;}
+
+/* ---------- Abschnitte ---------- */
+.section{padding:clamp(40px,5vw,72px) 0;}
+.section-alt{background:var(--karton);border-top:1px solid var(--linie);border-bottom:1px solid var(--linie);}
+.section-head{max-width:700px;margin-bottom:30px;}
 .section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
-.section-head h2{margin:6px 0 10px;}
-.section-head p{color:var(--muted);font-size:16.5px;margin:0;}
-.h2-accent{position:relative;}
+.section-head h2{margin:0 0 10px;}
+.section-head p{color:var(--tinte-2);font-size:18px;margin:0;}
+.section-lead{color:var(--tinte-2);max-width:680px;font-size:18.5px;margin:0 0 14px;}
 .h2-accent::after{content:none;}
 
-/* ---------- Hero ---------- */
-.hero{position:relative;overflow:hidden;padding:clamp(44px,6vw,84px) 0 clamp(40px,5vw,68px);
-  border-bottom:1px solid var(--border);
-  background:radial-gradient(820px 460px at 84% -18%, rgba(53,224,161,.13), transparent 62%),
-             radial-gradient(680px 420px at 2% 0%, rgba(142,162,255,.08), transparent 58%);}
-.hero::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.42;
-  background-image:radial-gradient(rgba(255,255,255,.045) 1px, transparent 1px);background-size:32px 32px;
-  -webkit-mask-image:radial-gradient(660px 440px at 55% 15%,#000,transparent 78%);
-  mask-image:radial-gradient(660px 440px at 55% 15%,#000,transparent 78%);}
-.hero .wrap{position:relative;z-index:1;}
-.hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:clamp(28px,4.5vw,58px);align-items:center;}
-.hero-copy .badge{margin-bottom:20px;}
-.hero h1{font-size:clamp(35px,5vw,56px);letter-spacing:-.042em;margin:0 0 18px;line-height:1.02;}
-.hero h1 .hl{color:var(--green);-webkit-text-fill-color:currentColor;background:none;}
-.hero p{color:var(--muted);font-size:clamp(16px,1.6vw,18.5px);max-width:540px;margin:0 0 26px;line-height:1.6;}
-.hero-cta{display:flex;gap:12px;flex-wrap:wrap;}
-.hero-trust{display:flex;gap:10px 24px;flex-wrap:wrap;margin-top:26px;color:var(--muted);font-size:13.5px;font-weight:500;}
-.hero-trust span{display:inline-flex;align-items:center;gap:7px;white-space:nowrap;}
-.hero-trust span::before{content:"";width:15px;height:15px;border-radius:50%;flex:none;
-  background:var(--green-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2335e0a1' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/10px no-repeat;}
+/* ---------- Lese-Blatt ----------
+   Artikel stehen auf einem weissen Blatt auf dem Grund. Die Klasse .sheet
+   traegt die schmale Spalte; baut main.js die Seite zweispaltig um, uebernimmt
+   .blog-main das Blatt und die aeussere Huelle wird wieder durchsichtig. */
+.sheet{background:var(--karton);border-radius:var(--r-flaeche);box-shadow:var(--schatten-blatt);
+  padding:clamp(22px,4.2vw,54px);}
+.sheet.blog-wrap{background:none;box-shadow:none;padding:0 28px;border-radius:0;}
+.blog-main{background:var(--karton);border-radius:var(--r-flaeche);box-shadow:var(--schatten-blatt);
+  padding:clamp(22px,4.2vw,54px);}
 
-/* Hero-Visual: Testsieger-Karte */
-.hero-visual{position:relative;}
-.preview-card{background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.012));
-  border:1px solid var(--border-lt);border-radius:var(--radius-lg);padding:24px;box-shadow:var(--shadow);
-  position:relative;overflow:hidden;}
-.preview-card .pc-tag{position:absolute;top:16px;right:16px;font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
-  color:var(--gold-ink);background:var(--grad-gold);padding:4px 10px;border-radius:6px;}
-.pc-head{display:flex;align-items:center;gap:14px;margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--border);}
-.pc-logo{width:112px;height:48px;object-fit:contain;object-position:left center;}
-.pc-score{margin-left:auto;text-align:center;}
-.score-ring{position:relative;width:60px;height:60px;border-radius:50%;display:grid;place-items:center;
-  background:conic-gradient(var(--gold) calc(var(--p,96)*1%),rgba(255,255,255,.07) 0);}
-.score-ring::before{content:"";position:absolute;inset:4px;border-radius:50%;background:var(--ring-bg,var(--panel));}
-.score-ring b{position:relative;z-index:1;font-family:var(--font-head);font-weight:800;font-size:17px;color:#fff;letter-spacing:-.03em;}
-.pc-score .lbl{display:block;font-size:9.5px;color:var(--faint);text-transform:uppercase;letter-spacing:.11em;margin-top:6px;}
-.pc-bonus{background:none;border:none;border-radius:0;padding:0;margin-bottom:16px;}
-.pc-bonus .k{font-size:10.5px;text-transform:uppercase;letter-spacing:.12em;color:var(--green-2);font-weight:700;}
-.pc-bonus b{display:block;font-family:var(--font-head);font-size:22px;font-weight:800;color:#fff;letter-spacing:-.032em;margin-top:4px;line-height:1.14;}
-.pc-rows{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:18px;border-top:1px solid var(--border);}
-.pc-rows div{background:none;border:none;border-bottom:1px solid var(--border);padding:10px 2px;}
-.pc-rows div:nth-child(odd){border-right:1px solid var(--border);padding-right:14px;}
-.pc-rows div:nth-child(even){padding-left:14px;}
-.pc-rows .k{font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:var(--faint);font-weight:600;}
-.pc-rows b{display:block;font-size:14px;color:#fff;font-weight:600;margin-top:2px;letter-spacing:-.01em;}
-.preview-card .btn{width:100%;}
-.hero-stat{position:absolute;background:rgba(18,20,29,.9);border:1px solid var(--border-lt);border-radius:12px;
-  padding:10px 14px;box-shadow:var(--shadow-sm);}
-.hero-stat b{display:block;font-family:var(--font-head);font-weight:800;font-size:19px;color:#fff;letter-spacing:-.03em;}
-.hero-stat span{font-size:11.5px;color:var(--muted);}
-.hero-stat.s1{top:-16px;left:-20px;}
-.hero-stat.s2{bottom:-18px;right:-14px;}
+/* ---------- Brotkrumen, Meta, Autorenzeile ---------- */
+.crumbs{font-size:14px;color:var(--tinte-3);margin-bottom:18px;}
+.crumbs a{color:var(--tinte-2);}
+.crumbs span{color:var(--tinte-2);}
+.meta{color:var(--tinte-2);font-size:15px;margin-bottom:18px;}
+/* Steht direkt darunter die Autorenzeile, sagt die Redaktions-Metazeile nichts Neues. */
+.meta:has(+ .byline){display:none;}
+.avatar{display:inline-flex;align-items:center;justify-content:center;flex:none;border-radius:50%;
+  background:var(--filz);color:var(--auf-filz);font-family:var(--font-display);font-weight:700;letter-spacing:.02em;}
+.avatar:hover{text-decoration:none;color:#fff;}
+.byline{display:flex;align-items:center;gap:13px;border-top:1px solid var(--linie);border-bottom:1px solid var(--linie);
+  padding:14px 0;margin:0 0 26px;}
+.byline .avatar{width:44px;height:44px;font-size:16px;}
+.byline-info{font-size:15px;line-height:1.45;color:var(--tinte-2);}
+.byline-info .by-name{color:var(--tinte);font-weight:600;}
+.byline-info .by-name a{color:var(--tinte);text-decoration:underline;text-decoration-color:var(--linie-stark);text-underline-offset:3px;}
+.byline-info .by-meta{display:block;margin-top:2px;font-size:14px;}
 
-/* ---------- Trust-Strip (USP) ---------- */
-.usp-bar{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:rgba(18,20,29,.5);}
-.usp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;padding:0;}
-.usp{display:flex;align-items:center;gap:13px;padding:22px 24px;transition:background .2s ease;}
-.usp + .usp{border-left:1px solid var(--border);}
-.usp:hover{background:rgba(255,255,255,.022);}
-/* Icon auf einer eigenen kleinen Flaeche, damit die Leiste nicht wie eine
-   Textzeile mit Symbolen wirkt, sondern wie vier gesetzte Punkte. */
-.usp svg{width:19px;height:19px;flex:none;fill:var(--green);box-sizing:content-box;padding:9px;
-  background:var(--green-soft);border:1px solid rgba(53,224,161,.16);border-radius:10px;}
-.usp strong{display:block;color:#fff;font-size:14px;font-weight:650;line-height:1.3;letter-spacing:-.015em;}
-.usp span{display:block;color:var(--muted);font-size:12.5px;line-height:1.45;margin-top:2px;}
-
-/* ---------- Karten allgemein (Listen-Karte) ---------- */
-.card{background:var(--glass);border:1px solid var(--border);border-radius:var(--radius);
-  padding:24px 26px;margin:16px 0;display:flex;gap:24px;align-items:center;flex-wrap:wrap;
-  box-shadow:var(--edge);
-  transition:border-color .18s,background .18s,transform .18s,box-shadow .18s;position:relative;}
-.card:hover{border-color:var(--border-lt);background:var(--glass-2);transform:translateY(-2px);
-  box-shadow:var(--edge-lt),var(--lift);}
-.card .rank{font-family:var(--font-head);font-size:16px;font-weight:800;color:var(--muted);min-width:36px;height:36px;
-  display:flex;align-items:center;justify-content:center;background:none;border:1px solid var(--border);border-radius:9px;}
-.card .info{flex:1;min-width:220px;}
-.card .info h3{margin:0 0 6px;}
-.card .bonus{color:#fff;font-family:var(--font-head);font-weight:800;font-size:18px;margin:0;letter-spacing:-.03em;}
-.card .cta{text-align:center;min-width:190px;}
-.stars{color:var(--gold);font-size:14px;letter-spacing:2.5px;}
-.score{color:var(--muted);font-size:13px;font-weight:650;}
-.card-featured{border-color:rgba(231,185,121,.34);background:linear-gradient(180deg,rgba(231,185,121,.05),var(--glass));}
-.featured-tag{position:absolute;top:0;left:24px;transform:translateY(-50%);background:var(--grad-gold);color:var(--gold-ink);
-  font-family:var(--font-head);font-weight:700;font-size:11px;letter-spacing:.04em;padding:5px 12px;border-radius:6px;}
-
-/* ---------- Vergleichs-Produktkarten (Startseite) ---------- */
-.compare-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:18px;margin-top:6px;align-items:stretch;}
-.ccard{position:relative;display:flex;flex-direction:column;
-  background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.014) 38%,var(--glass));
-  border:1px solid var(--border);border-radius:var(--radius-lg);padding:0;overflow:hidden;
-  box-shadow:var(--edge);
-  transition:border-color .18s,transform .18s,box-shadow .18s;}
-.ccard:hover{transform:translateY(-3px);border-color:var(--border-lt);box-shadow:var(--edge-lt),var(--lift);}
-/* Testsieger: waermere Flaeche, goldener Rand und ein leiser Schein.
-   Der erste Platz soll sich auch ohne das Eckband vom Rest unterscheiden. */
-.ccard.is-top{border-color:rgba(231,185,121,.42);
-  background:linear-gradient(180deg,rgba(231,185,121,.075),rgba(231,185,121,.018) 40%,var(--glass));
-  box-shadow:var(--edge-lt),var(--lift-gold);}
-.ccard.is-top:hover{border-color:rgba(231,185,121,.6);box-shadow:var(--edge-lt),var(--lift),var(--lift-gold);}
-/* Flaches Eckband statt rotiertem Ribbon */
-.ccard-ribbon{position:absolute;top:0;right:0;transform:none;background:var(--grad-gold);color:var(--gold-ink);
-  font-family:var(--font-head);font-size:10.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;
-  padding:5px 13px;border-radius:0 0 0 10px;z-index:2;}
-.ccard-top{display:flex;align-items:center;gap:13px;margin:0;padding:22px 22px 18px;position:relative;border-bottom:1px solid var(--border);}
-.ccard-rank{font-family:var(--font-head);font-weight:800;font-size:13px;width:26px;height:26px;flex:none;display:grid;place-items:center;
-  border-radius:7px;color:var(--faint);background:none;border:1px solid var(--border);}
-.ccard.is-top .ccard-rank{color:var(--gold-ink);background:var(--grad-gold);border-color:transparent;}
-/* Einheitliche Logo-Buehne: gleiche Hoehe fuer alle Formate */
-.ccard-logo{height:42px;width:auto;max-width:132px;object-fit:contain;object-position:left center;}
-.ccard-logo.is-square{height:46px;max-width:46px;}
-.ccard-score{margin-left:auto;text-align:center;}
-.ccard-score .lbl{display:block;font-size:9.5px;color:var(--faint);text-transform:uppercase;letter-spacing:.11em;margin-top:5px;}
-.ccard-stars{display:flex;align-items:center;gap:8px;padding:14px 22px 0;margin:0;}
-.ccard-stars .st{color:var(--gold);letter-spacing:2.5px;font-size:13.5px;}
-.ccard-stars .sc{color:var(--muted);font-size:12.5px;font-weight:650;}
-/* Bonus: keine eigene Box mehr, sondern gesetzte Typo */
-.ccard-bonus{background:none;border:none;border-radius:0;padding:14px 22px 18px;margin:0;border-bottom:1px solid var(--border);}
-.ccard-bonus .k{font-size:10.5px;text-transform:uppercase;letter-spacing:.12em;color:var(--green-2);font-weight:700;}
-.ccard-bonus b{display:block;font-family:var(--font-head);font-size:21px;font-weight:800;color:#fff;letter-spacing:-.035em;margin-top:4px;line-height:1.14;}
-.ccard-bonus .code{font-size:12.5px;color:var(--muted);margin-top:6px;}
-/* Specs: Datenzeilen mit Hairlines statt Kaestchen */
-.ccard-specs{display:grid;grid-template-columns:1fr 1fr;gap:0;margin:0;padding:0 22px;}
-.ccard-specs div{background:none;border:none;border-bottom:1px solid var(--border);padding:11px 0;}
-.ccard-specs div:nth-child(odd){padding-right:14px;border-right:1px solid var(--border);}
-.ccard-specs div:nth-child(even){padding-left:14px;}
-/* Eine ueber beide Spalten laufende Zeile darf keinen Mitteltrenner erben.
-   Sie gehoert ans Ende, sonst verschiebt sie die Parität aller folgenden Zeilen. */
-.ccard-specs div.is-wide{grid-column:1/-1;padding-left:0;padding-right:0;border-right:none;}
-.ccard-specs .k{font-size:10px;text-transform:uppercase;letter-spacing:.09em;color:var(--faint);font-weight:600;}
-.ccard-specs b{display:block;font-size:13.5px;color:#fff;font-weight:600;margin-top:2px;letter-spacing:-.012em;}
-.ccard-pros{list-style:none;margin:0;padding:16px 22px 0;display:grid;gap:8px;}
-.ccard-pros li{position:relative;padding-left:24px;font-size:13.5px;color:var(--muted);line-height:1.45;}
-.ccard-pros li::before{content:"";position:absolute;left:0;top:3px;width:15px;height:15px;border-radius:50%;
-  background:var(--green-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2335e0a1' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/10px no-repeat;}
-.ccard-cta{margin-top:auto;padding:18px 22px 22px;}
-/* Nachteil: Haarlinie statt Kasten, damit die Karte ruhig bleibt */
-.ccard-con{margin:14px 22px 0;padding-top:12px;border-top:1px solid var(--border);font-size:13px;line-height:1.45;color:var(--muted);}
-.ccard-con b{color:var(--red);font-weight:700;}
-.ccard-cta .btn{width:100%;}
-.ccard-cta .rev{display:block;text-align:center;margin-top:4px;font-size:12.5px;color:var(--muted);}
-/* Als Block mit Innenabstand, damit die Trefferflaeche auf dem Handy
-   nicht nur 15 px hoch ist. */
-.ccard-cta .rev a{display:block;padding:12px 8px;color:var(--muted);text-decoration:underline;
-  text-underline-offset:3px;border-radius:9px;transition:color .16s,background .16s;}
-.ccard-cta .rev a:hover{color:var(--green-2);background:var(--glass);}
-
-/* ---------- Feature / Methodik ---------- */
-.grid-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;margin-top:22px;
-  background:var(--border);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
-.grid-4{grid-template-columns:repeat(auto-fit,minmax(230px,1fr));}
-.feature{background:var(--bg-2);border:none;border-radius:0;padding:24px 24px 26px;transition:background .18s;}
-.feature:hover{background:var(--panel);transform:none;box-shadow:none;}
-.feature-num{font-family:var(--font-head);font-size:12px;font-weight:800;letter-spacing:.03em;color:var(--faint);
-  width:auto;height:auto;display:block;border:none;background:none;border-radius:0;margin-bottom:10px;}
-.feature h3{margin:0 0 7px;font-size:17px;}
-.feature p{margin:0;color:var(--muted);font-size:14.5px;line-height:1.55;}
-
-/* ---------- Mini-Karten (Ratgeber) ---------- */
-.mini-card{display:block;background:var(--glass);border:1px solid var(--border);border-radius:var(--radius);padding:24px;
-  color:var(--text);position:relative;overflow:hidden;box-shadow:var(--edge);
-  transition:border-color .18s,background .18s,transform .18s,box-shadow .18s;}
-/* Beim Ueberfahren wandert ein gruener Schimmer von oben in die Kachel.
-   Zwoelf gleich aussehende Kacheln brauchen ein Lebenszeichen. */
-.mini-card::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;
-  background:radial-gradient(420px 160px at 50% -30%,var(--green-soft),transparent 70%);
-  transition:opacity .22s ease;}
-.mini-card:hover::before{opacity:1;}
-.mini-card::after{content:"→";position:absolute;top:22px;right:22px;color:var(--faint);transition:color .18s,transform .18s;}
-.mini-card:hover{border-color:var(--border-lt);background:var(--glass-2);transform:translateY(-3px);
-  box-shadow:var(--edge-lt),var(--lift);text-decoration:none;}
-.mini-card > *{position:relative;}
-.mini-card:hover::after{color:var(--green);transform:translateX(3px);}
-.mini-card h3{margin:0 0 8px;font-size:17.5px;padding-right:26px;transition:color .18s;}
-.mini-card:hover h3{color:var(--green-2);}
-.mini-card p{margin:0;color:var(--muted);font-size:14.5px;}
-
-/* ---------- News-Karten ---------- */
-.grid-news{grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:20px;background:none;border:none;border-radius:0;overflow:visible;}
-.news-card{display:flex;flex-direction:column;background:var(--glass);border:1px solid var(--border);border-radius:var(--radius);
-  overflow:hidden;color:var(--text);box-shadow:var(--edge);
-  transition:border-color .18s,transform .18s,box-shadow .18s;}
-.news-card:hover{border-color:var(--border-lt);transform:translateY(-3px);box-shadow:var(--edge-lt),var(--lift);text-decoration:none;}
-.news-body h3{transition:color .18s;}
-.news-card:hover .news-body h3{color:var(--green-2);}
-/* Die Bildkante gegen den dunklen Grund absetzen, sonst verlaufen dunkle Fotos ins Nichts. */
-.news-img{box-shadow:inset 0 -1px 0 var(--border);}
-.news-img{aspect-ratio:16/9;overflow:hidden;background:var(--panel-2);}
-.news-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .45s ease;}
-.news-card:hover .news-img img{transform:scale(1.04);}
-.news-body{padding:18px 20px 20px;display:flex;flex-direction:column;flex:1;}
-.news-cat{align-self:flex-start;background:none;color:var(--green-2);border:none;border-radius:0;padding:0;
-  font-size:10.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;margin-bottom:9px;}
-.news-body h3{margin:0 0 7px;font-size:17px;line-height:1.32;}
-.news-body p{margin:0 0 14px;color:var(--muted);font-size:14px;line-height:1.55;}
-.news-meta{margin-top:auto;font-size:11.5px;color:var(--faint);border-top:1px solid var(--border);padding-top:12px;}
-
-/* ---------- Article ---------- */
-.article{background:none;border:none;border-radius:0;padding:0;margin:26px 0;box-shadow:none;}
-.article h2{font-size:clamp(22px,2.4vw,28px);}
+/* ---------- Artikel ---------- */
+.article{margin:24px 0 0;}
 .article > *:first-child{margin-top:0;}
-.article a{font-weight:500;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;
-  text-decoration-color:rgba(53,224,161,.45);}
-.article a:hover{text-decoration-color:var(--green);}
+.article p,.article li{max-width:68ch;}
+.article h2{font-size:clamp(25px,2.6vw,32px);margin-top:1.9em;}
+.article a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;
+  text-decoration-color:rgba(28,107,80,.45);}
+.article a:hover{text-decoration-color:var(--link);}
 .article ul,.article ol{padding-left:22px;}
 .article li{margin-bottom:8px;}
+.article li::marker{color:var(--filz-hell);}
+.article blockquote{margin:24px 0;padding:4px 0 4px 20px;border-left:3px solid var(--messing);
+  font-family:var(--font-display);font-size:22px;line-height:1.4;color:var(--tinte);}
+figure.article-img{margin:0 0 26px;}
+figure.article-img img{width:100%;height:auto;border-radius:var(--r-karte);display:block;aspect-ratio:1200/627;object-fit:cover;background:var(--panel-3);}
+figure.article-img figcaption{font-size:13px;color:var(--tinte-3);margin-top:8px;text-align:right;}
+figure.article-img figcaption a{color:var(--tinte-3);}
 
-/* ---------- Inhaltsverzeichnis ----------
-   nav.toc steht auf 119 Seiten im Markup, hatte aber nie eine eigene Regel und
-   rendert deshalb als nackte Browser-Aufzaehlung. Die Regeln stehen bewusst
-   NACH ".article ul" - gleiche Spezifitaet, die spaetere gewinnt. */
-.toc{margin:0 0 28px;padding:18px 20px;background:var(--glass);border:1px solid var(--border);
-  border-radius:var(--radius);box-shadow:var(--edge);}
-.toc strong{display:block;font-family:var(--font-head);font-size:11px;font-weight:700;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-bottom:11px;}
-/* Lange Verzeichnisse (oft 16+ Eintraege) laufen ab Platz zweispaltig. */
-.toc ul{list-style:none;margin:0;padding:0;display:grid;gap:1px;
-  grid-template-columns:repeat(auto-fill,minmax(255px,1fr));}
-.toc li{margin:0;}
-.toc a{display:block;position:relative;padding:7px 0 7px 17px;color:var(--muted);
-  font-size:14.5px;line-height:1.42;transition:color .16s;}
-/* Kurzer Strich statt Aufzaehlungspunkt - passt zur Haarlinien-Sprache. */
-.toc a::before{content:"";position:absolute;left:0;top:calc(.71em + 7px);width:7px;height:1px;
-  background:var(--faint);transition:background .16s,width .16s;}
-.toc a:hover{color:var(--green-2);text-decoration:none;}
-.toc a:hover::before{background:var(--green);width:12px;}
-.article p{max-width:74ch;}
-.meta{color:var(--muted);font-size:13.5px;margin-bottom:18px;}
-.pros-cons{display:flex;gap:18px;flex-wrap:wrap;margin:24px 0;}
-.pros,.cons{flex:1;min-width:240px;background:var(--glass);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px;}
-.pros{border-top:2px solid var(--green);}
-.cons{border-top:2px solid var(--red);}
-.pros h3,.cons h3{margin-top:0;font-size:16px;}
-.pros h3{color:var(--green);}
-.cons h3{color:var(--red);}
-.disclosure{background:var(--glass);border:1px solid var(--border);border-left:2px solid var(--green);border-radius:var(--radius-sm);
-  padding:14px 17px;font-size:13.5px;color:var(--muted);margin:20px 0;line-height:1.6;}
+/* Inhaltsverzeichnis: ruhiges Feld im Blatt, zweispaltig ab genug Breite. */
+.toc{margin:0 0 30px;padding:20px 22px;background:var(--panel-2);border-radius:var(--r-karte);}
+.toc strong{display:block;font-size:15px;font-weight:700;color:var(--tinte);margin-bottom:10px;}
+.toc ul{list-style:none;margin:0;padding:0;display:grid;gap:0 26px;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));}
+.article .toc li{margin:0;max-width:none;}
+.toc a{display:block;padding:6px 0 6px 16px;position:relative;color:var(--tinte-2);font-size:15px;line-height:1.4;text-decoration:none;}
+.toc a::before{content:"";position:absolute;left:0;top:calc(.7em + 6px);width:7px;height:1.5px;background:var(--messing);}
+.toc a:hover{color:var(--link);text-decoration:underline;}
 
-/* ---------- Breadcrumbs ---------- */
-.crumbs{font-size:12.5px;color:var(--faint);margin-bottom:16px;}
-.crumbs a{color:var(--faint);}
-.crumbs a:hover{color:var(--green-2);}
-.crumbs span{color:var(--muted);}
+/* Hinweiskaesten */
+.disclosure{background:var(--blass-messing);border-left:3px solid var(--messing);border-radius:0 var(--r-klein) var(--r-klein) 0;
+  padding:14px 18px;font-size:15px;color:var(--tinte-2);margin:22px 0;line-height:1.6;}
+.pros-cons{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:26px 0;}
+.pros,.cons{background:var(--panel-2);border-radius:var(--r-karte);padding:18px 22px;border-top:3px solid var(--filz);}
+.cons{border-top-color:var(--rot);}
+.pros h3,.cons h3{margin-top:0;font-size:17px;}
+.pros h3{color:var(--filz);}
+.cons h3{color:var(--rot);}
+.related{margin-top:36px;padding:22px 24px;background:var(--blass-filz);border-radius:var(--r-karte);}
+.related h2{margin:0 0 12px;font-size:22px;}
+.related ul{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px 26px;}
+.related li{margin:0;}
+.related a{color:var(--filz);font-weight:600;font-size:15.5px;}
 
-/* ---------- Bewertungs-Box ---------- */
-.rating-box{display:flex;gap:24px;align-items:center;background:var(--glass);border:1px solid var(--border);border-radius:var(--radius);
-  padding:24px;margin:6px 0 24px;flex-wrap:wrap;box-shadow:var(--edge);}
-.rating-verdict{flex:1;min-width:220px;font-size:15px;line-height:1.62;}
+/* Tabellen */
+.table-scroll{overflow-x:auto;margin:22px 0 12px;-webkit-overflow-scrolling:touch;border:1px solid var(--linie);border-radius:var(--r-karte);background:var(--karton);}
+table.compare,table.specs{width:100%;border-collapse:collapse;}
+table.compare{min-width:640px;}
+table.specs{min-width:420px;}
+table.compare th,table.compare td,table.specs th,table.specs td{padding:13px 18px;text-align:left;border-bottom:1px solid var(--linie);vertical-align:middle;font-size:15.5px;}
+table.compare thead th,table.specs thead th{background:var(--panel-2);color:var(--tinte-2);font-size:14px;font-weight:700;}
+table.specs th{color:var(--tinte-2);font-weight:600;width:42%;}
+table.compare tbody tr:last-child td,table.specs tr:last-child th,table.specs tr:last-child td{border-bottom:none;}
+table.compare td.rank{width:56px;text-align:center;}
+table.compare td.rank span{display:inline-grid;place-items:center;width:32px;height:32px;border-radius:50%;
+  font-family:var(--font-display);font-weight:800;font-size:17px;border:1.5px solid var(--linie-stark);}
+table.compare tbody tr:nth-child(1) td.rank span{background:var(--messing);border-color:transparent;}
+table.compare td.bonus{font-weight:700;}
+table.compare tr.is-top{background:var(--blass-messing);}
+table.compare tr.is-soon td{color:var(--tinte-3);}
+.small-link{font-size:14px;}
 
-/* ---------- Review-Auftakt ----------
-   Die Review-Seiten begannen bisher mit einem freistehenden Logo und blanker
-   Ueberschrift - der schwaechste Auftakt der ganzen Seite, ausgerechnet auf der
-   wichtigsten Seitenart. Der Kopf fasst jetzt Logo, Note und Titel zusammen. */
-.review-hero{position:relative;overflow:hidden;margin:2px 0 22px;padding:24px 26px 26px;
-  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.015) 44%,var(--glass));
-  border:1px solid var(--border-lt);border-radius:var(--radius-lg);
-  box-shadow:var(--edge-lt),var(--lift);}
-.review-hero::before{content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(560px 260px at 88% -30%,var(--gold-soft),transparent 68%);}
+/* ---------- Casino-Logos ----------
+   CrocoSlots und BitKingz liefern helle Logos fuer dunklen Grund. Jedes
+   Logo steht deshalb auf einem dunklen Schild, auch auf weissen Flaechen. */
+.casino-logo,.casino-logo-sm,.review-logo{display:block;object-fit:contain;object-position:left center;}
+.casino-logo{width:auto;max-width:180px;height:48px;}
+.casino-logo.is-square{max-width:56px;height:56px;}
+.casino-logo-sm{width:110px;height:38px;margin-bottom:4px;}
+.review-logo{width:auto;max-width:200px;height:60px;margin:0 0 16px;}
+.card .info h3.has-logo{display:inline-flex;align-items:center;background:var(--filz-tief);border-radius:var(--r-knopf);
+  padding:9px 14px;margin:0 0 12px;}
+
+/* ---------- Bewertung ---------- */
+.stars{color:var(--messing-text);font-size:15px;letter-spacing:2px;}
+.score{color:var(--tinte-2);font-size:14px;font-weight:700;letter-spacing:0;}
+.score-ring{position:relative;width:62px;height:62px;border-radius:50%;display:grid;place-items:center;
+  background:conic-gradient(var(--messing) calc(var(--p,90)*1%),rgba(243,239,227,.16) 0);}
+.score-ring::before{content:"";position:absolute;inset:4px;border-radius:50%;background:var(--ring-bg,var(--filz-tief));}
+.score-ring b{position:relative;z-index:1;font-family:var(--font-display);font-weight:800;font-size:21px;color:var(--auf-filz);
+  font-variation-settings:"opsz" 28;}
+.lbl{display:block;font-size:12.5px;color:var(--auf-filz-2);margin-top:5px;}
+
+/* ---------- Startseite: der Spieltisch ---------- */
+.table{background:var(--filz);color:var(--auf-filz);position:relative;overflow:hidden;
+  padding:clamp(36px,5vw,64px) 0 clamp(40px,5vw,64px);}
+/* Eine Messinglinie als Tischkante, darunter feines Filzkorn aus zwei
+   Verlaeufen - keine Bilddatei, kein Muster, das sich wiederholt. */
+.table::before{content:"";position:absolute;inset:14px;border:1px solid rgba(217,181,104,.28);border-radius:28px;pointer-events:none;}
+.table::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.55;
+  background:radial-gradient(1200px 520px at 50% -10%,rgba(255,255,255,.07),transparent 60%),
+             radial-gradient(900px 400px at 50% 120%,rgba(0,0,0,.28),transparent 60%);}
+.table .wrap{position:relative;z-index:1;}
+.table-head{max-width:760px;margin:6px auto 36px;text-align:center;}
+.table-head h1{color:var(--auf-filz);margin-bottom:14px;}
+.table-head p{color:var(--auf-filz-2);font-size:clamp(17px,1.7vw,19.5px);margin:0 auto;max-width:620px;}
+.table-foot{max-width:900px;margin:30px auto 0;display:grid;gap:12px;}
+.table-note{margin:0;font-size:15px;line-height:1.6;color:var(--auf-filz-2);padding-left:16px;border-left:2px solid rgba(217,181,104,.5);}
+.table-note strong{color:var(--auf-filz);}
+.table-note a{color:var(--messing-hell);}
+
+.hand{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;align-items:stretch;}
+/* Das Austeilen: der einzige Bewegungsmoment der Seite. Jede Karte kommt
+   leicht gedreht von oben und legt sich gerade hin. Bewusst ohne Deckkraft:
+   haelt eine Umgebung Animationen an (Hintergrund-Tab, Vorschau-Renderer),
+   bleiben die Karten trotzdem sichtbar, nur leicht schraeg. */
+@keyframes austeilen{
+  from{transform:translateY(-26px) rotate(var(--dreh,0deg));}
+  to{transform:none;}
+}
+.hand .ccard{animation:austeilen .72s cubic-bezier(.2,.75,.25,1) both;}
+.hand .ccard:nth-child(1){--dreh:-5deg;animation-delay:.05s;}
+.hand .ccard:nth-child(2){--dreh:2deg;animation-delay:.17s;}
+.hand .ccard:nth-child(3){--dreh:6deg;animation-delay:.29s;}
+
+/* ---------- Vergleichskarten (Spielkarten) ---------- */
+.compare-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;}
+.ccard{min-width:0;position:relative;display:flex;flex-direction:column;background:var(--elfenbein);color:var(--tinte);
+  border-radius:var(--r-karte);overflow:hidden;box-shadow:var(--schatten-karte);}
+.ccard.is-top{box-shadow:0 0 0 2px var(--messing),var(--schatten-karte);}
+.ccard-ribbon{position:absolute;top:0;right:18px;z-index:2;background:var(--messing);color:var(--tinte);
+  font-size:13.5px;font-weight:700;padding:5px 12px 6px;border-radius:0 0 var(--r-klein) var(--r-klein);}
+/* Kartenkopf: dunkles Schild fuer Logo und Note, links der Karten-Index. */
+.ccard-top{display:flex;align-items:center;gap:14px;padding:22px 20px 18px;background:var(--filz-tief);}
+.ccard-rank{display:flex;flex-direction:column;align-items:center;line-height:1;flex:none;width:30px;
+  font-family:var(--font-display);font-weight:900;font-size:36px;color:var(--auf-filz);font-variation-settings:"opsz" 11;}
+.ccard-rank::after{font-family:var(--font-text);font-size:18px;margin-top:8px;color:var(--auf-filz-2);}
+.ccard:nth-child(1) .ccard-rank::after{content:"\2660";}
+.ccard:nth-child(2) .ccard-rank::after{content:"\2665";color:#E38A80;}
+.ccard:nth-child(3) .ccard-rank::after{content:"\2666";color:#E38A80;}
+.ccard.is-top .ccard-rank{color:var(--messing-hell);}
+.ccard-logo{height:44px;width:auto;max-width:130px;object-fit:contain;object-position:left center;}
+.ccard-logo.is-square{height:52px;max-width:52px;}
+.ccard-score{margin-left:auto;text-align:center;}
+.ccard-stars{display:flex;align-items:center;gap:8px;padding:16px 22px 0;}
+.ccard-stars .st{color:var(--messing-text);letter-spacing:2px;font-size:15px;}
+.ccard-stars .sc{color:var(--tinte-2);font-size:14px;font-weight:700;}
+.ccard-bonus{padding:10px 22px 16px;border-bottom:1px solid var(--linie);}
+.ccard-bonus .k{display:block;font-size:14px;color:var(--tinte-3);font-weight:600;}
+.ccard-bonus b{display:block;font-family:var(--font-display);font-size:25px;font-weight:700;line-height:1.15;margin-top:2px;
+  font-variation-settings:"opsz" 32;}
+.ccard-bonus .code{font-size:14px;color:var(--tinte-2);margin-top:6px;}
+.ccard-specs{display:grid;grid-template-columns:1fr 1fr;padding:0 22px;}
+.ccard-specs div{border-bottom:1px solid var(--linie);padding:10px 0;min-width:0;overflow-wrap:anywhere;}
+.ccard-specs div:nth-child(odd){padding-right:12px;border-right:1px solid var(--linie);}
+.ccard-specs div:nth-child(even){padding-left:14px;}
+.ccard-specs div.is-wide{grid-column:1/-1;padding-left:0;padding-right:0;border-right:none;}
+.ccard-specs .k{display:block;font-size:13px;color:var(--tinte-3);}
+.ccard-specs b{display:block;font-size:15px;font-weight:700;margin-top:1px;}
+.ccard-pros{list-style:none;margin:0;padding:16px 22px 0;display:grid;gap:8px;}
+.ccard-pros li{position:relative;padding-left:24px;font-size:15px;color:var(--tinte-2);line-height:1.45;}
+.ccard-pros li::before{content:"";position:absolute;left:1px;top:5px;width:13px;height:8px;
+  border-left:2.5px solid var(--filz);border-bottom:2.5px solid var(--filz);transform:rotate(-45deg);}
+.ccard-con{margin:14px 22px 0;padding-top:12px;border-top:1px solid var(--linie);font-size:14.5px;line-height:1.45;color:var(--tinte-2);}
+.ccard-con b{color:var(--rot);}
+.ccard-cta{margin-top:auto;padding:18px 22px 20px;}
+.ccard-cta .btn{width:100%;white-space:normal;text-align:center;}
+.ccard-cta .rev{display:block;text-align:center;margin-top:4px;font-size:15px;}
+.ccard-cta .rev a{display:block;padding:10px 8px;color:var(--filz);font-weight:600;text-decoration:underline;text-underline-offset:3px;}
+
+/* ---------- Startseite: Gewichtung ---------- */
+.weights{display:grid;gap:0;margin:8px 0 0;border-top:1px solid var(--linie);}
+.w-row{display:grid;grid-template-columns:minmax(170px,1.1fr) minmax(0,1.3fr) minmax(0,2.4fr);gap:8px 28px;align-items:center;
+  padding:18px 0;border-bottom:1px solid var(--linie);}
+.w-name{font-weight:700;font-size:17.5px;}
+.w-bar{display:flex;align-items:center;gap:14px;}
+.w-track{flex:1;height:12px;border-radius:6px;background:var(--panel-3);overflow:hidden;}
+.w-track i{display:block;height:100%;border-radius:6px;background:var(--filz);}
+.w-row:first-child .w-track i{background:var(--messing);}
+.w-val{font-family:var(--font-display);font-weight:700;font-size:24px;line-height:1;min-width:64px;text-align:right;white-space:nowrap;font-variation-settings:"opsz" 24;}
+.w-row p{margin:0;color:var(--tinte-2);font-size:15.5px;line-height:1.5;}
+.weights-more{margin:24px 0 0;}
+
+/* ---------- Startseite: Themen ---------- */
+.hubs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;}
+.section-alt .hub{background:var(--panel-2);box-shadow:none;}
+.hub{background:var(--karton);border-radius:var(--r-karte);padding:22px 22px 18px;box-shadow:var(--schatten-blatt);}
+.hub h3{margin:0 0 4px;font-size:20px;font-family:var(--font-display);font-weight:700;font-variation-settings:"opsz" 24;}
+.hub > p{margin:0 0 12px;color:var(--tinte-2);font-size:15px;line-height:1.5;}
+.hub ul{list-style:none;margin:0;padding:0;}
+.hub li{border-top:1px solid var(--linie);}
+.hub li a{display:block;padding:9px 0;color:var(--tinte);font-weight:600;font-size:15.5px;line-height:1.35;}
+.hub li a:hover{color:var(--link);}
+
+/* ---------- Spielerschutz-Block ---------- */
+.care{display:grid;grid-template-columns:1.25fr 1fr;gap:28px 48px;background:var(--karton);border-radius:var(--r-flaeche);
+  padding:clamp(24px,4vw,46px);box-shadow:var(--schatten-blatt);border-top:4px solid var(--filz);}
+.care h2{margin:0 0 12px;}
+.care p{color:var(--tinte-2);}
+.care-help{background:var(--panel-2);border-radius:var(--r-karte);padding:20px 22px;align-self:start;}
+.care-help strong{display:block;font-size:17px;margin-bottom:4px;}
+.care-help .tel{display:block;font-family:var(--font-display);font-weight:700;font-size:30px;color:var(--filz);margin:6px 0 2px;
+  font-variation-settings:"opsz" 36;}
+.care ul{list-style:none;padding:0;margin:16px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
+.care li{border-top:1px solid var(--linie);}
+.care li a{display:block;padding:9px 0;font-weight:600;color:var(--filz);}
+
+/* ---------- Karten-Raster, Magazin-Karten ---------- */
+.grid-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-top:20px;}
+.grid-4{grid-template-columns:repeat(auto-fit,minmax(230px,1fr));}
+.grid-news{grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:20px;}
+.news-card{display:flex;flex-direction:column;background:var(--karton);border-radius:var(--r-karte);overflow:hidden;color:var(--tinte);
+  box-shadow:var(--schatten-blatt);transition:box-shadow .18s,transform .18s;}
+.news-card:hover{text-decoration:none;transform:translateY(-2px);box-shadow:0 1px 2px rgba(22,33,28,.06),0 20px 40px -22px rgba(22,33,28,.35);}
+.news-card:hover h3{color:var(--link);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;}
+.news-img{aspect-ratio:16/9;overflow:hidden;background:var(--panel-3);}
+.news-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.news-body{padding:16px 18px 18px;display:flex;flex-direction:column;flex:1;}
+.news-cat{align-self:flex-start;color:var(--filz);background:var(--blass-filz);border-radius:var(--r-klein);
+  font-size:13px;font-weight:700;padding:2px 9px;margin-bottom:10px;}
+.news-body h3{margin:0 0 7px;font-size:18px;line-height:1.3;}
+.news-body p{margin:0 0 12px;color:var(--tinte-2);font-size:15px;line-height:1.5;}
+.news-meta{margin-top:auto;font-size:13.5px;color:var(--tinte-3);}
+
+/* Startseite: sechs Magazin-Karten gehen in zwei volle Reihen auf */
+#news .grid-news{grid-template-columns:repeat(3,minmax(0,1fr));}
+@media(max-width:980px){#news .grid-news{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(max-width:600px){#news .grid-news{grid-template-columns:1fr;}}
+
+.mini-card{display:block;background:var(--karton);border-radius:var(--r-karte);padding:22px;color:var(--tinte);box-shadow:var(--schatten-blatt);}
+.mini-card:hover{text-decoration:none;}
+.mini-card:hover h3{color:var(--link);text-decoration:underline;}
+.mini-card h3{margin:0 0 6px;font-size:18px;}
+.mini-card p{margin:0;color:var(--tinte-2);font-size:15px;}
+.feature{background:var(--karton);border-radius:var(--r-karte);padding:22px;box-shadow:var(--schatten-blatt);}
+.feature-num{font-family:var(--font-display);font-size:26px;font-weight:700;color:var(--messing-text);margin-bottom:6px;}
+.feature h3{margin:0 0 6px;font-size:18px;}
+.feature p{margin:0;color:var(--tinte-2);font-size:15.5px;}
+
+/* ---------- Magazin- und Ratgeber-Uebersicht ---------- */
+.topic-nav{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 8px;padding:0;list-style:none;}
+.topic-nav a{display:inline-flex;align-items:center;gap:8px;background:var(--karton);color:var(--tinte);border:1px solid var(--linie);
+  border-radius:999px;padding:7px 14px;font-weight:600;font-size:15px;}
+.topic-nav a:hover{border-color:var(--filz);color:var(--filz);text-decoration:none;}
+.topic-nav small{font-size:13px;color:var(--tinte-3);font-weight:700;}
+.topic{padding-top:34px;scroll-margin-top:84px;}
+.topic-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  border-bottom:2px solid var(--filz);padding-bottom:10px;margin-bottom:20px;}
+.topic-head h2{margin:0;}
+.topic-head p{margin:0;color:var(--tinte-2);font-size:15.5px;max-width:560px;}
+.overview-intro{max-width:760px;}
+.overview-about{margin-top:56px;}
+
+/* ---------- Review-Seiten ---------- */
+.review-hero{background:var(--filz);color:var(--auf-filz);border-radius:var(--r-flaeche);padding:24px 26px 26px;margin:0 0 22px;position:relative;overflow:hidden;}
+.review-hero::before{content:"";position:absolute;inset:9px;border:1px solid rgba(217,181,104,.26);border-radius:12px;pointer-events:none;}
 .review-hero > *{position:relative;}
-.rh-top{display:flex;align-items:center;gap:16px;flex-wrap:wrap;
-  padding-bottom:18px;margin-bottom:18px;border-bottom:1px solid var(--border);}
-/* Gemeinsame Buehne, damit hochkant, quadratisch und breit gleich gross wirken */
-.rh-stage{width:92px;height:68px;flex:none;display:grid;place-items:center;padding:9px;
-  background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:14px;box-shadow:var(--edge);}
-.rh-stage img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block;margin:0;}
+.rh-top{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding-bottom:18px;margin-bottom:18px;border-bottom:1px solid var(--linie-filz);}
+.rh-stage{width:96px;height:72px;flex:none;display:grid;place-items:center;padding:9px;background:var(--filz-tief);border-radius:12px;}
+.rh-stage img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block;}
 .rh-id{min-width:0;}
-.rh-id .badge{margin-bottom:7px;}
-.rh-name{margin:0;font-family:var(--font-head);font-weight:800;font-size:19px;color:#fff;letter-spacing:-.03em;line-height:1.2;}
-.rh-score{margin-left:auto;text-align:center;flex:none;--ring-bg:#181b26;}
-.rh-score .score-ring{width:66px;height:66px;margin:0 auto;}
-.rh-score .score-ring b{font-size:18px;}
-.rh-score .stars{display:block;font-size:12px;letter-spacing:2px;margin-top:7px;}
-.rh-score .lbl{display:block;font-size:9.5px;color:var(--faint);text-transform:uppercase;letter-spacing:.11em;margin-top:5px;}
-.review-hero h1{margin:0 0 12px;font-size:clamp(28px,3.4vw,40px);}
-.review-hero .meta{margin:0;font-size:13.5px;color:var(--muted);}
+.rh-id .badge{background:rgba(243,239,227,.12);color:var(--auf-filz);margin-bottom:6px;}
+.rh-name{margin:0;font-family:var(--font-display);font-weight:700;font-size:24px;color:var(--auf-filz);line-height:1.15;}
+.rh-score{margin-left:auto;text-align:center;flex:none;--ring-bg:var(--filz);}
+.rh-score .score-ring{width:68px;height:68px;margin:0 auto;}
+.rh-score .stars{display:block;font-size:13px;margin-top:6px;color:var(--messing-hell);}
+.review-hero h1{color:var(--auf-filz);margin:0 0 10px;font-size:clamp(28px,3.4vw,40px);}
+.review-hero .meta{margin:0;color:var(--auf-filz-2);}
+.review-hero .meta a{color:var(--messing-hell);}
+.rating-box{display:flex;gap:24px;align-items:center;background:var(--blass-messing);border-radius:var(--r-karte);padding:22px 24px;margin:6px 0 24px;flex-wrap:wrap;}
+.rating-verdict{flex:1;min-width:220px;font-size:16.5px;line-height:1.62;}
 @media(max-width:560px){
-  /* Auf schmalen Displays passen Logo, Kennung und Note nicht nebeneinander.
-     Statt die Note umbrechen zu lassen (was den Kopf sehr hoch macht), stehen
-     Logo und Note zusammen in der ersten Zeile, die Kennung darunter. */
-  .rh-top{gap:12px 13px;padding-bottom:15px;margin-bottom:15px;}
-  .rh-stage{width:74px;height:56px;order:1;}
-  .rh-score{order:2;margin-left:auto;}
+  .rh-top{gap:12px;}
+  .rh-stage{width:78px;height:58px;order:1;}
+  .rh-score{order:2;}
   .rh-id{order:3;flex:1 0 100%;}
-  .rh-id .badge{margin-bottom:5px;}
-  .rh-score .score-ring{width:56px;height:56px;}
-  .rh-score .score-ring b{font-size:16px;}
-  .rh-score .stars{margin-top:5px;}
   .review-hero{padding:20px 18px 22px;}
 }
 
-/* ---------- Tabellen ---------- */
-.table-scroll{overflow-x:auto;margin:22px 0 10px;-webkit-overflow-scrolling:touch;border:1px solid var(--border);border-radius:var(--radius);}
-table.compare{width:100%;border-collapse:collapse;background:transparent;min-width:640px;}
-table.compare th,table.compare td{padding:15px 18px;text-align:left;border-bottom:1px solid var(--border);vertical-align:middle;}
-table.compare thead th{background:var(--glass);color:var(--faint);font-size:11px;text-transform:uppercase;letter-spacing:.11em;font-weight:700;}
-table.compare tbody tr:last-child td{border-bottom:none;}
-table.compare tbody tr{transition:background .15s;}
-table.compare tbody tr:hover{background:var(--glass);}
-table.compare td.rank{width:56px;text-align:center;}
-table.compare td.rank span{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:8px;
-  font-family:var(--font-head);font-weight:800;font-size:13px;color:#fff;background:none;border:1px solid var(--border-lt);}
-table.compare tbody tr:nth-child(1) td.rank span{background:var(--grad-gold);color:var(--gold-ink);border-color:transparent;}
-table.compare td.bonus{color:#fff;font-weight:700;}
-table.compare tr.is-top{background:var(--gold-soft);}
-table.compare tr.is-soon td{color:var(--faint);}
-.small-link{font-size:13px;}
+/* Test-Liste auf /reviews */
+.card{display:flex;gap:22px;align-items:center;flex-wrap:wrap;background:var(--karton);border-radius:var(--r-karte);
+  padding:22px 24px;margin:16px 0;box-shadow:var(--schatten-blatt);position:relative;}
+.card-featured{box-shadow:0 0 0 2px var(--messing),var(--schatten-blatt);}
+.featured-tag{position:absolute;top:0;left:24px;transform:translateY(-50%);background:var(--messing);color:var(--tinte);
+  font-weight:700;font-size:13.5px;padding:3px 11px;border-radius:var(--r-klein);}
+.card .rank{font-family:var(--font-display);font-size:30px;font-weight:800;color:var(--tinte);min-width:36px;text-align:center;}
+.card-featured .rank{color:var(--messing-text);}
+.card .info{flex:1;min-width:220px;}
+.card .bonus{font-family:var(--font-display);font-weight:700;font-size:22px;margin:6px 0 0;}
+.card .cta{text-align:center;min-width:190px;}
+.card .cta a:not(.btn){display:inline-block;padding:10px 8px;font-weight:600;}
 
-table.specs{width:100%;border-collapse:collapse;background:transparent;border:none;border-radius:0;overflow:hidden;min-width:420px;}
-table.specs th,table.specs td{padding:13px 18px;text-align:left;border-bottom:1px solid var(--border);font-size:14.5px;}
-table.specs thead th{color:var(--faint);font-size:11px;text-transform:uppercase;letter-spacing:.11em;font-weight:700;background:var(--glass);}
-table.specs th{color:var(--muted);font-weight:600;width:42%;}
-table.specs tr:last-child th,table.specs tr:last-child td{border-bottom:none;}
-table.specs tbody tr:hover{background:var(--glass);}
+/* Angebots-Box in Reviews */
+.offer-box{background:var(--filz);color:var(--auf-filz);border-radius:var(--r-karte);padding:26px 28px;margin:30px 0;text-align:center;}
+.offer-box .offer-badge{display:inline-block;background:var(--messing);color:var(--tinte);font-weight:700;font-size:13.5px;padding:3px 11px;border-radius:var(--r-klein);margin-bottom:10px;}
+.offer-box h3{margin:4px 0 8px;font-size:22px;color:var(--auf-filz);}
+.offer-box p{color:var(--auf-filz-2);margin:0 auto 18px;max-width:580px;}
+.offer-box .offer-note{margin-top:14px;font-size:13px;color:var(--auf-filz-2);}
 
-/* ---------- Logos / Bilder ---------- */
-.casino-logo{width:auto;max-width:180px;height:52px;object-fit:contain;object-position:left center;display:block;}
-.casino-logo-sm{width:110px;height:40px;object-fit:contain;object-position:left center;display:block;margin-bottom:4px;}
-.review-logo{width:auto;max-width:200px;height:60px;object-fit:contain;object-position:left center;display:block;margin:0 0 16px;}
-.review-logo.is-square{max-width:72px;height:72px;}
-.casino-logo.is-square{max-width:56px;height:56px;}
-.card .info h3.has-logo{margin:0 0 12px;}
-figure.article-img{margin:0 0 24px;}
-figure.article-img img{width:100%;height:auto;border-radius:var(--radius);border:1px solid var(--border);display:block;}
-figure.article-img figcaption{font-size:12px;color:var(--faint);margin-top:8px;text-align:right;}
-figure.article-img figcaption a{color:var(--faint);}
-
-/* ---------- Angebots-Box ---------- */
-.offer-box{background:var(--glass);border:1px solid rgba(53,224,161,.26);border-radius:var(--radius);
-  padding:26px 28px;margin:30px 0;text-align:center;}
-.offer-box .offer-badge{display:inline-block;background:var(--grad-green);color:var(--green-ink);font-weight:700;font-size:11.5px;
-  letter-spacing:.06em;text-transform:uppercase;padding:5px 13px;border-radius:6px;margin-bottom:12px;}
-.offer-box h3{margin:6px 0 9px;font-size:21px;}
-.offer-box p{color:var(--muted);margin:0 auto 18px;max-width:580px;}
-.offer-box .offer-note{margin-top:14px;font-size:12px;color:var(--faint);}
-
-/* ---------- Footer ---------- */
-.site-footer{border-top:1px solid var(--border);background:linear-gradient(180deg,var(--bg),#05060b);padding:48px 0 36px;margin-top:56px;font-size:14px;color:var(--muted);}
-.site-footer a{color:var(--muted);}
-.site-footer a:hover{color:var(--green-2);}
-.site-footer .resp{background:var(--glass);border:1px solid var(--border);border-left:2px solid var(--green);border-radius:var(--radius-sm);padding:15px 17px;margin-bottom:22px;font-size:13px;}
-.footer-cols{display:grid;grid-template-columns:1.8fr 1fr 1fr 1.2fr 1.4fr;gap:30px 24px;padding-bottom:28px;margin-bottom:22px;border-bottom:1px solid var(--border);}
-.fcol h4{font-family:var(--font-head);color:#fff;font-size:11px;letter-spacing:.13em;text-transform:uppercase;margin:0 0 14px;font-weight:700;}
-.fcol a{display:block;margin-bottom:10px;font-size:13.5px;}
-/* Auf dem Handy waren die Footer-Links 22,7 px hoch und lagen damit unter der
-   WCAG-Mindestgroesse fuer Trefferflaechen. Der negative Rand haelt die
-   Spalte optisch gleich dicht, waehrend die Flaeche selbst waechst. */
-@media(max-width:600px){
-  .fcol a{padding:7px 0;margin-bottom:2px;}
-}
-.fcol-brand .logo{font-size:20px;margin-bottom:12px;display:inline-block;}
-.fcol-brand p{margin:0;max-width:320px;font-size:13.5px;line-height:1.65;color:var(--muted);}
-.footer-meta{border-top:1px solid var(--border);margin-top:22px;padding-top:18px;display:flex;flex-wrap:wrap;gap:6px 20px;justify-content:center;}
-.footer-meta a{color:var(--muted);font-size:12.5px;}
-.footer-meta a:hover{color:var(--green-2);}
-
-/* ---------- Cluster-Querlinks ---------- */
-.related{margin-top:34px;padding:22px 24px;background:var(--glass);border:1px solid var(--border);border-left:2px solid var(--green);border-radius:var(--radius);}
-.related h2{margin:0 0 12px;font-size:17px;}
-.related ul{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px 24px;}
-.related li{margin:0;}
-.related a{color:var(--text);text-decoration:none;font-weight:500;font-size:14.5px;}
-.related a:hover{color:var(--green-2);}
+/* ---------- Redaktion ---------- */
+.author-box{display:flex;gap:15px;align-items:flex-start;background:var(--panel-2);border-radius:var(--r-karte);padding:22px;margin:32px 0 0;}
+.author-box .avatar{width:56px;height:56px;font-size:20px;}
+.author-box h4{margin:0 0 4px;}
+.author-box .role{color:var(--link);font-size:14px;font-weight:600;margin:0 0 8px;}
+.author-box p{margin:0;font-size:15px;color:var(--tinte-2);}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:18px;margin-top:26px;}
+.team-card{background:var(--panel-2);border-radius:var(--r-karte);padding:24px;scroll-margin-top:90px;}
+.team-card:target{box-shadow:0 0 0 2px var(--messing);}
+.team-card .avatar{width:58px;height:58px;font-size:21px;margin-bottom:12px;}
+.team-card h3{margin:0 0 2px;font-size:19px;}
+.team-card .role{color:var(--link);font-size:14px;font-weight:600;}
+.team-card .field{display:inline-block;margin:10px 0 8px;background:var(--blass-filz);color:var(--filz);border-radius:var(--r-klein);padding:2px 10px;font-size:13.5px;font-weight:700;}
+.team-card p{margin:0;color:var(--tinte-2);font-size:15px;line-height:1.55;}
 
 /* ---------- HTML-Sitemap ---------- */
-.sitemap-grid{display:grid;grid-template-columns:1fr 1fr 1fr 1.4fr;gap:34px 26px;margin-top:28px;}
-.sitemap-col h2{font-size:14px;margin:0 0 14px;padding-bottom:9px;border-bottom:1px solid var(--border);
-  text-transform:uppercase;letter-spacing:.11em;color:var(--faint);font-weight:700;}
+.sitemap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px 30px;margin-top:28px;}
+.sitemap-col-wide{grid-column:1/-1;}
+.sitemap-col h2{font-size:24px;margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--filz);}
 .sitemap-col ul{list-style:none;margin:0;padding:0;}
-.sitemap-col li{margin-bottom:10px;font-size:13.5px;line-height:1.45;}
-.sitemap-col a{color:var(--text);}
-.sitemap-col a:hover{color:var(--green-2);}
-.sitemap-news{columns:1;}
+.sitemap-col li{margin-bottom:9px;font-size:15px;line-height:1.45;}
+.sitemap-news{columns:3 260px;column-gap:30px;}
+.sitemap-news li{break-inside:avoid;}
 
-/* ---------- E-E-A-T: Autoren / Team ---------- */
-.avatar{display:inline-flex;align-items:center;justify-content:center;flex:none;border-radius:50%;
-  background:var(--glass-2);color:#fff;border:1px solid var(--border-lt);font-family:var(--font-head);font-weight:800;letter-spacing:.02em;}
-.byline{display:flex;align-items:center;gap:13px;background:none;border:none;border-top:1px solid var(--border);
-  border-bottom:1px solid var(--border);border-radius:0;padding:14px 0;margin:0 0 22px;}
-.byline .avatar{width:42px;height:42px;font-size:15px;}
-.byline-info{font-size:13.5px;line-height:1.45;color:var(--muted);}
-.byline-info .by-name{color:#fff;font-weight:650;}
-.byline-info .by-name a{color:#fff;}
-.byline-info .by-name a:hover{color:var(--green-2);}
-.byline-info .by-meta{display:block;margin-top:2px;font-size:12.5px;}
-.byline-info .by-meta strong{color:var(--text);font-weight:600;}
-.author-box{display:flex;gap:15px;align-items:flex-start;background:var(--glass);border:1px solid var(--border);border-radius:var(--radius);padding:22px;margin:32px 0 0;}
-.author-box .avatar{width:56px;height:56px;font-size:19px;}
-.author-box h4{margin:0 0 4px;font-size:16.5px;color:#fff;}
-.author-box .role{color:var(--green-2);font-size:12.5px;font-weight:600;margin:0 0 8px;}
-.author-box p{margin:0;font-size:13.5px;color:var(--muted);}
-.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:18px;margin-top:26px;}
-.team-card{background:var(--glass);border:1px solid var(--border);border-radius:var(--radius);padding:24px;scroll-margin-top:110px;transition:border-color .18s,background .18s,transform .18s;}
-.team-card:hover{border-color:var(--border-lt);background:var(--glass-2);transform:translateY(-3px);}
-.team-card .avatar{width:56px;height:56px;font-size:20px;margin-bottom:13px;}
-.team-card h3{margin:0 0 3px;font-size:18px;}
-.team-card .role{color:var(--green-2);font-size:12.5px;font-weight:600;}
-.team-card .field{display:inline-block;margin:11px 0 8px;background:var(--green-soft);border:1px solid rgba(53,224,161,.24);color:var(--green-2);border-radius:999px;padding:3px 12px;font-size:11.5px;font-weight:600;}
-.team-card p{margin:0;color:var(--muted);font-size:13.5px;line-height:1.55;}
+/* ---------- Blog-Layout (Artikel + Seitenleiste) ---------- */
+.blog-wrap{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:36px;align-items:start;}
+.blog-main{min-width:0;}
+.blog-sidebar{position:sticky;top:84px;align-self:start;display:flex;flex-direction:column;gap:18px;max-height:calc(100vh - 100px);overflow-y:auto;scrollbar-width:thin;}
+.side-card{background:var(--karton);border-radius:var(--r-karte);padding:18px;box-shadow:var(--schatten-blatt);}
+.side-title{font-family:var(--font-display);font-size:21px;font-weight:700;margin:0 0 10px;}
+.cat-list{list-style:none;margin:0;padding:0;}
+.cat-list li{border-top:1px solid var(--linie);}
+.cat-list li:first-child{border-top:none;}
+.cat-list a{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 2px;color:var(--tinte);font-weight:600;font-size:15.5px;}
+.cat-list a:hover{color:var(--link);}
+.cat-badge{color:var(--tinte-3);font-size:13.5px;font-weight:700;}
+.side-posts{display:flex;flex-direction:column;}
+.side-post{display:flex;gap:11px;align-items:center;padding:8px 0;border-top:1px solid var(--linie);color:var(--tinte);}
+.side-post:first-child{border-top:none;}
+.side-post:hover{text-decoration:none;}
+.side-post:hover .side-post-title{color:var(--link);text-decoration:underline;}
+.side-post img{width:60px;height:46px;object-fit:cover;border-radius:6px;flex:none;background:var(--panel-3);}
+.side-post-body{min-width:0;}
+.side-post-title{margin:0;font-size:14.5px;font-weight:600;line-height:1.32;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.side-post-date{display:block;color:var(--tinte-3);font-size:13px;margin-top:2px;}
 
-/* ---------- Back-to-Top ---------- */
-.to-top{position:fixed;right:22px;bottom:22px;width:42px;height:42px;border:1px solid var(--border-lt);border-radius:11px;
-  background:rgba(18,20,29,.88);color:#fff;font-size:18px;cursor:pointer;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-  box-shadow:var(--shadow-sm);opacity:0;visibility:hidden;transform:translateY(10px);transition:opacity .22s,transform .22s,visibility .22s,border-color .18s;z-index:40;}
-.to-top.show{opacity:1;visibility:visible;transform:translateY(0);}
-.to-top:hover{border-color:var(--green);color:var(--green);transform:translateY(-2px);}
+/* Teilen: einheitlich statt vier Markenfarben nebeneinander */
+.share-bar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:36px 0 6px;border-top:1px solid var(--linie);padding-top:18px;}
+.share-title{font-weight:700;font-size:16px;margin:0;}
+.share-btns{display:flex;gap:8px;flex-wrap:wrap;}
+.share-btn{width:42px;height:42px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
+  color:var(--filz);border:1.5px solid var(--linie-stark);background:var(--karton);transition:background .15s,color .15s,border-color .15s;}
+.share-btn:hover,.share-btn:focus-visible{background:var(--filz);border-color:var(--filz);color:var(--auf-filz);text-decoration:none;}
+.share-btn svg{width:18px;height:18px;fill:currentColor;display:block;}
+.cat-filter-note{margin:8px 0 4px;padding:10px 15px;background:var(--blass-filz);border-radius:var(--r-klein);font-size:15px;}
 
-/* ---------- Motion ---------- */
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .55s cubic-bezier(.16,1,.3,1),transform .55s cubic-bezier(.16,1,.3,1);}
-.reveal.revealed{opacity:1;transform:none;}
+/* ---------- Fusszeile ---------- */
+.site-footer{background:var(--filz-tief);color:var(--auf-filz-2);padding:52px 0 36px;margin-top:64px;font-size:15px;}
+.site-footer a{color:var(--auf-filz);}
+.site-footer a:hover{color:#fff;}
+.footer-cols{display:grid;grid-template-columns:1.7fr 1fr 1fr 1.1fr 1.3fr;gap:30px 26px;padding-bottom:30px;margin-bottom:24px;border-bottom:1px solid var(--linie-filz);}
+.fcol h4{font-family:var(--font-display);color:var(--auf-filz);font-size:19px;margin:0 0 12px;font-weight:700;}
+.fcol a{display:block;margin-bottom:9px;font-size:15px;color:var(--auf-filz-2);}
+.fcol a:hover{color:#fff;}
+.fcol-brand .logo{font-size:26px;margin-bottom:12px;display:inline-block;}
+.fcol-brand p{margin:0;max-width:320px;font-size:15px;line-height:1.6;}
+.site-footer .resp{border-left:3px solid var(--messing);padding:14px 18px;margin-bottom:20px;font-size:15px;background:rgba(243,239,227,.05);border-radius:0 var(--r-klein) var(--r-klein) 0;}
+.site-footer .resp a{color:var(--messing-hell);}
+.site-footer p{color:var(--auf-filz-2);}
+.footer-meta{border-top:1px solid var(--linie-filz);margin-top:22px;padding-top:18px;display:flex;flex-wrap:wrap;gap:6px 20px;justify-content:center;}
+
+/* ---------- Nach oben ---------- */
+.to-top{position:fixed;right:20px;bottom:20px;width:44px;height:44px;border-radius:50%;border:1px solid var(--linie-stark);
+  background:var(--karton);color:var(--filz);font-size:19px;cursor:pointer;box-shadow:var(--schatten-blatt);
+  opacity:0;visibility:hidden;transition:opacity .2s,visibility .2s;z-index:40;}
+.to-top.show{opacity:1;visibility:visible;}
+.to-top:hover{background:var(--filz);color:var(--auf-filz);}
+
+/* Die Scroll-Einblendung ist entfernt. Die Klasse bleibt wirkungslos stehen,
+   falls noch eine gecachte main.js sie setzt. */
+.reveal{opacity:1;transform:none;}
+
 @media(prefers-reduced-motion:reduce){
-  .reveal{opacity:1;transform:none;transition:none;}
-  *{scroll-behavior:auto !important;}
+  .hand .ccard{animation:none;}
+  html{scroll-behavior:auto;}
+  *{transition:none !important;}
 }
-
-/* ---------- Mobile-Navigation ---------- */
-.nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:42px;height:42px;padding:0 10px;
-  background:var(--glass);border:1px solid var(--border);border-radius:10px;cursor:pointer;}
-.nav-toggle span{display:block;height:2px;width:100%;background:var(--text);border-radius:2px;transition:transform .25s ease,opacity .2s ease;}
 
 /* ============ Responsive ============ */
 @media(max-width:1080px){
+  .hubs{grid-template-columns:repeat(2,minmax(0,1fr));}
   .footer-cols{grid-template-columns:1.6fr 1fr 1fr 1.2fr;}
   .fcol:last-child{grid-column:span 2;}
 }
 @media(max-width:980px){
-  .hero-grid{grid-template-columns:1fr;gap:38px;}
-  .hero-visual{max-width:440px;}
-  .hero-stat.s1{left:-10px;} .hero-stat.s2{right:-6px;}
+  .hand{grid-template-columns:minmax(0,1fr);max-width:460px;margin:0 auto;}
+  .care{grid-template-columns:1fr;}
+  .blog-wrap{grid-template-columns:1fr;gap:22px;}
+  .blog-sidebar{position:static;max-height:none;overflow:visible;}
   .sitemap-grid{grid-template-columns:1fr 1fr;}
+  .w-row{grid-template-columns:1fr auto;}
+  .w-row p{grid-column:1/-1;}
+  .w-bar{justify-content:flex-end;}
 }
 @media(max-width:760px){
   .nav-toggle{display:flex;}
   .site-header .wrap{position:relative;}
-  .nav{display:none;position:absolute;top:calc(100% + 1px);left:0;right:0;flex-direction:column;align-items:stretch;gap:0;padding:8px;
-    background:rgba(10,12,20,.97);border-bottom:1px solid var(--border);box-shadow:var(--shadow);
-    backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);}
+  .nav{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;padding:8px 12px 14px;
+    background:var(--filz);border-bottom:1px solid var(--filz-tief);box-shadow:0 18px 30px -18px rgba(0,0,0,.5);}
   .site-header.nav-open .nav{display:flex !important;}
-  .nav a{margin:0;padding:13px 16px;font-size:16px;border-radius:8px;}
-  .site-header.nav-open .nav-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg) !important;}
-  .site-header.nav-open .nav-toggle span:nth-child(2){opacity:0 !important;}
-  .site-header.nav-open .nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg) !important;}
-  .usp-grid{grid-template-columns:1fr 1fr;}
-  .usp:nth-child(3),.usp:nth-child(4){border-top:1px solid var(--border);}
-  .usp:nth-child(3){border-left:none;}
+  .nav a{padding:13px 10px;font-size:17px;border-bottom:1px solid var(--linie-filz);border-radius:0;}
+  .nav a:last-child{border-bottom:none;}
+  .nav a::after{display:none;}
+  .site-header.nav-open .nav-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .site-header.nav-open .nav-toggle span:nth-child(2){opacity:0;}
+  .site-header.nav-open .nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
   .footer-cols{grid-template-columns:1fr 1fr;gap:26px;}
   .fcol:last-child{grid-column:auto;}
-  .fcol-brand{grid-column:1 / -1;}
-  #top-casinos .table-scroll{display:none;}
-  .card{flex-direction:column;align-items:stretch;text-align:center;}
-  .card .info{min-width:0;width:100%;}
-  .card .info h3.has-logo .casino-logo{margin-left:auto;margin-right:auto;max-width:170px;}
-  .card .stars{display:block;}
-  .card .cta{width:100%;min-width:0;}
-  .card .rank{align-self:flex-start;}
+  .fcol-brand{grid-column:1/-1;}
+  .card{flex-direction:column;align-items:stretch;}
+  .card .cta{width:100%;}
+  .related ul,.care ul{grid-template-columns:1fr;}
 }
 @media(max-width:600px){
-  body{font-size:16px;}
-  .wrap{padding:0 18px;}
-  .card{padding:20px;gap:14px;}
-  .card .cta,.card .cta .btn{width:100%;}
-  .usp-grid{grid-template-columns:1fr;}
-  .usp+.usp{border-left:none;}
-  .usp{border-top:1px solid var(--border);padding:16px 4px;}
-  .usp:first-child{border-top:none;}
-  .hero-cta{flex-direction:column;align-items:stretch;}
-  .hero-cta .btn{width:100%;}
-  .related ul{grid-template-columns:1fr;}
+  body{font-size:17px;}
+  .wrap{padding:0 16px;}
+  .sheet.blog-wrap{padding:0 16px;}
+  .sheet,.blog-main{padding:22px 18px 26px;border-radius:14px;}
+  main.section > .wrap.sheet:not(.blog-wrap){margin:0 10px;}
+  .hubs{grid-template-columns:1fr;}
   .sitemap-grid{grid-template-columns:1fr;}
-  .hero-stat{display:none;}
-  .to-top{right:14px;bottom:14px;}
-  .article p{max-width:none;}
+  .table::before{inset:8px;border-radius:20px;}
+  .to-top{right:12px;bottom:12px;}
+  .article p,.article li{max-width:none;}
+  .btn{white-space:normal;text-align:center;}
 }
 @media(max-width:440px){
   .footer-cols{grid-template-columns:1fr;}
-  .wrap{padding:0 16px;}
-  .preview-card{padding:20px;}
-  .ccard-top,.ccard-bonus,.ccard-cta{padding-left:18px;padding-right:18px;}
-  .ccard-specs,.ccard-pros,.ccard-stars{padding-left:18px;padding-right:18px;}
-  .offer-box{padding:20px 18px;}
-}
-
-/* Auf schmalen Displays darf ein Button umbrechen. */
-@media(max-width:560px){
-  .btn{white-space:normal;text-align:center;max-width:100%;}
-  .btn-lg{padding:14px 18px;font-size:15px;line-height:1.3;}
-}
-
-/* ============================================================
-   Blog-Layout: Zwei-Spalten (Artikel + Sidebar), Teilen-Leiste
-   ============================================================ */
-.blog-wrap{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:44px;align-items:start;}
-.blog-main{min-width:0;max-width:780px;}
-
-/* --- Sticky-Sidebar --- */
-.blog-sidebar{position:sticky;top:86px;align-self:start;display:flex;flex-direction:column;gap:18px;max-height:calc(100vh - 104px);overflow-y:auto;scrollbar-width:thin;}
-.side-card{background:var(--glass);border:1px solid var(--border);border-radius:var(--radius);padding:20px 18px;}
-.side-title{font-family:var(--font-head);font-size:10.5px;font-weight:700;text-transform:uppercase;
-  letter-spacing:.14em;color:var(--faint);margin:0 0 13px;}
-
-/* Kategorien */
-.cat-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1px;}
-.cat-list a{display:flex;align-items:center;justify-content:space-between;gap:12px;
-  padding:9px 11px;border-radius:var(--radius-sm);color:var(--text);font-weight:500;font-size:14.5px;
-  transition:background .16s ease,color .16s ease;}
-.cat-list a:hover{background:var(--green-soft);color:#fff;}
-.cat-badge{flex:0 0 auto;background:none;color:var(--faint);border:1px solid var(--border);
-  border-radius:999px;padding:1px 9px;font-size:12px;font-weight:650;min-width:28px;text-align:center;
-  transition:background .16s ease,color .16s ease,border-color .16s ease;}
-.cat-list a:hover .cat-badge{background:var(--green);color:var(--green-ink);border-color:transparent;}
-
-/* Neueste Beitraege */
-.side-posts{display:flex;flex-direction:column;gap:2px;}
-.side-post{display:flex;gap:11px;align-items:center;padding:7px;border-radius:var(--radius-sm);transition:background .16s ease;}
-.side-post:hover{background:var(--glass-2);}
-.side-post img{width:60px;height:46px;object-fit:cover;border-radius:8px;flex:0 0 auto;
-  border:1px solid var(--border);background:var(--panel-2);}
-.side-post-body{min-width:0;}
-.side-post-title{margin:0;color:var(--text);font-size:13.5px;font-weight:600;line-height:1.32;letter-spacing:-.01em;
-  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;transition:color .16s ease;}
-.side-post:hover .side-post-title{color:#fff;}
-.side-post-date{display:block;color:var(--faint);font-size:11.5px;margin-top:3px;}
-
-/* --- Teilen-Leiste --- */
-.share-bar{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:34px 0 6px;padding:0;
-  background:none;border:none;border-top:1px solid var(--border);padding-top:20px;box-shadow:none;}
-.share-title{font-family:var(--font-head);font-weight:800;color:#fff;font-size:16px;margin:0;letter-spacing:-.03em;}
-.share-btns{display:flex;gap:10px;flex-wrap:wrap;margin-left:auto;}
-.share-btn{width:42px;height:42px;border-radius:11px;display:inline-flex;align-items:center;justify-content:center;
-  color:#fff;border:1px solid rgba(255,255,255,.12);
-  transition:transform .16s ease,box-shadow .16s ease,filter .16s ease;-webkit-tap-highlight-color:transparent;}
-.share-btn:hover,.share-btn:focus-visible{transform:translateY(-3px);
-  box-shadow:0 10px 22px -8px rgba(0,0,0,.75);filter:brightness(1.1);color:#fff;}
-.share-btn:active{transform:translateY(-1px);}
-.share-btn svg{width:19px;height:19px;fill:currentColor;display:block;}
-.share-facebook{background:#1877F2;}
-.share-x{background:#101114;}
-.share-whatsapp{background:#25D366;}
-.share-email{background:var(--grad-green);color:var(--green-ink);border-color:transparent;}
-.share-email:hover,.share-email:focus-visible{color:var(--green-ink);}
-
-/* Kategorie-Filter-Hinweis auf der /news-Uebersicht */
-.cat-filter-note{margin:8px 0 4px;padding:10px 15px;background:var(--green-soft);border:1px solid var(--border);
-  border-radius:var(--radius-sm);color:var(--text);font-size:14px;}
-.cat-filter-note strong{color:#fff;}
-
-/* --- Responsive: Sidebar unter den Artikel --- */
-@media(max-width:960px){
-  .blog-wrap{grid-template-columns:1fr;gap:24px;max-width:800px;}
-  .blog-sidebar{position:static;top:auto;max-height:none;overflow:visible;}
-}
-@media(max-width:520px){
-  .share-bar{gap:12px;}
-  .share-btns{margin-left:0;}
-  .share-btn{width:40px;height:40px;}
+  .ccard-top,.ccard-bonus,.ccard-cta,.ccard-specs,.ccard-pros,.ccard-stars{padding-left:18px;padding-right:18px;}
+  .ccard-con{margin-left:18px;margin-right:18px;}
 }

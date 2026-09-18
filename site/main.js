@@ -42,25 +42,8 @@
     });
   }
 
-  // Sanftes Einblenden beim Scrollen (Scroll-Reveal)
-  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var targets = document.querySelectorAll(
-    ".card, .ccard, .feature, .mini-card, .news-card, .usp, figure.article-img, table.compare, .rating-box"
-  );
-  targets.forEach(function (el) { el.classList.add("reveal"); });
-  if (reduceMotion || !("IntersectionObserver" in window)) {
-    targets.forEach(function (el) { el.classList.add("revealed"); });
-    return;
-  }
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("revealed");
-        io.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  targets.forEach(function (el) { io.observe(el); });
+  // Das Einblenden jeder Karte beim Scrollen ist mit Design v3 entfallen:
+  // Bewegung gibt es nur noch einmal, beim Austeilen der Karten auf der Startseite.
 })();
 
 // Alters-Verifizierung (18+) – eigenständig, inkl. eigenem Styling
@@ -71,23 +54,24 @@
   var css =
     "html.age-locked{overflow:hidden;}" +
     ".age-gate{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px;" +
-    "background:rgba(6,8,15,.9);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);}" +
-    ".age-gate-box{background:linear-gradient(180deg,var(--panel-2,#1b2035),var(--panel,#141829));border:1px solid var(--border,#2a3149);" +
-    "border-radius:16px;box-shadow:0 34px 70px -34px rgba(0,0,0,.85);max-width:420px;width:100%;padding:32px 26px;text-align:center;}" +
-    ".age-gate-logo{font-family:var(--font-head,sans-serif);font-weight:800;font-size:22px;color:#fff;margin-bottom:18px;letter-spacing:-.01em;}" +
-    ".age-gate-logo span{color:var(--green,#35e0a1);}" +
-    ".age-gate-badge{display:inline-flex;align-items:center;justify-content:center;width:58px;height:58px;border-radius:50%;" +
-    "background:var(--grad-gold,linear-gradient(135deg,#f0cf9c,#caa05c));color:#2a1c08;font-family:var(--font-head,sans-serif);font-weight:800;font-size:19px;" +
-    "margin-bottom:14px;}" +
-    ".age-gate-box h2{font-family:var(--font-head,sans-serif);color:#fff;font-size:23px;margin:0 0 10px;}" +
-    ".age-gate-box p{color:var(--muted,#98a1bd);margin:0 0 22px;font-size:15px;line-height:1.6;}" +
-    ".age-gate-actions{display:flex;flex-direction:column;gap:12px;}" +
-    ".age-gate-actions button{width:100%;font-family:var(--font-head,sans-serif);font-weight:700;font-size:16px;padding:14px 22px;border-radius:10px;cursor:pointer;border:1px solid transparent;}" +
-    ".age-gate-yes{background:var(--grad-green,linear-gradient(135deg,#43e9ac,#12b884));color:var(--green-ink,#052117);}" +
-    ".age-gate-no{background:transparent;color:#eef1fa;border-color:#38416090;}" +
-    ".age-gate-note{margin:22px 0 0!important;font-size:12px!important;color:var(--muted,#98a1bd);}" +
-    ".age-gate-note a{color:var(--green-2,#67ecbe);}" +
-    "@media(max-width:440px){.age-gate-box{padding:28px 20px;}.age-gate-box h2{font-size:20px;}}";
+    "background:rgba(18,48,42,.94);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);}" +
+    ".age-gate-box{background:#FBF9F3;color:#16211C;border-radius:18px;box-shadow:0 30px 60px -28px rgba(0,0,0,.7);" +
+    "max-width:420px;width:100%;padding:32px 28px;text-align:center;}" +
+    ".age-gate-logo{font-family:var(--font-display,Georgia,serif);font-weight:800;font-size:26px;color:#1D4A3C;margin-bottom:16px;}" +
+    ".age-gate-logo span{color:#86661F;}" +
+    ".age-gate-badge{display:inline-flex;align-items:center;justify-content:center;width:62px;height:62px;border-radius:50%;" +
+    "background:#1D4A3C;color:#F3EFE3;font-family:var(--font-display,Georgia,serif);font-weight:800;font-size:22px;" +
+    "box-shadow:0 0 0 3px #FBF9F3,0 0 0 5px #C9A04E;margin-bottom:16px;}" +
+    ".age-gate-box h2{font-family:var(--font-display,Georgia,serif);color:#16211C;font-size:28px;margin:0 0 10px;}" +
+    ".age-gate-box p{color:#4B5852;margin:0 0 22px;font-size:16px;line-height:1.6;}" +
+    ".age-gate-actions{display:flex;flex-direction:column;gap:10px;}" +
+    ".age-gate-actions button{width:100%;font-family:var(--font-text,sans-serif);font-weight:700;font-size:16.5px;padding:14px 22px;border-radius:10px;cursor:pointer;border:1.5px solid transparent;}" +
+    ".age-gate-yes{background:#C9A04E;color:#16211C;}" +
+    ".age-gate-yes:hover{background:#D9B568;}" +
+    ".age-gate-no{background:transparent;color:#1D4A3C;border-color:#1D4A3C;}" +
+    ".age-gate-note{margin:20px 0 0!important;font-size:13.5px!important;color:#4B5852;}" +
+    ".age-gate-note a{color:#1C6B50;}" +
+    "@media(max-width:440px){.age-gate-box{padding:28px 20px;}.age-gate-box h2{font-size:24px;}}";
   var style = document.createElement("style");
   style.appendChild(document.createTextNode(css));
   document.head.appendChild(style);
@@ -140,7 +124,7 @@
   ];
 
   var css =
-    ".promo-bar{background:rgba(6,7,13,.94);border-bottom:1px solid rgba(255,255,255,.07);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);}" +
+    ".promo-bar{background:#12302A;border-bottom:1px solid rgba(243,239,227,.1);height:44px;}" +
     // Nie umbrechen: bei mittleren Breiten (Tablet, kleines Notebook) ergaben
     // zwei Zeilen 90px Hoehe, waehrend body nur 48px reserviert - die zweite
     // Zeile schob sich unter den Header. Stattdessen einzeilig und scrollbar.
@@ -154,30 +138,32 @@
     // flex:0 0 auto, sonst staucht der Flex-Container das Label bei knappem
     // Platz auf wenige Zeichen Breite und der Text bricht mehrzeilig um -
     // genau das machte die Leiste bei 1024px 83px statt 48px hoch.
-    ".promo-bar-label{flex:0 0 auto;white-space:nowrap;color:#7c8499;font-weight:700;font-family:var(--font-head,sans-serif);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;}" +
-    ".promo-chip{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:#f2f4fa;padding:4px 5px 4px 12px;border-radius:8px;font-size:12.5px;font-weight:500;}" +
-    ".promo-chip:hover{background:rgba(255,255,255,.07);border-color:rgba(53,224,161,.4);text-decoration:none;}" +
-    ".promo-chip b{color:#fff;font-weight:650;}" +
-    ".promo-chip.is-featured{background:rgba(53,224,161,.11);border-color:rgba(53,224,161,.45);}" +
-    ".promo-chip.is-featured:hover{background:rgba(53,224,161,.17);}" +
-    ".promo-star{color:#35e0a1;font-size:12px;margin-right:-3px;}" +
-    ".promo-note{color:#35e0a1;font-size:12px;font-weight:600;}" +
-    ".promo-go{color:#052117;background:linear-gradient(135deg,#43e9ac,#12b884);padding:3px 9px;border-radius:6px;font-weight:700;font-size:11px;}" +
+    ".promo-bar-label{flex:0 0 auto;white-space:nowrap;color:#B9CBC2;font-weight:700;font-size:13.5px;}" +
+    ".promo-chip{display:inline-flex;align-items:center;gap:9px;background:rgba(243,239,227,.06);border:1px solid rgba(243,239,227,.14);color:#F3EFE3;padding:4px 5px 4px 12px;border-radius:8px;font-size:13.5px;font-weight:500;}" +
+    ".promo-chip:hover{background:rgba(243,239,227,.11);text-decoration:none;color:#fff;}" +
+    ".promo-chip b{color:#fff;font-weight:700;}" +
+    ".promo-chip.is-featured{border-color:rgba(217,181,104,.6);}" +
+    ".promo-star{color:#D9B568;font-size:13px;margin-right:-3px;}" +
+    ".promo-note{color:#D9B568;font-size:13px;font-weight:600;}" +
+    ".promo-go{color:#16211C;background:#C9A04E;padding:3px 10px;border-radius:6px;font-weight:700;font-size:12.5px;}" +
     "@media(max-width:600px){.promo-bar-inner{gap:6px;padding:6px 12px;flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scrollbar-width:none;-ms-overflow-style:none;}"+
-    ".promo-bar-inner::-webkit-scrollbar{display:none;}.promo-bar-label{display:none;}.promo-chip{font-size:12px;flex:0 0 auto;}}" +
-    ".inline-offers{background:none;border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:24px 22px;margin:32px 0;}" +
-    ".inline-offers-title{margin:0 0 16px;text-align:center;font-family:var(--font-head,sans-serif);color:#fff;font-size:18px;font-weight:800;letter-spacing:-.03em;}" +
+    ".promo-bar-inner::-webkit-scrollbar{display:none;}.promo-bar-label{display:none;}.promo-chip{font-size:13px;flex:0 0 auto;}}" +
+    // Angebotsbox: ein kleiner Spieltisch unter dem Artikel, mit denselben
+    // Kartenkoepfen wie auf der Startseite (Logos brauchen dunklen Grund).
+    ".inline-offers{background:#1D4A3C;border-radius:18px;padding:26px 22px 20px;margin:34px 0 8px;}" +
+    ".inline-offers-title{margin:0 0 18px;text-align:center;font-family:var(--font-display,Georgia,serif);color:#F3EFE3;font-size:26px;font-weight:700;}" +
     ".inline-offers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}" +
-    ".inline-offer{position:relative;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:18px 14px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:11px;}" +
-    ".inline-offer.is-featured{background:rgba(231,185,121,.05);border-color:rgba(231,185,121,.36);}" +
-    ".inline-offer-tag{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#f0cf9c,#caa05c);color:#2a1c08;font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:6px;white-space:nowrap;}" +
-    ".inline-offer img{height:42px;width:auto;max-width:160px;object-fit:contain;}" +
-    ".inline-offer img.is-square{height:56px;max-width:56px;}" +
-    ".inline-offer-bonus{color:#35e0a1;font-weight:700;font-size:15px;}" +
-    ".inline-offer-note{color:#9ba3b4;font-size:12.5px;margin-top:-6px;}" +
-    ".inline-offer .btn{width:100%;background:linear-gradient(135deg,#43e9ac,#12b884);color:#052117;font-weight:650;font-family:var(--font-head,sans-serif);padding:12px 16px;border-radius:12px;display:block;border:1px solid rgba(255,255,255,.14);}" +
-    ".inline-offers-note{margin-top:16px;text-align:center;font-size:12px;color:#6b7285;}" +
-    "@media(max-width:760px){.inline-offers-grid{grid-template-columns:1fr;gap:20px;}}";
+    ".inline-offer{position:relative;background:#FBF9F3;border-radius:14px;overflow:hidden;text-align:center;display:flex;flex-direction:column;align-items:stretch;box-shadow:0 18px 30px -20px rgba(0,0,0,.6);}" +
+    ".inline-offer.is-featured{box-shadow:0 0 0 2px #C9A04E,0 18px 30px -20px rgba(0,0,0,.6);}" +
+    ".inline-offer-plate{background:#12302A;display:grid;place-items:center;height:76px;padding:12px;}" +
+    ".inline-offer-tag{position:absolute;top:0;right:12px;background:#C9A04E;color:#16211C;font-size:12.5px;font-weight:700;padding:3px 9px 4px;border-radius:0 0 7px 7px;white-space:nowrap;}" +
+    ".inline-offer img{height:42px;width:auto;max-width:150px;object-fit:contain;}" +
+    ".inline-offer img.is-square{height:52px;max-width:52px;}" +
+    ".inline-offer-bonus{color:#16211C;font-family:var(--font-display,Georgia,serif);font-weight:700;font-size:19px;line-height:1.2;padding:14px 14px 0;}" +
+    ".inline-offer-note{color:#4B5852;font-size:14px;padding:4px 14px 0;}" +
+    ".inline-offer .btn{margin:14px 14px 16px;display:block;white-space:normal;}" +
+    ".inline-offers-note{margin-top:16px;text-align:center;font-size:13.5px;color:#B9CBC2;}" +
+    "@media(max-width:760px){.inline-offers-grid{grid-template-columns:1fr;gap:16px;}}";
   var style = document.createElement("style");
   style.appendChild(document.createTextNode(css));
   document.head.appendChild(style);
@@ -190,9 +176,9 @@
       (c.featured ? '<span class="promo-star" aria-hidden="true">★</span>' : "") +
       '<b>' + c.name + '</b> ' + c.bonus +
       (c.note ? ' <span class="promo-note">' + c.note + '</span>' : "") +
-      ' <span class="promo-go">Sichern →</span></a>';
+      ' <span class="promo-go">Zum Angebot</span></a>';
   }).join("");
-  bar.innerHTML = '<div class="promo-bar-inner"><span class="promo-bar-label">🔥 Top-Boni 2026</span>' + chips + '</div>';
+  bar.innerHTML = '<div class="promo-bar-inner"><span class="promo-bar-label">Unsere Top 3</span>' + chips + '</div>';
   document.body.insertBefore(bar, document.body.firstChild);
 
   // 2) Angebots-Box am Ende von Artikelseiten (mit .article)
@@ -200,15 +186,15 @@
   if (article) {
     var offers = CASINOS.map(function (c) {
       return '<div class="inline-offer' + (c.featured ? " is-featured" : "") + '">' +
-        (c.featured ? '<span class="inline-offer-tag">★ Testsieger</span>' : "") +
-        '<img class="' + (/\.png(\?|$)/.test(c.logo) ? "is-square" : "") + '" src="' + c.logo + '" alt="' + c.name + '" loading="lazy">' +
+        (c.featured ? '<span class="inline-offer-tag">Testsieger</span>' : "") +
+        '<div class="inline-offer-plate"><img class="' + (/\.png(\?|$)/.test(c.logo) ? "is-square" : "") + '" src="' + c.logo + '" alt="' + c.name + '" loading="lazy"></div>' +
         '<div class="inline-offer-bonus">' + c.bonusLong + '</div>' +
         (c.note ? '<div class="inline-offer-note">' + c.note + '</div>' : "") +
-        '<a class="btn" href="' + c.url + '" target="_blank" rel="nofollow sponsored noopener">Bonus sichern →</a></div>';
+        '<a class="btn" href="' + c.url + '" target="_blank" rel="nofollow sponsored noopener">Bonus sichern</a></div>';
     }).join("");
     var box = document.createElement("aside");
     box.className = "inline-offers";
-    box.innerHTML = '<h3 class="inline-offers-title">Unsere Top-Casinos für 2026</h3><div class="inline-offers-grid">' + offers + '</div><div class="inline-offers-note">18+ · Glücksspiel kann süchtig machen · Hilfe unter buwei.de</div>';
+    box.innerHTML = '<h3 class="inline-offers-title">Unsere Top-Casinos 2026</h3><div class="inline-offers-grid">' + offers + '</div><div class="inline-offers-note">Nur ab 18. Glücksspiel kann süchtig machen, Hilfe gibt es unter buwei.de.</div>';
     article.parentNode.insertBefore(box, article.nextSibling);
   }
 
@@ -256,14 +242,15 @@
   if (choice === "denied") { return; }
 
   var css =
-    ".cookie-consent{position:fixed;left:0;right:0;bottom:0;z-index:9998;background:rgba(13,16,32,.98);border-top:1px solid var(--border,#2a3149);box-shadow:0 -8px 30px rgba(0,0,0,.45);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);}" +
+    ".cookie-consent{position:fixed;left:0;right:0;bottom:0;z-index:9998;background:#FFFFFF;border-top:3px solid #1D4A3C;box-shadow:0 -10px 30px -12px rgba(22,33,28,.35);}" +
     ".cookie-consent-inner{max-width:1140px;margin:0 auto;padding:16px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:space-between;}" +
-    ".cookie-consent-text{margin:0;color:var(--muted,#98a1bd);font-size:13.5px;line-height:1.55;flex:1;min-width:240px;}" +
-    ".cookie-consent-text a{color:var(--gold,#ffc93c);}" +
+    ".cookie-consent-text{margin:0;color:#4B5852;font-size:15px;line-height:1.55;flex:1;min-width:240px;}" +
+    ".cookie-consent-text a{color:#1C6B50;text-decoration:underline;}" +
     ".cookie-consent-actions{display:flex;gap:10px;flex-shrink:0;}" +
-    ".cookie-btn{font-family:var(--font-head,sans-serif);font-weight:700;font-size:14px;padding:11px 22px;border-radius:10px;cursor:pointer;border:1px solid transparent;}" +
-    ".cookie-accept{background:linear-gradient(135deg,#ffd75e,#f5a623);color:#1a1205;}" +
-    ".cookie-decline{background:transparent;color:#eef1fa;border-color:#38416090;}" +
+    // Beide Wahlmoeglichkeiten gleich gross und gleich gut erreichbar.
+    ".cookie-btn{font-family:var(--font-text,sans-serif);font-weight:700;font-size:15px;padding:11px 22px;border-radius:10px;cursor:pointer;border:1.5px solid #1D4A3C;}" +
+    ".cookie-accept{background:#1D4A3C;color:#F3EFE3;}" +
+    ".cookie-decline{background:#FFFFFF;color:#1D4A3C;}" +
     "@media(max-width:600px){.cookie-consent-inner{flex-direction:column;align-items:stretch;gap:12px;}.cookie-consent-actions{justify-content:stretch;}.cookie-btn{flex:1;}}";
   var style = document.createElement("style");
   style.appendChild(document.createTextNode(css));
@@ -314,6 +301,9 @@
     return String(s).replace(/[&<>"]/g, function (c) {
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
     });
+  }
+  function themaSlug(n) {
+    return String(n).toLowerCase().replace(/ä/g, "ae").replace(/ö/g, "oe").replace(/ü/g, "ue").replace(/ß/g, "ss").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
   }
   function fmtDate(iso) {
     if (!iso) return "";
@@ -369,6 +359,10 @@
     return aside;
   }
 
+  // Sofort umbauen, nicht erst nach dem Laden der Daten: sonst springt der
+  // ganze Artikel sichtbar von einer mittigen Spalte in das Raster.
+  var sideSlot = restructure();
+
   fetch("/blog-index.json", { cache: "no-cache" })
     .then(function (r) { return r.ok ? r.json() : null; })
     .then(function (data) {
@@ -378,7 +372,7 @@
       var aside = restructure();
 
       var cats = (data.categories || []).map(function (c) {
-        return '<li><a href="/news?cat=' + encodeURIComponent(c.name) + '">' +
+        return '<li><a href="/news#thema-' + themaSlug(c.name) + '">' +
           '<span class="cat-name">' + esc(c.name) + "</span>" +
           '<span class="cat-badge">' + c.count + "</span></a></li>";
       }).join("");
@@ -401,28 +395,15 @@
     .catch(function () {});
 })();
 
-// Kategorie-Filter auf der /news-Übersicht (?cat=…)
+// Alte Kategorie-Links (/news?cat=…) auf den Abschnitt der Magazin-Seite lenken.
+// Die Seite ist seit Design v3 nach Kategorien gegliedert, gefiltert wird nicht mehr.
 (function () {
   "use strict";
-  var grid = document.querySelector(".grid-news");
-  if (!grid) return;
   var cat = new URLSearchParams(window.location.search).get("cat");
   if (!cat) return;
-  var want = cat.trim().toLowerCase();
-  if (!want) return;
-  var shown = 0;
-  [].forEach.call(grid.querySelectorAll(".news-card"), function (card) {
-    var el = card.querySelector(".news-cat");
-    var c = el ? el.textContent.trim().toLowerCase() : "";
-    if (c === want) { card.style.display = ""; shown++; }
-    else { card.style.display = "none"; }
-  });
-  var note = document.createElement("div");
-  note.className = "cat-filter-note";
-  note.innerHTML = "Gefiltert nach Kategorie: <strong>" +
-    cat.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;") + "</strong> (" + shown + " Beiträge) · <a href=\"/news\">Alle Beiträge anzeigen</a>";
-  var lead = document.querySelector(".section-lead") || document.querySelector("h1");
-  if (lead && lead.parentNode) lead.parentNode.insertBefore(note, lead.nextSibling);
+  var slug = cat.trim().toLowerCase().replace(/ä/g, "ae").replace(/ö/g, "oe").replace(/ü/g, "ue").replace(/ß/g, "ss").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  var el = document.getElementById("thema-" + slug);
+  if (el) el.scrollIntoView();
 })();
 
 // ============================================================
