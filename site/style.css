@@ -16,8 +16,15 @@
    ueber eine warme Flaeche plus --lift-gold ab, nicht nur ueber das Eckband.
    (Alle Token- und Klassennamen bleiben kompatibel.)
    ============================================================ */
+/* inter-400.woff2 und inter-700.woff2 sind byte-identisch (gleiche MD5) - eine
+   Variable-Font-Datei, zweimal abgelegt. Ueber zwei URLs laedt der Browser
+   dieselben 48 KB doppelt, also zeigen beide Regeln jetzt auf dieselbe Datei.
+   Die Gewichts-Deskriptoren bleiben absichtlich 400 und 700: die CSS fordert
+   auch 500, 600 und 650 an, und die rasten so weiterhin auf 400 bzw. 700 ein.
+   Ein Achsbereich (100 900) wuerde daraus echte Zwischenschnitte machen und
+   das Schriftbild veraendern. */
 @font-face{font-family:'Inter';font-style:normal;font-weight:400;font-display:optional;src:url('/fonts/inter-400.woff2') format('woff2');}
-@font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:optional;src:url('/fonts/inter-700.woff2') format('woff2');}
+@font-face{font-family:'Inter';font-style:normal;font-weight:700;font-display:optional;src:url('/fonts/inter-400.woff2') format('woff2');}
 @font-face{font-family:'Poppins';font-style:normal;font-weight:700;font-display:optional;src:url('/fonts/poppins-700.woff2') format('woff2');}
 @font-face{font-family:'Poppins';font-style:normal;font-weight:800;font-display:optional;src:url('/fonts/poppins-800.woff2') format('woff2');}
 
