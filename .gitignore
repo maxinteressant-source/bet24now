@@ -6,3 +6,6 @@ Thumbs.db
 .vscode/
 .idea/
 .claude/
+
+# Arbeitsverzeichnis der Artikel-Pipeline
+.blogtmp/
