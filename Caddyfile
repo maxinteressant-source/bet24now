@@ -47,6 +47,30 @@
 	}
 	redir @htmlext /{re.htmlext.1}?{query} permanent
 
+	# --- Wartungsmodus -------------------------------------------------------
+	# Das Projekt pausiert. Jeder Seitenaufruf bekommt die Wartungsseite, und
+	# zwar mit Status 503 statt 200. Das ist das Signal fuer "voruebergehend
+	# nicht verfuegbar" und nicht fuer "geloescht": Suchmaschinen behalten den
+	# Bestand vorerst, statt die Seiten aus dem Index zu nehmen.
+	# Ausgenommen bleiben Impressum und Datenschutz, weil sie erreichbar sein
+	# muessen, dazu robots.txt und die Dateien, die die Wartungsseite braucht.
+	# Zum Beenden: diesen Block loeschen oder auskommentieren.
+	@wartung {
+		not path /wartung.html
+		not path /impressum /impressum.html /datenschutz /datenschutz.html
+		not path /robots.txt /favicon.png /apple-touch-icon.png
+		not path /style.css
+		not path /fonts/*
+	}
+	handle @wartung {
+		header Retry-After "604800"
+		header Cache-Control "no-store, max-age=0"
+		rewrite * /wartung.html
+		file_server {
+			status 503
+		}
+	}
+
 	# Saubere URLs intern zur .html-Datei auflösen: /reviews -> /reviews.html
 	try_files {path} {path}/ {path}.html
 	file_server
