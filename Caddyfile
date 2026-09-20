@@ -18,6 +18,18 @@
 	redir /index.html / permanent
 	redir /index / permanent
 
+	# Zusammengelegte Duplikate. Diese Seiten trugen bisher nur ein canonical auf
+	# die verbleibende Fassung. Ein canonical ist ein Hinweis, eine 301 ist eine
+	# Anweisung: sie buendelt Linkkraft sicher und spart Crawl-Budget.
+	redir /news-blackjack-anfaenger /online-blackjack permanent
+	redir /news-blackjack-anfaenger.html /online-blackjack permanent
+	redir /news-live-casino-guide /ratgeber-live-casino permanent
+	redir /news-live-casino-guide.html /ratgeber-live-casino permanent
+	redir /news-roulette-regeln-anfaenger /online-roulette permanent
+	redir /news-roulette-regeln-anfaenger.html /online-roulette permanent
+	redir /news-online-bingo /online-bingo permanent
+	redir /news-online-bingo.html /online-bingo permanent
+
 	# Abschliessenden Schraegstrich entfernen: /ratgeber/ lieferte bisher 404.
 	# Externe Links und Direkteingaben mit Slash liefen damit ins Leere und
 	# verschenkten Linkkraft. Die Wurzel "/" ist ausgenommen, weil das Muster
