@@ -116,6 +116,10 @@
 (function () {
   "use strict";
   if (document.querySelector(".promo-bar")) return;
+  // Werbefreier Bereich: Seiten mit data-werbefrei am html-Element bekommen
+  // weder das Top-Banner noch die Angebotsbox. Das betrifft den gesamten
+  // Spielerschutz-Bereich, damit er ohne Werbung zitierbar bleibt.
+  if (document.documentElement.hasAttribute("data-werbefrei")) return;
 
   var CASINOS = [
     { name: "ShinyWilds", bonus: "1.000 € + 250 FS", bonusLong: "Bis 1.000 € + 250 Freispiele", note: "30x Umsatz", url: "https://partners.shinywildpartners.com/v2/text/28/9/852a697f-7a50-11f1-8d87-cad21936ea85/1", logo: "/img/shinywilds-logo.png?v=1", featured: true },
