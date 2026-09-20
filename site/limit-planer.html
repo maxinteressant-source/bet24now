@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Limit-Planer: Budget in echte Grenzen umrechnen | Bet24Now</title>
+  <meta name="description" content="Aus deinem Monatsbudget konkrete Werte machen: Einzahlungslimit, Budget pro Sitzung und der Einsatz, der dazu passt. Kostenloses Werkzeug, 18+.">
+  <link rel="canonical" href="https://bet24now.com/limit-planer">
+  <meta name="robots" content="index,follow">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Bet24Now">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Limit-Planer: vom Budget zu echten Grenzen">
+  <meta property="og:description" content="Aus deinem Monatsbudget konkrete Werte machen: Einzahlungslimit, Budget pro Sitzung und der Einsatz, der dazu passt. Kostenloses Werkzeug, 18+.">
+  <meta property="og:url" content="https://bet24now.com/limit-planer">
+  <meta property="og:image" content="https://bet24now.com/img/news-einzahlungslimit.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="627">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://bet24now.com/img/news-einzahlungslimit.jpg">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/style.css?v=35">
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/atkinson-next.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/bodoni-moda.woff2" crossorigin>
+  <style>
+    .calc{background:linear-gradient(180deg,var(--glass-2),var(--glass));border:1px solid var(--border-lt);border-radius:var(--radius);padding:26px;margin:26px 0;box-shadow:var(--shadow-sm);}
+    .calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+    .calc label{display:block;font-size:13px;color:var(--muted);font-weight:600;}
+    .calc input[type=number]{width:100%;margin-top:7px;background:var(--panel-2);border:1px solid var(--border);border-radius:11px;padding:12px 14px;color:var(--text);font-size:16px;font-family:var(--font-body);}
+    .calc input[type=number]:focus{outline:none;border-color:var(--green);}
+    .calc-base{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;margin:18px 0 4px;font-size:14px;color:var(--muted);}
+    .calc-base label{display:inline-flex;align-items:center;gap:7px;color:var(--text);font-weight:500;cursor:pointer;}
+    .calc-base input{accent-color:var(--green);width:17px;height:17px;}
+    .calc-out{margin-top:22px;padding-top:22px;border-top:1px solid var(--border);text-align:center;}
+    .calc-big{font-family:var(--font-head);font-weight:800;color:var(--green);font-size:clamp(34px,7vw,48px);line-height:1;letter-spacing:-.03em;}
+    .calc-big small{display:block;margin-top:8px;font-family:var(--font-body);font-weight:500;font-size:14px;color:var(--muted);letter-spacing:0;}
+    .calc-sub{margin-top:14px;color:var(--text);font-size:15px;}
+    .calc-rows{margin-top:18px;display:grid;gap:9px;text-align:left;}
+    .calc-row{display:flex;justify-content:space-between;gap:14px;font-size:15px;border-bottom:1px dashed var(--border);padding-bottom:8px;}
+    .calc-row span:last-child{font-weight:700;color:var(--text);white-space:nowrap;}
+    .calc-fair{display:inline-block;margin-top:16px;padding:8px 16px;border-radius:999px;font-size:14px;font-weight:650;border:1px solid var(--border);}
+    .calc-fair[data-level=fair]{color:var(--green-2);background:var(--green-soft);border-color:rgba(53,224,161,.3);}
+    .calc-fair[data-level=ok]{color:var(--gold-2);background:rgba(231,185,121,.1);border-color:rgba(231,185,121,.3);}
+    .calc-fair[data-level=hard]{color:var(--red);background:rgba(255,111,111,.1);border-color:rgba(255,111,111,.3);}
+    @media(max-width:520px){.calc-grid{grid-template-columns:1fr;}}
+  </style>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebApplication","name":"Limit-Planer: vom Budget zu echten Grenzen","url":"https://bet24now.com/limit-planer","applicationCategory":"FinanceApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"inLanguage":"de-DE","publisher":{"@type":"Organization","name":"Bet24Now","url":"https://bet24now.com/"},"datePublished":"2026-09-20","dateModified":"2026-09-20"}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Wie hoch sollte mein Einzahlungslimit sein?","acceptedAnswer":{"@type":"Answer","text":"So hoch wie der Betrag, den du im Monat verlieren kannst, ohne dass es dich trifft. Nicht so hoch, wie der Anbieter erlaubt. Der Planer rechnet dir aus, welcher Einsatz zu diesem Betrag passt."}},{"@type":"Question","name":"Warum kommt bei mir ein so kleiner Einsatz heraus?","acceptedAnswer":{"@type":"Answer","text":"Weil Spielzeit sich schnell summiert. 45 Minuten sind über 500 Runden, viermal im Monat über 2.000. Ein Budget von 50 Euro verteilt sich darauf sehr dünn. Kürzere Sitzungen ändern das Ergebnis am stärksten."}},{"@type":"Question","name":"Was ist der Unterschied zwischen Einzahlungs- und Verlustlimit?","acceptedAnswer":{"@type":"Answer","text":"Das Einzahlungslimit begrenzt, wie viel Geld ins Konto fließt. Das Verlustlimit begrenzt, wie viel davon weg sein darf, bevor Schluss ist. Gewinne, die du wieder einsetzt, erfasst nur das Verlustlimit."}},{"@type":"Question","name":"Gilt die Grenze von 1.000 Euro für jeden Anbieter einzeln?","acceptedAnswer":{"@type":"Answer","text":"Nein, sie gilt anbieterübergreifend für alle in Deutschland lizenzierten Angebote zusammen. Ein zweites Konto bei einem anderen Anbieter erhöht die Summe nicht."}},{"@type":"Question","name":"Wie schnell kann ich ein Limit wieder ändern?","acceptedAnswer":{"@type":"Answer","text":"Eine Senkung wirkt sofort. Eine Erhöhung wird erst nach einer Wartezeit wirksam. Genau darin liegt der Schutz: Die Entscheidung von heute gilt auch für den Moment, in dem du sie bereuen würdest."}},{"@type":"Question","name":"Ersetzt ein Limit eine Sperre?","acceptedAnswer":{"@type":"Answer","text":"Nein. Ein Limit begrenzt das Spiel, eine Sperre beendet es. Wenn Limits wiederholt nicht reichen, ist die Selbstsperre über OASIS der passendere Schritt, dazu der Beitrag zur OASIS-Spielersperre."}}]}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Startseite","item":"https://bet24now.com/"},{"@type":"ListItem","position":2,"name":"Ratgeber","item":"https://bet24now.com/ratgeber"},{"@type":"ListItem","position":3,"name":"Limit-Planer"}]}
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="/">Bet<span>24</span>Now</a>
+      <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav class="nav" aria-label="Hauptnavigation">
+        <a href="/">Vergleich</a>
+        <a href="/reviews">Casino-Tests</a>
+        <a href="/ratgeber" class="is-section">Ratgeber</a>
+        <a href="/news">Magazin</a>
+        <a href="/verantwortungsvolles-spielen">Spielerschutz</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="wrap sheet" style="max-width:760px;">
+      <nav class="crumbs"><a href="/">Startseite</a> › <a href="/ratgeber">Ratgeber</a> › <span>Limit-Planer</span></nav>
+      <span class="badge">Kostenloses Tool</span>
+      <h1>Limit-Planer: vom Budget zu echten Grenzen</h1>
+      <p class="section-lead">Ein Limit hilft nur, wenn die Zahl zu deinem Spiel passt. Trag ein, was du im Monat übrig hast und wie du spielst. Der Planer rechnet aus, welcher Einsatz dazu passt und wo es nicht aufgeht.</p>
+
+      <div class="calc">
+        <div class="calc-grid">
+          <label>Budget pro Monat (€)<input type="number" id="l-budget" value="50" min="0" step="5" inputmode="decimal"></label>
+          <label>Sitzungen pro Monat<input type="number" id="l-sessions" value="4" min="1" max="60" step="1" inputmode="numeric"></label>
+          <label>Dauer je Sitzung (Minuten)<input type="number" id="l-min" value="45" min="5" max="360" step="5" inputmode="numeric"></label>
+          <label>Auszahlungsquote RTP (%)<input type="number" id="l-rtp" value="96" min="80" max="99.9" step="0.1" inputmode="decimal"></label>
+        </div>
+        <div class="calc-out">
+          <div class="calc-big"><span id="l-stake">0,58 €</span><small>Einsatz pro Runde, der zu deinem Budget passt</small></div>
+          <div class="calc-rows">
+            <div class="calc-row"><span>Einzahlungslimit im Monat</span><span id="l-deposit">50,00 €</span></div>
+            <div class="calc-row"><span>Budget je Sitzung</span><span id="l-per">12,50 €</span></div>
+            <div class="calc-row"><span>Runden je Sitzung bei fünf Sekunden</span><span id="l-rounds">540</span></div>
+            <div class="calc-row"><span>Vorschlag für ein Verlustlimit je Sitzung</span><span id="l-loss">12,50 €</span></div>
+          </div>
+          <div class="calc-fair" id="l-note" data-level="fair"></div>
+        </div>
+      </div>
+
+      <script>
+      (function(){
+        var f=function(n){return n.toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2})+' €';};
+        var ids=['l-budget','l-sessions','l-min','l-rtp'];
+        function calc(){
+          var budget=parseFloat(document.getElementById('l-budget').value)||0;
+          var sessions=parseInt(document.getElementById('l-sessions').value,10)||1;
+          var min=parseFloat(document.getElementById('l-min').value)||0;
+          var rtp=parseFloat(document.getElementById('l-rtp').value)||96;
+          var edge=Math.max(0.1,100-rtp)/100;
+          var per=budget/sessions;
+          var rounds=Math.floor(min*60/5);
+          var stake=rounds>0?per/(rounds*edge):0;
+          document.getElementById('l-deposit').textContent=f(budget);
+          document.getElementById('l-per').textContent=f(per);
+          document.getElementById('l-rounds').textContent=rounds.toLocaleString('de-DE');
+          document.getElementById('l-loss').textContent=f(per);
+          document.getElementById('l-stake').textContent=f(stake);
+          var n=document.getElementById('l-note');
+          if(budget>1000){n.dataset.level='hard';n.textContent='Über 1.000 Euro im Monat: das anbieterübergreifende Limit greift';}
+          else if(stake<0.10){n.dataset.level='hard';n.textContent='Rechnerisch unter zehn Cent: kürzere Sitzungen oder weniger Termine wären ehrlicher';}
+          else if(stake>1){n.dataset.level='ok';n.textContent='Rechnerisch über einem Euro, im deutschen Automatenspiel ist bei einem Euro Schluss';}
+          else{n.dataset.level='fair';n.textContent='Diese Kombination geht rechnerisch auf';}
+        }
+        ids.forEach(function(i){var e=document.getElementById(i);e.addEventListener('input',calc);e.addEventListener('change',calc);});
+        calc();
+      })();
+      </script>
+
+      <div class="article">
+        <p>Die meisten Limits werden aus dem Bauch gesetzt. Eine runde Zahl, die sich vernünftig anfühlt, und danach passt sie nicht zu dem, was tatsächlich passiert. Dieser Planer geht den umgekehrten Weg: Er nimmt dein Budget als Feststehendes und rechnet aus, welcher Einsatz dazu überhaupt passt.</p>
+
+        <h2>Was der Planer rechnet</h2>
+        <ul>
+          <li><strong>Budget je Sitzung:</strong> Monatsbudget geteilt durch die Zahl der Sitzungen.</li>
+          <li><strong>Runden je Sitzung:</strong> Dauer in Sekunden geteilt durch fünf, den vorgeschriebenen Mindesttakt.</li>
+          <li><strong>Passender Einsatz:</strong> Budget je Sitzung geteilt durch Runden mal dem Anteil, der statistisch beim Anbieter bleibt.</li>
+        </ul>
+        <p>Was dieselbe Sitzung statistisch kostet, zeigt dir der <a href="/spielkosten-rechner">Spielkosten-Rechner</a> von der anderen Seite her. Der letzte Schritt ist der entscheidende. Er dreht die übliche Frage um: nicht wie lange ein Einsatz reicht, sondern welcher Einsatz zu der Zeit passt, die du spielen willst.</p>
+
+        <div class="disclosure">ℹ️ <strong>Warum oft ein kleiner Betrag herauskommt.</strong> 45 Minuten sind bei fünf Sekunden pro Runde bereits 540 Runden. Wer viermal im Monat so lange spielt, kommt auf über 2.000 Runden. Verteilt man darauf ein Budget von 50 Euro, bleibt pro Runde wenig übrig. Das ist keine Schwäche der Rechnung, das ist die Rechnung.</div>
+
+        <h2>Die drei Stellschrauben</h2>
+        <p>Wenn das Ergebnis unrealistisch klein wird, hast du drei Möglichkeiten, und nur drei: weniger Sitzungen, kürzere Sitzungen oder ein höheres Budget. Ein höherer Einsatz ist keine vierte Möglichkeit, er verkürzt nur die Zeit, bis das Budget weg ist.</p>
+        <p>In der Praxis ist die kürzere Sitzung die Stellschraube, die am wenigsten weh tut. Von 45 auf 20 Minuten mehr als verdoppelt den möglichen Einsatz pro Runde, bei gleichem Geld.</p>
+
+        <h2>Vom Ergebnis zum eingetragenen Limit</h2>
+        <p>Eine Zahl auf dem Bildschirm schützt niemanden. Wirksam wird sie erst, wenn sie im Konto steht, denn dort gilt sie auch dann noch, wenn die Stimmung anders ist. Wie du Einzahlungs-, Verlust- und Zeitlimit einrichtest, steht Schritt für Schritt im <a href="/ratgeber-limits-einrichten">Ratgeber zu den Limits</a>.</p>
+        <ul>
+          <li>✅ Das Monatsbudget als Einzahlungslimit eintragen.</li>
+          <li>✅ Das Budget je Sitzung als Verlustlimit setzen, wo der Anbieter das anbietet.</li>
+          <li>✅ Die geplante Dauer als Zeitlimit hinterlegen.</li>
+          <li>✅ Den <a href="/news-casino-reality-check">Reality-Check</a> einschalten, damit die Zeit sichtbar bleibt.</li>
+        </ul>
+
+        <h2>Das Limit über alle Anbieter</h2>
+        <p>Unabhängig von deiner Rechnung gilt im deutschen Markt eine anbieterübergreifende Grenze von 1.000 Euro Einzahlung im Monat. Sie ist eine Obergrenze, kein Richtwert, und für die meisten liegt ein sinnvolles Budget weit darunter. Die Einordnung dazu steht im Beitrag zum <a href="/online-casino-ohne-limit">Casino ohne Limit</a> und im <a href="/news-einzahlungslimit-online-casino">Beitrag zum Einzahlungslimit</a>.</p>
+
+        <div class="disclosure">⚠️ <strong>Wenn die Rechnung nicht aufgeht.</strong> Kommt beim ehrlichen Ausfüllen ein Betrag heraus, den du dir nicht leisten kannst oder willst, ist das kein Rechenfehler. Es ist eine Antwort. Bei Fragen dazu hilft die kostenlose Beratung der BZgA, und der Beitrag zum <a href="/news-spielsucht-erkennen-hilfe">Erkennen problematischen Spielens</a> ordnet ein, wann es Zeit für ein Gespräch ist.</div>
+
+        <h2>Häufige Fragen</h2>
+        <h3>Wie hoch sollte mein Einzahlungslimit sein?</h3>
+        <p>So hoch wie der Betrag, den du im Monat verlieren kannst, ohne dass es dich trifft. Nicht so hoch, wie der Anbieter erlaubt. Der Planer rechnet dir aus, welcher Einsatz zu diesem Betrag passt.</p>
+        <h3>Warum kommt bei mir ein so kleiner Einsatz heraus?</h3>
+        <p>Weil Spielzeit sich schnell summiert. 45 Minuten sind über 500 Runden, viermal im Monat über 2.000. Ein Budget von 50 Euro verteilt sich darauf sehr dünn. Kürzere Sitzungen ändern das Ergebnis am stärksten.</p>
+        <h3>Was ist der Unterschied zwischen Einzahlungs- und Verlustlimit?</h3>
+        <p>Das Einzahlungslimit begrenzt, wie viel Geld ins Konto fließt. Das Verlustlimit begrenzt, wie viel davon weg sein darf, bevor Schluss ist. Gewinne, die du wieder einsetzt, erfasst nur das Verlustlimit.</p>
+        <h3>Gilt die Grenze von 1.000 Euro für jeden Anbieter einzeln?</h3>
+        <p>Nein, sie gilt anbieterübergreifend für alle in Deutschland lizenzierten Angebote zusammen. Ein zweites Konto bei einem anderen Anbieter erhöht die Summe nicht.</p>
+        <h3>Wie schnell kann ich ein Limit wieder ändern?</h3>
+        <p>Eine Senkung wirkt sofort. Eine Erhöhung wird erst nach einer Wartezeit wirksam. Genau darin liegt der Schutz: Die Entscheidung von heute gilt auch für den Moment, in dem du sie bereuen würdest.</p>
+        <h3>Ersetzt ein Limit eine Sperre?</h3>
+        <p>Nein. Ein Limit begrenzt das Spiel, eine Sperre beendet es. Wenn Limits wiederholt nicht reichen, ist die Selbstsperre über OASIS der passendere Schritt, dazu der Beitrag zur OASIS-Spielersperre.</p>
+
+        <div class="resp" style="margin-top:26px;"><strong>18+ · Glücksspiel kann süchtig machen.</strong> Ein Rechner ersetzt kein Limit im Konto. Kostenlose und anonyme Beratung der BZgA: <a href="tel:08001372700">0800 1 37 27 00</a>. Beratungsstellen in der Nähe: <a href="https://www.buwei.de" target="_blank" rel="noopener">buwei.de</a>.</div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-cols">
+        <div class="fcol fcol-brand">
+          <a class="logo" href="/">Bet<span>24</span>Now</a>
+          <p>Unabhängige Casino-Tests nach offengelegtem Raster und ein Magazin, das erklärt statt verkauft. Spielen nur ab 18.</p>
+        </div>
+        <div class="fcol">
+          <h4>Casinos</h4>
+          <a href="/">Casino-Vergleich</a>
+          <a href="/reviews">Casino-Tests</a>
+          <a href="/testverfahren">Testverfahren</a>
+          <a href="/bewertungsmethodik">Bewertungsmethodik</a>
+        </div>
+        <div class="fcol">
+          <h4>Wissen</h4>
+          <a href="/ratgeber">Ratgeber</a>
+          <a href="/news">Magazin</a>
+          <a href="/glossar">Glossar</a>
+          <a href="/umsatzbedingungen-rechner">Umsatz-Rechner</a>
+        </div>
+        <div class="fcol">
+          <h4>Spielerschutz</h4>
+          <a href="/verantwortungsvolles-spielen">Verantwortungsvoll spielen</a>
+          <a href="/ratgeber-limits-einrichten">Limits einrichten</a>
+          <a href="/news-oasis-spielersperre">OASIS-Spielersperre</a>
+          <a href="/spielschulden-hilfe">Hilfe bei Spielschulden</a>
+        </div>
+        <div class="fcol">
+          <h4>Über uns</h4>
+          <a href="/ueber-uns">Über uns</a>
+          <a href="/redaktion">Redaktion</a>
+          <a href="/affiliate-hinweis">Affiliate-Hinweis</a>
+          <a href="/impressum">Impressum</a>
+          <a href="/datenschutz">Datenschutz</a>
+          <a href="/sitemap">Sitemap</a>
+        </div>
+      </div>
+      <div class="resp"><strong style="color:#fff;">18+ · Glücksspiel kann süchtig machen.</strong> Spiele verantwortungsbewusst. Kostenlose Hilfe der BZgA: <a href="tel:08001372700">0800 1 37 27 00</a> · <a href="https://www.buwei.de" target="_blank" rel="noopener">buwei.de</a></div>
+      <p style="margin-top:14px;">© 2026 Bet24Now · Alle Angebote ohne Gewähr. Boni können sich ändern.</p>
+    </div>
+  </footer>
+  <button id="toTop" class="to-top" aria-label="Nach oben scrollen" title="Nach oben">↑</button>
+  <script src="/main.js?v=35" defer></script>
+</body>
+</html>
