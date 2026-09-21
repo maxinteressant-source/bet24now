@@ -373,24 +373,37 @@ a.chip{color:var(--kreide);}
    untereinander, ohne Rang und ohne Ruhe. Die Bedingung prueft, dass KEIN
    Eintrag etwas anderes enthaelt als genau einen Verweis; :not([class])
    haelt die eigenen Bauformen wie ul.toc heraus. */
-/* Die Klasse setzt ein Bauschritt, kein Selektor: CSS kann nicht pruefen,
+/* Verzeichnis: eine Liste, die nur aus Verweisen besteht, also ein
+   Wegweiser und kein Fliesstext. Linien statt Punkte, ruhige Schrift,
+   die Farbe kommt erst beim Zeigen.
+   Die Klasse setzt ein Bauschritt, kein Selektor: CSS kann nicht pruefen,
    ob neben dem Verweis noch Text im Eintrag steht. a:only-child zaehlt nur
    Elemente, keine Textknoten, und riss auf /affiliate-hinweis mitten aus
    einem Satz eine eigene Zeile heraus. */
-.article ul.verzeichnis{list-style:none;padding-left:0;margin:var(--s5) 0 var(--s7);
+.verzeichnis{list-style:none;padding-left:0;margin:var(--s5) 0 var(--s7);
   border-top:1px solid var(--linie);}
-.article ul.verzeichnis > li{margin:0;border-bottom:1px solid var(--linie);}
-.article ul.verzeichnis > li > a{
-  display:flex;align-items:center;gap:var(--s4);padding:11px 2px;
-  color:var(--kreide);text-decoration:none;max-width:none;
+.verzeichnis > li{margin:0;border-bottom:1px solid var(--linie);}
+.verzeichnis > li > a{display:flex;align-items:center;gap:var(--s4);padding:11px 2px;
+  color:var(--kreide);text-decoration:none;max-width:none;line-height:1.4;
   transition:color var(--t-kurz) ease,transform var(--t-kurz) var(--aus);}
-.article ul.verzeichnis > li > a::before{
-  content:"";flex:none;width:5px;height:5px;background:var(--jade-tief);
-  transition:background var(--t-kurz) ease;}
+/* Der Marker traegt schon im Ruhezustand einen Hauch Jade. Ohne ihn sieht
+   die Zeile aus wie Text und nicht wie ein Weg. */
+.verzeichnis > li > a::before{content:"";flex:none;width:5px;height:5px;
+  background:var(--jade-tief);transition:background var(--t-kurz) ease;}
 @media(hover:hover) and (pointer:fine){
-  .article ul.verzeichnis > li > a:hover{color:var(--jade);transform:translateX(3px);}
-  .article ul.verzeichnis > li > a:hover::before{background:var(--jade);}
+  .verzeichnis > li > a:hover{color:var(--jade);transform:translateX(3px);}
+  .verzeichnis > li > a:hover::before{background:var(--jade);}
 }
+/* In den Themenkarten steht es enger, im Hinweiskasten in Spalten. */
+.hub .verzeichnis{margin:var(--s5) 0 0;}
+.hub .verzeichnis > li:last-child{border-bottom:0;}
+.hub .verzeichnis > li > a{padding:9px 0;gap:var(--s3);font-size:14.5px;color:var(--kreide-2);}
+.hub .verzeichnis > li > a::before{width:4px;height:4px;}
+.care .verzeichnis{margin:var(--s6) 0 0;border-top:0;display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:0 var(--s7);}
+.care .verzeichnis > li{border-bottom:0;border-top:1px solid var(--linie);}
+.care .verzeichnis > li > a{padding:10px 0;gap:var(--s3);font-size:15px;}
+.care .verzeichnis > li > a::before{width:4px;height:4px;}
 .article blockquote{margin:var(--s8) 0;padding:0 0 0 var(--s6);border-left:2px solid var(--jade);
   font-family:var(--font-display);font-size:clamp(20px,2.2vw,26px);line-height:1.34;
   letter-spacing:-.02em;color:var(--kreide);}
@@ -665,24 +678,7 @@ table.compare tr.is-soon td{color:var(--kreide-3);}
   padding:var(--s6);color:var(--kreide);
   transition:border-color var(--t-mittel) var(--aus),transform var(--t-mittel) var(--aus),background var(--t-mittel) var(--aus);}
 .hub h3{margin:0 0 var(--s2);font-size:18px;transition:color var(--t-kurz) ease;}
-/* Ein Verzeichnis, kein Fliesstext: Linien statt Punkte, ruhige Schrift,
-   und die Farbe kommt erst beim Zeigen. Als jade eingefaerbte Punktliste
-   sahen acht Verweise nebeneinander aus wie ein Fehler. */
 .hub p{margin:0;color:var(--kreide-3);font-size:14.5px;line-height:1.55;}
-.hub ul{list-style:none;margin:var(--s5) 0 0;padding:0;border-top:1px solid var(--linie);}
-.hub li{margin:0;border-bottom:1px solid var(--linie);}
-.hub li:last-child{border-bottom:0;}
-.hub li a{display:flex;align-items:center;gap:var(--s3);padding:9px 0;
-  color:var(--kreide-2);font-size:14.5px;line-height:1.4;text-decoration:none;
-  transition:color var(--t-kurz) ease,transform var(--t-kurz) var(--aus);}
-/* Der Marker traegt schon im Ruhezustand einen Hauch Jade. Ohne ihn sieht
-   die Zeile aus wie Text und nicht wie ein Weg. */
-.hub li a::before{content:"";flex:none;width:4px;height:4px;background:var(--jade-tief);
-  transition:background var(--t-kurz) ease;}
-@media(hover:hover) and (pointer:fine){
-  .hub li a:hover{color:var(--jade);transform:translateX(3px);}
-  .hub li a:hover::before{background:var(--jade);}
-}
 @media(hover:hover) and (pointer:fine){
   .hub:hover{text-decoration:none;border-color:var(--linie-3);background:var(--nacht-3);transform:translateY(-3px);}
   .hub:hover h3{color:var(--jade);}
@@ -693,8 +689,6 @@ table.compare tr.is-soon td{color:var(--kreide-3);}
 .care{background:var(--nacht-2);border:1px solid var(--linie);border-left:2px solid var(--jade);
   border-radius:0 var(--r-gross) var(--r-gross) 0;padding:var(--s7);}
 .care h2{margin-top:0;}
-.care ul{list-style:none;margin:var(--s5) 0 0;padding:0;display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:var(--s3) var(--s7);}
 .care-help{margin-top:var(--s5);font-family:var(--font-mono);font-size:14px;color:var(--kreide-2);}
 .care-help .tel{color:var(--jade);font-weight:600;}
 

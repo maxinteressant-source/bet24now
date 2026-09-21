@@ -202,7 +202,9 @@
     ".inline-offer img.is-square{height:50px;max-width:50px;}" +
     ".inline-offer-bonus{color:var(--kreide,#F3F5F7);font-family:var(--font-display,Georgia,serif);font-weight:700;letter-spacing:-.02em;font-size:19px;line-height:1.15;padding:16px 15px 0;}" +
     ".inline-offer-note{color:var(--kreide-3,#6C7783);font-family:var(--font-mono,ui-monospace,monospace);font-size:11px;letter-spacing:.04em;padding:7px 15px 0;}" +
-    ".inline-offer .btn{margin:16px 15px;display:block;white-space:normal;}" +
+    // margin-top:auto haelt die Schaltflaechen auf einer Linie, auch wenn eine
+    // Karte eine Zeile mehr traegt.
+    ".inline-offer .btn{margin:16px 15px 16px;margin-top:auto;display:block;white-space:normal;}" +
     ".inline-offers-note{margin-top:18px;text-align:left;font-size:13px;line-height:1.5;color:var(--kreide-3,#6C7783);}" +
     "@media(max-width:760px){.inline-offers-grid{grid-template-columns:1fr;gap:12px;}}";
   var style = document.createElement("style");

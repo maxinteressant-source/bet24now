@@ -101,4 +101,18 @@
 	# Sitemap & Blog-Index immer frisch pruefen (ETag macht die Revalidierung guenstig)
 	@data path *.xml *.json
 	header @data Cache-Control "public, max-age=0, must-revalidate"
+
+	# Unbekannte Adressen bekommen die gestaltete Fehlerseite statt einer
+	# leeren Antwort. Der Status bleibt 404: nur so nimmt eine Suchmaschine
+	# die Adresse wieder aus dem Bestand.
+	handle_errors {
+		@nichtgefunden expression {err.status_code} == 404
+		handle @nichtgefunden {
+			rewrite * /404.html
+			file_server {
+				status 404
+			}
+		}
+		respond "{err.status_code} {err.status_text}"
+	}
 }
