@@ -122,6 +122,19 @@
   --e4:0 3px 8px rgba(22,33,28,.09),0 36px 68px -26px rgba(22,33,28,.40);
 }
 
+/* ---------- Sprunglink ----------
+   Steht als erstes Element im Dokument und ist erst beim Tabben sichtbar.
+   Ohne ihn muss sich jemand mit Tastatur auf jeder Seite durch Angebotsleiste
+   und Navigation arbeiten, bevor der Text beginnt: ueber 80 Stationen.
+   Bewusst nicht mit display:none oder visibility versteckt, beides nimmt das
+   Element aus der Tabulatorfolge und damit genau seine Funktion. */
+.sprunglink{position:absolute;left:var(--s4);top:var(--s4);z-index:9999;
+  transform:translateY(calc(-100% - var(--s7)));
+  background:var(--messing);color:var(--tinte);font-weight:700;font-size:15.5px;
+  padding:11px 18px;border-radius:var(--r-knopf);box-shadow:var(--e3);
+  transition:transform var(--t-mittel) var(--aus);}
+.sprunglink:focus-visible{transform:none;text-decoration:none;}
+
 /* ---------- Grundlagen ---------- */
 *{box-sizing:border-box;}
 html{scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%;scrollbar-gutter:stable;}
@@ -336,13 +349,16 @@ figure.article-img figcaption a{color:var(--tinte-3);}
 .article .toc li{margin:0;max-width:none;}
 .toc a{display:block;padding:6px 0 6px 16px;position:relative;color:var(--tinte-2);font-size:15px;line-height:1.4;text-decoration:none;}
 .toc a::before{content:"";position:absolute;left:0;top:calc(.7em + 6px);width:7px;height:1.5px;background:var(--messing);}
-.toc a{transition:color var(--t-kurz) ease,padding-left var(--t-kurz) var(--aus);}
-.toc a::before{transition:width var(--t-kurz) var(--aus),background var(--t-kurz) ease;}
+/* Bewegt werden nur transform und Farbe. Vorher liefen hier padding-left
+   und width, beide loesen in jedem Einzelbild ein Neuberechnen des Layouts
+   aus. Der Strich hat jetzt seine volle Breite und wird gestaucht gezeigt,
+   das Wachsen ist ein scaleX und kostet nichts. */
+.toc a{transition:color var(--t-kurz) ease,transform var(--t-kurz) var(--aus);}
+.toc a::before{width:13px;transform:scaleX(.54);transform-origin:left center;
+  transition:transform var(--t-kurz) var(--aus),background var(--t-kurz) ease;}
 @media(hover:hover) and (pointer:fine){
-  /* Der Messingstrich waechst, der Eintrag rueckt mit. Eine einzige
-     Bewegung, die zeigt, welcher Punkt gemeint ist. */
-  .toc a:hover{color:var(--link);padding-left:22px;}
-  .toc a:hover::before{width:13px;background:var(--filz);}
+  .toc a:hover{color:var(--link);transform:translateX(5px);}
+  .toc a:hover::before{transform:scaleX(1);background:var(--filz);}
 }
 
 /* Hinweiskaesten */
@@ -684,9 +700,9 @@ table.compare tr.is-soon td{color:var(--tinte-3);}
 .cat-list li{border-top:1px solid var(--linie);}
 .cat-list li:first-child{border-top:none;}
 .cat-list a{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 2px;color:var(--tinte);font-weight:600;font-size:15.5px;}
-.cat-list a{transition:color var(--t-kurz) ease,padding-left var(--t-kurz) var(--aus);}
+.cat-list a{transition:color var(--t-kurz) ease,transform var(--t-kurz) var(--aus);}
 @media(hover:hover) and (pointer:fine){
-  .cat-list a:hover{color:var(--link);padding-left:5px;}
+  .cat-list a:hover{color:var(--link);transform:translateX(4px);}
 }
 .cat-badge{color:var(--tinte-3);font-size:13.5px;font-weight:700;}
 .side-posts{display:flex;flex-direction:column;}

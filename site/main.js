@@ -183,7 +183,10 @@
       ' <span class="promo-go">Zum Angebot</span></a>';
   }).join("");
   bar.innerHTML = '<div class="promo-bar-inner"><span class="promo-bar-label">Unsere Top 3</span>' + chips + '</div>';
-  document.body.insertBefore(bar, document.body.firstChild);
+  // Hinter den Sprunglink, nicht davor: sonst waere die Werbeleiste die erste
+  // Station beim Tabben und der Sprunglink verloere seinen Zweck.
+  var sprung = document.querySelector(".sprunglink");
+  document.body.insertBefore(bar, sprung ? sprung.nextSibling : document.body.firstChild);
 
   // 2) Angebots-Box am Ende von Artikelseiten (mit .article)
   var article = document.querySelector(".article");
