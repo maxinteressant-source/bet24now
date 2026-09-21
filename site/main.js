@@ -517,3 +517,67 @@
     onScroll();
   })();
 })();
+
+// ============================================================
+// Bewegung: Eintritt beim Scrollen, Leseband, Menue mit Escape
+// Reine Ergaenzung. Faellt dieser Block aus, bleibt die Seite vollstaendig
+// benutzbar, nur ohne Bewegung.
+// ============================================================
+(function () {
+  "use strict";
+  var wurzel = document.documentElement;
+  var sanft = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  // --- Eintritt beim Scrollen -------------------------------------------
+  // Das macht CSS allein ueber scroll-getriebene Animationen (animation-timeline).
+  // Fruehere Fassung hier: IntersectionObserver, der Flaechen auf opacity:0
+  // setzte und beim Eintritt wieder aufdeckte. Das hat einen Konstruktionsfehler:
+  // faellt das Skript aus, bleibt der Inhalt unsichtbar. Bei einer Seite, deren
+  // Produkt der Text ist, ist das der teuerste denkbare Fehler.
+  // Mit animation-timeline kehrt sich das um: kennt der Browser die Eigenschaft
+  // nicht, laeuft einfach keine Animation und alles ist von Anfang an sichtbar.
+  // Dazu laeuft es ausserhalb des Hauptthreads und kostet kein JavaScript.
+
+  // --- Leseband ----------------------------------------------------------
+  // Nur auf Seiten mit Fliesstext, und nur wenn es dort etwas zu scrollen gibt.
+  var artikel = document.querySelector(".article");
+  if (artikel && document.body.scrollHeight > window.innerHeight * 1.6 && !sanft.matches) {
+    var band = document.createElement("div");
+    band.className = "leseband";
+    band.setAttribute("aria-hidden", "true");
+    document.body.appendChild(band);
+
+    var kannZeitachse = window.CSS && CSS.supports && CSS.supports("animation-timeline", "scroll()");
+    if (kannZeitachse) {
+      // Der Browser rechnet selbst, ausserhalb des Hauptthreads.
+      wurzel.classList.add("hat-scrollzeitachse");
+    } else {
+      var laeuft = false;
+      var rechnen = function () {
+        var max = document.documentElement.scrollHeight - window.innerHeight;
+        var p = max > 0 ? window.scrollY / max : 0;
+        band.style.setProperty("--fortschritt", Math.min(1, Math.max(0, p)).toFixed(4));
+        laeuft = false;
+      };
+      window.addEventListener("scroll", function () {
+        if (laeuft) return;
+        laeuft = true;
+        requestAnimationFrame(rechnen);
+      }, { passive: true });
+      rechnen();
+    }
+  }
+
+  // --- Menue mit Escape schliessen ---------------------------------------
+  var kopf = document.querySelector(".site-header");
+  var schalter = document.querySelector(".nav-toggle");
+  if (kopf && schalter) {
+    document.addEventListener("keydown", function (e) {
+      if (e.key !== "Escape" || !kopf.classList.contains("nav-open")) return;
+      kopf.classList.remove("nav-open");
+      schalter.setAttribute("aria-expanded", "false");
+      schalter.setAttribute("aria-label", "Menü öffnen");
+      schalter.focus();
+    });
+  }
+})();
