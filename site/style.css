@@ -266,8 +266,17 @@ a.chip{color:var(--tinte);}
 /* ---------- Abschnitte ---------- */
 .section{padding:clamp(40px,5vw,72px) 0;}
 .section-alt{background:var(--karton);border-top:1px solid var(--linie);border-bottom:1px solid var(--linie);}
-.section-head{max-width:700px;margin-bottom:30px;}
+/* Die Messingkante des Spieltischs kehrt als Gliederungszeichen wieder: ein
+   kurzer Strich ueber jeder Abschnittsueberschrift. Ein Motiv, das an drei
+   Stellen auftaucht, bindet die Seite zusammen; drei verschiedene taeten es
+   nicht. */
+.section-head{max-width:700px;margin-bottom:var(--s6);}
+.section-head::before{content:"";display:block;width:34px;height:2px;border-radius:2px;
+  background:var(--messing);margin-bottom:var(--s4);}
 .section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+.section-head.center::before{margin-left:auto;margin-right:auto;}
+/* Auf dem Filz traegt das hellere Messing. */
+.table .section-head::before{background:var(--messing-hell);}
 .section-head h2{margin:0 0 10px;}
 .section-head p{color:var(--tinte-2);font-size:18px;margin:0;}
 .section-lead{color:var(--tinte-2);max-width:680px;font-size:18.5px;margin:0 0 14px;}
@@ -613,8 +622,14 @@ table.compare tr.is-soon td{color:var(--tinte-3);}
 .topic-nav a:active{transform:scale(.97);}
 .topic-nav small{font-size:13px;color:var(--tinte-3);font-weight:700;}
 .topic{padding-top:34px;scroll-margin-top:84px;}
-.topic-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;
-  border-bottom:2px solid var(--filz);padding-bottom:10px;margin-bottom:20px;}
+/* Dasselbe Messingzeichen wie ueber den Abschnitten der Startseite, statt
+   einer zweiten, schwereren gruenen Linie. Ein Motiv, nicht zwei. Der Strich
+   sitzt an der Ueberschrift, nicht am Behaelter: der ist ein Flex-Container,
+   ein ::before darin wuerde zum Flex-Element und die Zeile sprengen. */
+.topic-head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s4);flex-wrap:wrap;
+  border-bottom:1px solid var(--linie);padding-bottom:var(--s3);margin-bottom:var(--s5);}
+.topic-head h2::before{content:"";display:block;width:34px;height:2px;border-radius:2px;
+  background:var(--messing);margin-bottom:var(--s3);}
 .topic-head h2{margin:0;}
 .topic-head p{margin:0;color:var(--tinte-2);font-size:15.5px;max-width:560px;}
 .overview-intro{max-width:760px;}
