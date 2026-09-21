@@ -454,6 +454,29 @@ ul.toc{list-style:none;display:grid;gap:0 var(--s7);
 .disclosure strong{color:var(--kreide);}
 .article .disclosure p{max-width:none;}
 .article .disclosure > *:last-child{margin-bottom:0;}
+/* Der Kasten trug sein Zeichen bisher als farbiges Emoji im Text. Die
+   Unterscheidung steckt jetzt im Rand: Jade fuer einen Hinweis, Rosé fuer
+   eine Warnung. 215 Kaesten sind dadurch Warnung, 194 bleiben Hinweis. */
+.disclosure.ist-warnung{border-left-color:var(--rose);}
+
+/* Haken, Kreuz und Warnzeichen standen als farbige Emoji im Listentext.
+   Sie sind jetzt Zeichen des Systems: gleiche Groesse, gleiche Grundlinie,
+   gleiche Farbwelt. Ein Vorleser nennt ausserdem keine Bildnamen mehr. */
+li.ja,li.nein,li.acht{list-style:none;position:relative;
+  padding-left:26px;margin-left:calc(var(--s5) * -1);}
+li.ja::before,li.nein::before,li.acht::before{position:absolute;left:0;top:0;
+  font-family:var(--font-mono),"Segoe UI Symbol",sans-serif;
+  font-size:.95em;line-height:inherit;font-weight:600;}
+li.ja::before{content:"\2713";color:var(--jade);}
+/* Merklisten trugen ein Kaestchen als Textzeichen und bekamen vom Browser
+   zusaetzlich einen Aufzaehlungspunkt: zwei Marker je Zeile. Das Kaestchen
+   ist jetzt gezeichnet und sitzt auf der Grundlinie der ersten Zeile. */
+li.kaestchen{list-style:none;position:relative;padding-left:26px;
+  margin-left:calc(var(--s5) * -1);}
+li.kaestchen::before{content:"";position:absolute;left:1px;top:.42em;
+  width:11px;height:11px;border:1px solid var(--linie-3);border-radius:1px;}
+li.nein::before{content:"\2715";color:var(--rose);}
+li.acht::before{content:"!";color:var(--sand);}
 
 .pros-cons{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));
   gap:var(--s4);margin:var(--s8) 0;}
