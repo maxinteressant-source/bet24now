@@ -394,7 +394,11 @@
       }).join("");
       var postCard = '<div class="side-card"><h2 class="side-title">Neueste Beiträge</h2><div class="side-posts">' + latest + "</div></div>";
 
-      aside.innerHTML = catCard + postCard;
+      // Anhaengen statt ersetzen: in der Leiste kann bereits das
+      // mitlaufende Inhaltsverzeichnis stehen, das synchron aufgebaut wird,
+      // waehrend diese Daten noch geladen werden. innerHTML haette es
+      // stillschweigend geloescht.
+      aside.insertAdjacentHTML("beforeend", catCard + postCard);
     })
     .catch(function () {});
 })();
@@ -580,4 +584,64 @@
       schalter.focus();
     });
   }
+})();
+
+// ============================================================
+// Mitlaufendes Inhaltsverzeichnis in der Seitenleiste
+// Artikel hier sind 2.500 bis 4.000 Woerter lang. Ein Verzeichnis, das
+// mitlaeuft und den aktuellen Abschnitt markiert, ist bei dieser Laenge der
+// groesste Nutzengewinn der Vorlage.
+// Die Positionen werden einmal vermessen und bei Groessenaenderung neu. Das
+// vermeidet ein Neuberechnen des Layouts in jedem Scroll-Bild.
+// ============================================================
+(function () {
+  "use strict";
+  var artikel = document.querySelector(".blog-main .article, .article");
+  var leiste = document.querySelector(".blog-sidebar");
+  if (!artikel || !leiste) return;
+
+  var titel = [].slice.call(artikel.querySelectorAll("h2[id]")).filter(function (h) {
+    return h.id !== "toc" && h.textContent.trim().length > 1;
+  });
+  if (titel.length < 3) return;
+
+  var karte = document.createElement("nav");
+  karte.className = "side-card side-toc";
+  karte.setAttribute("aria-label", "Inhalt dieses Beitrags");
+  var html = '<p class="side-title">Inhalt</p><ol class="toc-liste">';
+  titel.forEach(function (h) {
+    var t = h.textContent.replace(/\s+/g, " ").trim();
+    html += '<li><a href="#' + h.id + '">' + t.replace(/[&<>"]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+    }) + "</a></li>";
+  });
+  karte.innerHTML = html + "</ol>";
+  leiste.insertBefore(karte, leiste.firstChild);
+  document.documentElement.classList.add("hat-seiten-toc");
+
+  var links = [].slice.call(karte.querySelectorAll("a"));
+  var aktiv = -1;
+  // Die Positionen werden im Scroll-Bild frisch gelesen statt einmal
+  // zwischengespeichert. Vorher wurden sie vor dem Laden der Bilder vermessen
+  // und zeigten danach auf den falschen Abschnitt. Achtzehn Lesezugriffe pro
+  // Bild sind guenstig, solange nichts dazwischen geschrieben wird.
+  var setzen = function () {
+    var grenze = 130;
+    var i = 0;
+    while (i < titel.length && titel[i].getBoundingClientRect().top <= grenze) i++;
+    i = Math.max(0, i - 1);
+    if (i === aktiv) return;
+    if (links[aktiv]) links[aktiv].removeAttribute("aria-current");
+    aktiv = i;
+    if (links[aktiv]) links[aktiv].setAttribute("aria-current", "true");
+  };
+  var laeuft = false;
+  var beiScroll = function () {
+    if (laeuft) return;
+    laeuft = true;
+    requestAnimationFrame(function () { setzen(); laeuft = false; });
+  };
+  setzen();
+  window.addEventListener("scroll", beiScroll, { passive: true });
+  window.addEventListener("resize", beiScroll, { passive: true });
 })();

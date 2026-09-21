@@ -168,11 +168,27 @@ h4{font-size:17px;margin:var(--s6) 0 var(--s2);}
 
 /* ---------- Kopfzeile ---------- */
 .site-header{position:sticky;top:0;z-index:50;background:var(--filz);border-bottom:1px solid var(--filz-tief);}
+/* Sobald die Seite laeuft, legt sich ein Schatten unter die Kopfzeile: sie
+   loest sich sichtbar vom Inhalt, statt auf ihm zu kleben. Scroll-getrieben
+   und damit ohne Scroll-Listener und ausserhalb des Hauptthreads. */
+@keyframes kopf-loest-sich{
+  from{box-shadow:0 0 0 rgba(0,0,0,0);}
+  to{box-shadow:0 14px 28px -22px rgba(0,0,0,.75);}
+}
+@supports (animation-timeline:scroll()){
+  @media(prefers-reduced-motion:no-preference){
+    .site-header{animation:kopf-loest-sich linear both;animation-timeline:scroll(root block);animation-range:0 110px;}
+  }
+}
 .site-header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:20px;}
 .logo{font-family:var(--font-display);font-weight:800;font-size:25px;color:var(--auf-filz);letter-spacing:-.01em;
   font-variation-settings:"opsz" 48;line-height:1;}
 .logo span{color:var(--messing-hell);}
-.logo:hover{text-decoration:none;color:#fff;}
+.logo{transition:color var(--t-kurz) ease;}
+@media(hover:hover) and (pointer:fine){
+  .logo:hover{text-decoration:none;color:#fff;}
+}
+.logo:active{transform:scale(.98);}
 .nav{display:flex;align-items:center;gap:4px;}
 .nav a{color:var(--auf-filz-2);padding:8px 13px;font-size:15.5px;font-weight:600;border-radius:var(--r-klein);
   position:relative;transition:color var(--t-kurz) ease;}
@@ -221,7 +237,12 @@ h4{font-size:17px;margin:var(--s6) 0 var(--s2);}
   padding:4px 11px;font-size:14px;font-weight:700;line-height:1.4;margin-bottom:14px;}
 .eyebrow{display:block;color:var(--link);font-size:15px;font-weight:700;margin-bottom:6px;}
 .chip{display:inline-flex;align-items:center;gap:7px;background:var(--karton);border:1px solid var(--linie);
-  border-radius:var(--r-klein);padding:7px 12px;font-size:14px;}
+  border-radius:var(--r-klein);padding:7px 12px;font-size:14px;
+  transition:border-color var(--t-kurz) ease,box-shadow var(--t-kurz) var(--aus);}
+a.chip{color:var(--tinte);}
+@media(hover:hover) and (pointer:fine){
+  a.chip:hover{border-color:var(--linie-stark);box-shadow:var(--e1);text-decoration:none;}
+}
 .chip .k{color:var(--tinte-3);font-size:13px;display:block;line-height:1.1;margin-bottom:2px;}
 
 /* ---------- Abschnitte ---------- */
@@ -270,22 +291,41 @@ h4{font-size:17px;margin:var(--s6) 0 var(--s2);}
    Zeile, weit ueber der komfortablen Spanne. Nachgemessen ist ein ch hier
    1,32 Durchschnittszeichen breit, 53ch treffen also rund 70. */
 .article p,.article li{max-width:53ch;}
-.article h2{font-size:clamp(25px,2.6vw,32px);margin-top:1.9em;}
+/* Der Abstand ueber einer Ueberschrift gehoert zu ihr, nicht zum Absatz
+   darueber. Grosszuegig oben, knapp unten: so bindet sie sich an ihren
+   eigenen Text und trennt vom vorigen. */
+.article h2{font-size:clamp(25px,2.6vw,32px);margin-top:var(--s9);margin-bottom:var(--s4);}
+.article h2:first-child{margin-top:0;}
+/* Der erste Absatz traegt den Einstieg und darf das zeigen. Klassischer
+   Zeitschriftengriff, kostet nichts und ordnet die Seite sofort. */
+.article > p:first-of-type{font-size:19.5px;line-height:1.58;color:var(--tinte);max-width:50ch;}
 .article a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;
   text-decoration-color:rgba(28,107,80,.45);}
 .article a:hover{text-decoration-color:var(--link);}
-.article ul,.article ol{padding-left:22px;}
-.article li{margin-bottom:8px;}
+.article ul,.article ol{padding-left:var(--s5);margin:0 0 var(--s5);}
+.article li{margin-bottom:var(--s3);}
+.article li::marker{font-variant-numeric:tabular-nums;}
+/* Verschachtelte Listen bekommen Luft, aber keinen doppelten Abstand. */
+.article li > ul,.article li > ol{margin:var(--s3) 0 0;}
 .article li::marker{color:var(--filz-hell);}
-.article blockquote{margin:24px 0;padding:4px 0 4px 20px;border-left:3px solid var(--messing);
-  font-family:var(--font-display);font-size:22px;line-height:1.4;color:var(--tinte);}
+/* Das Zitat steht auf dem Filzton statt nur an einer Linie. Die Didone
+   traegt hier, weil die Groesse stimmt. */
+.article blockquote{margin:var(--s7) 0;padding:var(--s5) var(--s6);border-left:3px solid var(--messing);
+  background:var(--blass-messing);border-radius:0 var(--r-karte) var(--r-karte) 0;
+  font-family:var(--font-display);font-size:23px;line-height:1.42;color:var(--tinte);}
+.article blockquote p{margin:0;max-width:none;}
+.article blockquote p + p{margin-top:var(--s4);}
 figure.article-img{margin:0 0 26px;}
 figure.article-img img{width:100%;height:auto;border-radius:var(--r-karte);display:block;aspect-ratio:1200/627;object-fit:cover;background:var(--panel-3);}
-figure.article-img figcaption{font-size:13px;color:var(--tinte-3);margin-top:8px;text-align:right;}
+figure.article-img figcaption{font-size:13.5px;color:var(--tinte-3);margin-top:var(--s2);text-align:right;
+  padding-right:var(--s1);border-top:1px solid var(--linie);padding-top:var(--s2);}
 figure.article-img figcaption a{color:var(--tinte-3);}
 
 /* Inhaltsverzeichnis: ruhiges Feld im Blatt, zweispaltig ab genug Breite. */
-.toc{margin:0 0 30px;padding:20px 22px;background:var(--panel-2);border-radius:var(--r-karte);}
+/* Verzeichnis im Fliesstext. Auf breiten Schirmen uebernimmt die Seitenleiste,
+   hier steht es fuer schmale Schirme und fuer den Fall ohne Seitenleiste. */
+.toc{margin:0 0 var(--s7);padding:var(--s5);background:var(--panel-2);border-radius:var(--r-karte);
+  border:1px solid var(--linie);}
 .toc strong{display:block;font-size:15px;font-weight:700;color:var(--tinte);margin-bottom:10px;}
 .toc ul{list-style:none;margin:0;padding:0;display:grid;gap:0 26px;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));}
 .article .toc li{margin:0;max-width:none;}
@@ -301,26 +341,49 @@ figure.article-img figcaption a{color:var(--tinte-3);}
 }
 
 /* Hinweiskaesten */
-.disclosure{background:var(--blass-messing);border-left:3px solid var(--messing);border-radius:0 var(--r-klein) var(--r-klein) 0;
-  padding:14px 18px;font-size:15px;color:var(--tinte-2);margin:22px 0;line-height:1.6;}
+/* Hinweiskasten. Etwas mehr Innenraum und eine eigene Radienform, damit er
+   als Einschub gelesen wird und nicht als eingefaerbter Absatz. */
+.disclosure{background:var(--blass-messing);border-left:3px solid var(--messing);
+  border-radius:0 var(--r-karte) var(--r-karte) 0;
+  padding:var(--s4) var(--s5);font-size:15.5px;color:var(--tinte-2);margin:var(--s6) 0;line-height:1.62;
+  box-shadow:var(--e1);}
+.disclosure strong{color:var(--tinte);}
+.article .disclosure p{max-width:none;}
+.article .disclosure > *:last-child{margin-bottom:0;}
 .pros-cons{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:26px 0;}
-.pros,.cons{background:var(--panel-2);border-radius:var(--r-karte);padding:18px 22px;border-top:3px solid var(--filz);}
+.pros,.cons{background:var(--panel-2);border-radius:var(--r-karte);padding:var(--s5) var(--s5) var(--s4);border-top:3px solid var(--filz);
+  box-shadow:var(--e1);}
+.article .pros li,.article .cons li{max-width:none;margin-bottom:var(--s2);}
+.pros ul,.cons ul{margin-bottom:0;}
 .cons{border-top-color:var(--rot);}
 .pros h3,.cons h3{margin-top:0;font-size:17px;}
 .pros h3{color:var(--filz);}
 .cons h3{color:var(--rot);}
-.related{margin-top:36px;padding:22px 24px;background:var(--blass-filz);border-radius:var(--r-karte);}
+.related{margin-top:var(--s9);padding:var(--s6);background:var(--blass-filz);border-radius:var(--r-flaeche);}
 .related h2{margin:0 0 12px;font-size:22px;}
 .related ul{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px 26px;}
 .related li{margin:0;}
-.related a{color:var(--filz);font-weight:600;font-size:15.5px;}
+.related a{color:var(--filz);font-weight:600;font-size:15.5px;
+  transition:color var(--t-kurz) ease;}
+@media(hover:hover) and (pointer:fine){
+  .related a:hover{color:var(--link);}
+}
 
 /* Tabellen */
 .table-scroll{overflow-x:auto;margin:22px 0 12px;-webkit-overflow-scrolling:touch;border:1px solid var(--linie);border-radius:var(--r-karte);background:var(--karton);}
 table.compare,table.specs{width:100%;border-collapse:collapse;}
 table.compare{min-width:640px;}
 table.specs{min-width:420px;}
-table.compare th,table.compare td,table.specs th,table.specs td{padding:13px 18px;text-align:left;border-bottom:1px solid var(--linie);vertical-align:middle;font-size:15.5px;}
+table.compare th,table.compare td,table.specs th,table.specs td{padding:var(--s3) var(--s5);text-align:left;border-bottom:1px solid var(--linie);vertical-align:middle;font-size:15.5px;}
+/* Zahlen in Tabellen laufen auf gleicher Breite, sonst tanzen die Spalten. */
+table.compare td,table.specs td{font-variant-numeric:tabular-nums;}
+/* Zeile unter dem Zeiger hervorheben: bei breiten Tabellen verliert man
+   sonst die Zeile beim Wandern nach rechts. */
+@media(hover:hover) and (pointer:fine){
+  table.compare tbody tr,table.specs tbody tr{transition:background var(--t-kurz) ease;}
+  table.compare tbody tr:hover,table.specs tbody tr:hover{background:var(--panel-2);}
+  table.compare tr.is-top:hover{background:#F1E6CD;}
+}
 table.compare thead th,table.specs thead th{background:var(--panel-2);color:var(--tinte-2);font-size:14px;font-weight:700;}
 table.specs th{color:var(--tinte-2);font-weight:600;width:42%;}
 table.compare tbody tr:last-child td,table.specs tr:last-child th,table.specs tr:last-child td{border-bottom:none;}
@@ -613,18 +676,58 @@ table.compare tr.is-soon td{color:var(--tinte-3);}
 .cat-list li{border-top:1px solid var(--linie);}
 .cat-list li:first-child{border-top:none;}
 .cat-list a{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 2px;color:var(--tinte);font-weight:600;font-size:15.5px;}
-.cat-list a:hover{color:var(--link);}
+.cat-list a{transition:color var(--t-kurz) ease,padding-left var(--t-kurz) var(--aus);}
+@media(hover:hover) and (pointer:fine){
+  .cat-list a:hover{color:var(--link);padding-left:5px;}
+}
 .cat-badge{color:var(--tinte-3);font-size:13.5px;font-weight:700;}
 .side-posts{display:flex;flex-direction:column;}
 .side-post{display:flex;gap:11px;align-items:center;padding:8px 0;border-top:1px solid var(--linie);color:var(--tinte);}
 .side-post:first-child{border-top:none;}
-.side-post:hover{text-decoration:none;}
-.side-post:hover .side-post-title{color:var(--link);text-decoration:underline;}
+.side-post{transition:background var(--t-kurz) ease;border-radius:var(--r-klein);}
+.side-post img{transition:transform var(--t-mittel) var(--aus);}
+@media(hover:hover) and (pointer:fine){
+  .side-post:hover{text-decoration:none;background:var(--panel-2);}
+  .side-post:hover .side-post-title{color:var(--link);}
+  .side-post:hover img{transform:scale(1.05);}
+}
 .side-post img{width:60px;height:46px;object-fit:cover;border-radius:6px;flex:none;background:var(--panel-3);}
 .side-post-body{min-width:0;}
 .side-post-title{margin:0;font-size:14.5px;font-weight:600;line-height:1.32;
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
 .side-post-date{display:block;color:var(--tinte-3);font-size:13px;margin-top:2px;}
+
+/* Mitlaufendes Inhaltsverzeichnis in der Seitenleiste.
+   Steht es, wird das Verzeichnis im Fliesstext auf breiten Schirmen
+   ausgeblendet: zweimal dasselbe nebeneinander hilft niemandem. Auf
+   schmalen Schirmen gibt es keine Seitenleiste, dort bleibt es stehen. */
+.side-toc .toc-liste{list-style:none;margin:0;padding:0;counter-reset:toc;
+  max-height:min(56vh,520px);overflow-y:auto;scrollbar-width:thin;}
+.side-toc li{counter-increment:toc;}
+.side-toc a{display:block;position:relative;padding:7px 2px 7px 26px;font-size:14.8px;line-height:1.38;
+  color:var(--tinte-2);border-left:2px solid transparent;
+  transition:color var(--t-kurz) ease,border-color var(--t-kurz) ease,background var(--t-kurz) ease;}
+.side-toc a::before{content:counter(toc);position:absolute;left:8px;top:7px;
+  font-size:12px;font-weight:700;color:var(--tinte-3);font-variant-numeric:tabular-nums;
+  transition:color var(--t-kurz) ease;}
+@media(hover:hover) and (pointer:fine){
+  .side-toc a:hover{color:var(--link);background:var(--panel-2);text-decoration:none;}
+}
+/* Der gelesene Abschnitt traegt die Messingkante. Nur eine Markierung auf
+   einmal, sonst zeigt das Verzeichnis nicht mehr, wo man steht. */
+.side-toc a[aria-current]{color:var(--tinte);font-weight:700;border-left-color:var(--messing);
+  background:var(--blass-messing);}
+.side-toc a[aria-current]::before{color:var(--messing-text);}
+@media(min-width:1001px){
+  html.hat-seiten-toc .blog-main .article > h2#toc,
+  html.hat-seiten-toc .blog-main .article > ul.toc{display:none;}
+}
+/* Unter 1001 px rutscht die Leiste unter den Artikel. Dort ist das
+   Verzeichnis im Text die bessere Stelle, das der Leiste waere ein zweites
+   am falschen Ort. */
+@media(max-width:1000px){
+  .side-toc{display:none;}
+}
 
 /* Teilen: einheitlich statt vier Markenfarben nebeneinander */
 .share-bar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:36px 0 6px;border-top:1px solid var(--linie);padding-top:18px;}
@@ -642,8 +745,14 @@ table.compare tr.is-soon td{color:var(--tinte-3);}
 .site-footer a:hover{color:#fff;}
 .footer-cols{display:grid;grid-template-columns:1.7fr 1fr 1fr 1.1fr 1.3fr;gap:30px 26px;padding-bottom:30px;margin-bottom:24px;border-bottom:1px solid var(--linie-filz);}
 .fcol h4{font-family:var(--font-display);color:var(--auf-filz);font-size:19px;margin:0 0 12px;font-weight:700;}
-.fcol a{display:block;margin-bottom:9px;font-size:15px;color:var(--auf-filz-2);}
-.fcol a:hover{color:#fff;}
+/* Der Fussbereich traegt viele Links dicht beieinander. Ein kleiner Versatz
+   beim Zeigen sagt zuverlaessiger, welcher gemeint ist, als ein Farbwechsel
+   allein auf dunklem Grund. */
+.fcol a{display:block;margin-bottom:9px;font-size:15px;color:var(--auf-filz-2);width:fit-content;
+  transition:color var(--t-kurz) ease,transform var(--t-kurz) var(--aus);}
+@media(hover:hover) and (pointer:fine){
+  .fcol a:hover{color:#fff;transform:translateX(3px);}
+}
 .fcol-brand .logo{font-size:26px;margin-bottom:12px;display:inline-block;}
 .fcol-brand p{margin:0;max-width:320px;font-size:15px;line-height:1.6;}
 .site-footer .resp{border-left:3px solid var(--messing);padding:14px 18px;margin-bottom:20px;font-size:15px;background:rgba(243,239,227,.05);border-radius:0 var(--r-klein) var(--r-klein) 0;}
@@ -652,11 +761,25 @@ table.compare tr.is-soon td{color:var(--tinte-3);}
 .footer-meta{border-top:1px solid var(--linie-filz);margin-top:22px;padding-top:18px;display:flex;flex-wrap:wrap;gap:6px 20px;justify-content:center;}
 
 /* ---------- Nach oben ---------- */
-.to-top{position:fixed;right:20px;bottom:20px;width:44px;height:44px;border-radius:50%;border:1px solid var(--linie-stark);
-  background:var(--karton);color:var(--filz);font-size:19px;cursor:pointer;box-shadow:var(--schatten-blatt);
-  opacity:0;visibility:hidden;transition:opacity .2s,visibility .2s;z-index:40;}
+.to-top{position:fixed;right:20px;bottom:20px;width:46px;height:46px;border-radius:50%;border:1px solid var(--linie-stark);
+  background:var(--karton);color:var(--filz);font-size:19px;cursor:pointer;box-shadow:var(--e2);
+  opacity:0;visibility:hidden;z-index:40;display:grid;place-items:center;
+  transition:opacity var(--t-mittel) var(--aus),visibility var(--t-mittel),background var(--t-kurz) ease,
+    color var(--t-kurz) ease,transform var(--t-druck) var(--aus),box-shadow var(--t-kurz) var(--aus);}
 .to-top.show{opacity:1;visibility:visible;}
-.to-top:hover{background:var(--filz);color:var(--auf-filz);}
+@media(hover:hover) and (pointer:fine){
+  .to-top:hover{background:var(--filz);color:var(--auf-filz);box-shadow:var(--e3);}
+}
+.to-top:active{transform:scale(.93);}
+/* Wo der Browser Scroll-Zeitachsen kennt, steuert CSS das Erscheinen selbst.
+   Die Klasse .show aus main.js bleibt als Rueckfall fuer alle anderen. */
+@keyframes hoch-einblenden{
+  from{opacity:0;visibility:hidden;transform:scale(.9);}
+  to{opacity:1;visibility:visible;transform:none;}
+}
+@supports (animation-timeline:scroll()){
+  .to-top{animation:hoch-einblenden linear both;animation-timeline:scroll(root block);animation-range:380px 520px;}
+}
 
 /* Die Scroll-Einblendung ist entfernt. Die Klasse bleibt wirkungslos stehen,
    falls noch eine gecachte main.js sie setzt. */
