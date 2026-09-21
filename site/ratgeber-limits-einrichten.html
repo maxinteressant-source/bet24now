@@ -22,9 +22,9 @@
 
   <link rel="icon" href="/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="stylesheet" href="/style.css?v=36">
-  <link rel="preload" as="font" type="font/woff2" href="/fonts/atkinson-next.woff2" crossorigin>
-  <link rel="preload" as="font" type="font/woff2" href="/fonts/bodoni-moda.woff2" crossorigin>
+  <link rel="stylesheet" href="/style.css?v=37">
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-tight.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="/fonts/bricolage.woff2" crossorigin>
 
   <script type="application/ld+json">
   {
@@ -122,19 +122,21 @@
 
         <h2 id="tabelle">Übersicht: welches Limit begrenzt was</h2>
         <p>Damit du die Werkzeuge schnell einordnen kannst, fasst die folgende Tabelle zusammen, was jedes Limit begrenzt und wie schnell es wirkt. Besonders die Spalte zur Geschwindigkeit ist wichtig: Sie zeigt das Schutzprinzip in der Praxis.</p>
-        <table>
-          <thead><tr><th>Werkzeug</th><th>Was es begrenzt</th><th>Wie schnell es greift</th></tr></thead>
-          <tbody>
-            <tr><td>Einzahlungslimit</td><td>Einzahlungen pro Tag, Woche oder Monat</td><td>Senkung sofort, Erhöhung verzögert (oft mehrere Tage)</td></tr>
-            <tr><td>Verlustlimit</td><td>Nettoverlust im gewählten Zeitraum</td><td>Senkung sofort, Erhöhung verzögert</td></tr>
-            <tr><td>Einsatzlimit</td><td>Einsatz pro Runde oder Zeitraum</td><td>Senkung sofort, Erhöhung verzögert</td></tr>
-            <tr><td>Zeitlimit</td><td>Spieldauer pro Session oder Zeitraum</td><td>meist sofort wirksam</td></tr>
-            <tr><td>Realitäts-Check</td><td>erinnert nach X Minuten an die Spielzeit</td><td>sofort ab dem nächsten Intervall</td></tr>
-            <tr><td>Auszeit (Cooling-off)</td><td>sperrt das Konto für Stunden bis Wochen</td><td>sofort, endet automatisch</td></tr>
-            <tr><td>Panikknopf</td><td>sofortige Kurzsperre auf Knopfdruck</td><td>sofort</td></tr>
-            <tr><td>OASIS-Selbstsperre</td><td>anbieterübergreifender, dauerhafter Ausschluss</td><td>sofort, dauerhaft bis zur Aufhebung</td></tr>
-          </tbody>
-        </table>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Werkzeug</th><th>Was es begrenzt</th><th>Wie schnell es greift</th></tr></thead>
+            <tbody>
+              <tr><td>Einzahlungslimit</td><td>Einzahlungen pro Tag, Woche oder Monat</td><td>Senkung sofort, Erhöhung verzögert (oft mehrere Tage)</td></tr>
+              <tr><td>Verlustlimit</td><td>Nettoverlust im gewählten Zeitraum</td><td>Senkung sofort, Erhöhung verzögert</td></tr>
+              <tr><td>Einsatzlimit</td><td>Einsatz pro Runde oder Zeitraum</td><td>Senkung sofort, Erhöhung verzögert</td></tr>
+              <tr><td>Zeitlimit</td><td>Spieldauer pro Session oder Zeitraum</td><td>meist sofort wirksam</td></tr>
+              <tr><td>Realitäts-Check</td><td>erinnert nach X Minuten an die Spielzeit</td><td>sofort ab dem nächsten Intervall</td></tr>
+              <tr><td>Auszeit (Cooling-off)</td><td>sperrt das Konto für Stunden bis Wochen</td><td>sofort, endet automatisch</td></tr>
+              <tr><td>Panikknopf</td><td>sofortige Kurzsperre auf Knopfdruck</td><td>sofort</td></tr>
+              <tr><td>OASIS-Selbstsperre</td><td>anbieterübergreifender, dauerhafter Ausschluss</td><td>sofort, dauerhaft bis zur Aufhebung</td></tr>
+            </tbody>
+          </table>
+        </div>
         <p>Die Regel dahinter ist einfach zu merken: Alles, was deine Grenzen enger zieht, wirkt umgehend. Alles, was dir mehr Spielraum gibt, muss eine Wartezeit durchlaufen. So kann eine impulsive Entscheidung dir nie sofort schaden.</p>
 
         <h2 id="einzahlungslimit">Einzahlungslimit setzen: das Wichtigste zuerst</h2>
@@ -302,7 +304,7 @@
   </footer>
 
   <button id="toTop" class="to-top" aria-label="Nach oben scrollen" title="Nach oben">↑</button>
-  <script src="/main.js?v=36" defer></script>
+  <script src="/main.js?v=37" defer></script>
 
 </body>
 </html>

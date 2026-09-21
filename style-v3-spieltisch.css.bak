@@ -1,0 +1,962 @@
+/* ============================================================
+   Bet24Now - Design System v3 "Spieltisch"
+
+   Motiv: die Materialwelt des Casinotischs. Filz als Markenflaeche,
+   Messing fuer Angebot und Testsieger, Spielkarten-Weiss zum Lesen,
+   Kartenrot nur fuer Nachteile. Die Stockfotos zeigen genau diese Welt
+   (Walnussholz, Messing, rot/schwarzes Roulette).
+
+   Die eine laute Stelle ist die Rangliste auf der Startseite: drei
+   Spielkarten auf dem Filz. Alles andere ist Papier und Tinte.
+
+   FARBROLLEN
+   - Filz     Marke, Struktur, Links
+   - Messing  Aktion (Angebots-Buttons) und Testsieger
+   - Rot      ausschliesslich Nachteile
+   - Tinte    Lesen
+   Kontraste nach WCAG nachgerechnet: Tinte-3 nur auf Weiss, Messing
+   auf Filz nur gross oder dekorativ.
+   ============================================================ */
+
+@font-face{font-family:'Bodoni Moda';font-style:normal;font-weight:400 900;font-display:optional;src:url('/fonts/bodoni-moda.woff2') format('woff2');}
+@font-face{font-family:'Atkinson Next';font-style:normal;font-weight:200 800;font-display:optional;src:url('/fonts/atkinson-next.woff2') format('woff2');}
+@font-face{font-family:'Atkinson Next';font-style:italic;font-weight:200 800;font-display:optional;src:url('/fonts/atkinson-next-italic.woff2') format('woff2');}
+
+:root{
+  /* Material */
+  --filz:#1D4A3C;
+  --filz-hell:#285E4D;
+  --filz-tief:#12302A;
+  --grund:#E9EDE6;
+  --karton:#FFFFFF;
+  --elfenbein:#FBF9F3;
+  --blass-filz:#DDE8E1;
+  --blass-messing:#F6EFDC;
+  /* Tinte */
+  --tinte:#16211C;
+  --tinte-2:#4B5852;
+  --tinte-3:#6A756F;
+  --auf-filz:#F3EFE3;
+  --auf-filz-2:#B9CBC2;
+  /* Akzente */
+  --link:#1C6B50;
+  --messing:#C9A04E;
+  --messing-hell:#D9B568;
+  --messing-text:#86661F;
+  --rot:#A8302A;
+  /* Linien, Radien, Schatten */
+  --linie:rgba(22,33,28,.11);
+  --linie-stark:rgba(22,33,28,.2);
+  --linie-filz:rgba(243,239,227,.16);
+  --r-karte:16px;
+  --r-flaeche:18px;
+  --r-knopf:10px;
+  --r-klein:7px;
+  --schatten-blatt:0 1px 2px rgba(22,33,28,.05),0 14px 34px -20px rgba(22,33,28,.22);
+  --schatten-karte:0 2px 3px rgba(0,0,0,.12),0 26px 48px -24px rgba(0,0,0,.55);
+  --maxw:1200px;
+  --font-text:'Atkinson Next',ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --font-display:'Bodoni Moda','Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif;
+
+  /* Aliase der alten Token-Namen. glossar.html und umsatzbedingungen-rechner.html
+     haben eigene <style>-Bloecke, und Inline-Stile nutzen var(--green-2),
+     var(--muted), var(--red). Die Namen bleiben, die Werte folgen dem neuen System. */
+  --bg:var(--grund);
+  --bg-2:var(--grund);
+  --panel:var(--karton);
+  --panel-2:#F2F5F0;
+  --panel-3:#E4EAE2;
+  --glass:var(--karton);
+  --glass-2:#F4F7F2;
+  --border:var(--linie);
+  --border-lt:var(--linie-stark);
+  --text:var(--tinte);
+  --muted:var(--tinte-2);
+  --faint:var(--tinte-3);
+  --green:var(--link);
+  --green-2:var(--link);
+  --green-deep:var(--filz);
+  --green-ink:var(--tinte);
+  --green-soft:var(--blass-filz);
+  --gold:var(--messing);
+  --gold-2:var(--messing-text);
+  --gold-deep:var(--messing-text);
+  --gold-soft:var(--blass-messing);
+  --gold-ink:var(--tinte);
+  --red:var(--rot);
+  --radius:var(--r-karte);
+  --radius-sm:var(--r-klein);
+  --radius-lg:var(--r-flaeche);
+  --shadow:var(--schatten-karte);
+  --shadow-sm:var(--schatten-blatt);
+  --font-body:var(--font-text);
+  --font-head:var(--font-display);
+
+  /* ---------- Bewegung ----------
+     Eigene Kurven statt der eingebauten. Die mitgelieferten CSS-Easings sind
+     zu weich, ihnen fehlt der Antritt, der eine Bewegung gewollt aussehen
+     laesst. Hausregel: Eintritt und Austritt auf ease-out, Bewegung auf der
+     Flaeche auf ease-in-out, reine Farbwechsel auf ease.
+     ease-in kommt nicht vor. Es startet langsam, genau in dem Moment, in dem
+     der Blick am aufmerksamsten ist, und laesst die Seite traege wirken. */
+  --aus:cubic-bezier(.23,1,.32,1);
+  --ein-aus:cubic-bezier(.77,0,.175,1);
+  --weich:cubic-bezier(.4,0,.2,1);
+  --t-druck:130ms;
+  --t-kurz:180ms;
+  --t-mittel:240ms;
+  --t-lang:380ms;
+
+  /* ---------- Abstandsleiter ----------
+     Vorher standen 13, 22, 26, 34 und 60,8 px nebeneinander, jeder Wert
+     einzeln entschieden. Eine Leiter macht den vertikalen Rhythmus lesbar. */
+  --s1:4px;  --s2:8px;   --s3:12px; --s4:16px; --s5:22px;
+  --s6:30px; --s7:40px;  --s8:54px; --s9:72px; --s10:96px;
+
+  /* ---------- Tiefe ----------
+     Vier Stufen statt zwei. Papier liegt flach, Karten heben sich beim
+     Zeigen, nur Schwebendes nutzt die oberste Stufe. */
+  --e1:0 1px 2px rgba(22,33,28,.05);
+  --e2:0 1px 2px rgba(22,33,28,.05),0 14px 34px -20px rgba(22,33,28,.22);
+  --e3:0 2px 4px rgba(22,33,28,.07),0 22px 44px -22px rgba(22,33,28,.30);
+  --e4:0 3px 8px rgba(22,33,28,.09),0 36px 68px -26px rgba(22,33,28,.40);
+}
+
+/* ---------- Sprunglink ----------
+   Steht als erstes Element im Dokument und ist erst beim Tabben sichtbar.
+   Ohne ihn muss sich jemand mit Tastatur auf jeder Seite durch Angebotsleiste
+   und Navigation arbeiten, bevor der Text beginnt: ueber 80 Stationen.
+   Bewusst nicht mit display:none oder visibility versteckt, beides nimmt das
+   Element aus der Tabulatorfolge und damit genau seine Funktion. */
+.sprunglink{position:absolute;left:var(--s4);top:var(--s4);z-index:9999;
+  transform:translateY(calc(-100% - var(--s7)));
+  background:var(--messing);color:var(--tinte);font-weight:700;font-size:15.5px;
+  padding:11px 18px;border-radius:var(--r-knopf);box-shadow:var(--e3);
+  transition:transform var(--t-mittel) var(--aus);}
+.sprunglink:focus-visible{transform:none;text-decoration:none;}
+
+/* ---------- Grundlagen ---------- */
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%;scrollbar-gutter:stable;}
+body{margin:0;background:var(--grund);color:var(--tinte);font-family:var(--font-text);
+  font-size:17.5px;line-height:1.62;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden;}
+/* Platz fuer die Angebotsleiste, die main.js oben einsetzt. Die Hoehe ist fest,
+   damit beim Einblenden nichts springt. */
+body{padding-top:44px;}
+body.no-promo{padding-top:0;}
+.promo-bar{position:absolute;top:0;left:0;right:0;z-index:45;}
+a{color:var(--link);text-decoration:none;}
+a{transition:color var(--t-kurz) ease,text-decoration-color var(--t-kurz) ease;}
+@media(hover:hover) and (pointer:fine){
+  a:hover{text-decoration:underline;text-underline-offset:3px;}
+}
+img{max-width:100%;height:auto;}
+p{margin:0 0 16px;}
+strong,b{font-weight:700;}
+::selection{background:var(--messing-hell);color:var(--tinte);}
+/* Ein Ring, der auf beiden Grundfarben steht: der Messingkern traegt auf
+   Filz, der dunkle Saum traegt auf Papier. Vorher war der Ring gruen und auf
+   der gruenen Kopfzeile praktisch unsichtbar. */
+:focus-visible{outline:2px solid var(--messing);outline-offset:3px;border-radius:5px;
+  box-shadow:0 0 0 5px rgba(22,33,28,.22);}
+.site-header :focus-visible,.table :focus-visible,.site-footer :focus-visible,.review-hero :focus-visible{
+  box-shadow:0 0 0 5px rgba(243,239,227,.3);}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+
+/* ---------- Typografie ----------
+   Bodoni fuer die grossen Ueberschriften und fuer Zahlen, Atkinson fuer alles,
+   was gelesen oder bedient wird. h3 bleibt bewusst in der Textschrift: eine
+   Didone unter 20 px verliert ihre Haarstriche. */
+/* Deutsche Komposita sprengen schmale Spalten: auf /testverfahren schob ein
+   einziges Wort in der H1 bei 320 px die ganze Seite waagerecht auf.
+   hyphens:auto trennt nach den Regeln der Sprache, die im lang-Attribut
+   steht, overflow-wrap ist der Notnagel fuer Woerter ohne Trennstelle. */
+h1,h2,h3,h4,.side-post-title,.news-body h3,.side-title{overflow-wrap:break-word;hyphens:auto;}
+h1,h2{font-family:var(--font-display);font-weight:700;color:var(--tinte);letter-spacing:-.01em;
+  font-variation-settings:"opsz" 28;line-height:1.08;}
+h1{font-size:clamp(34px,4.8vw,56px);margin:0 0 18px;font-variation-settings:"opsz" 96;}
+h2{font-size:clamp(26px,3vw,36px);margin:52px 0 14px;}
+h3,h4{font-family:var(--font-text);font-weight:700;color:var(--tinte);letter-spacing:-.005em;line-height:1.3;}
+/* h3 stand mit 19,5 px nur 11 Prozent ueber der Grundschrift und verschwand
+   dadurch im Text. 22 px geben ihr wieder eine eigene Stufe, ohne dass sie
+   mit h2 konkurriert. Die Textschrift bleibt: eine Didone verliert unter
+   20 px ihre Haarstriche. */
+h3{font-size:22px;margin:var(--s7) 0 var(--s3);line-height:1.25;}
+h4{font-size:17px;margin:var(--s6) 0 var(--s2);}
+
+/* ---------- Kopfzeile ---------- */
+.site-header{position:sticky;top:0;z-index:50;background:var(--filz);border-bottom:1px solid var(--filz-tief);}
+/* Sobald die Seite laeuft, legt sich ein Schatten unter die Kopfzeile: sie
+   loest sich sichtbar vom Inhalt, statt auf ihm zu kleben. Scroll-getrieben
+   und damit ohne Scroll-Listener und ausserhalb des Hauptthreads. */
+@keyframes kopf-loest-sich{
+  from{box-shadow:0 0 0 rgba(0,0,0,0);}
+  to{box-shadow:0 14px 28px -22px rgba(0,0,0,.75);}
+}
+@supports (animation-timeline:scroll()){
+  @media(prefers-reduced-motion:no-preference){
+    .site-header{animation:kopf-loest-sich linear both;animation-timeline:scroll(root block);animation-range:0 110px;}
+  }
+}
+.site-header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:20px;}
+.logo{font-family:var(--font-display);font-weight:800;font-size:25px;color:var(--auf-filz);letter-spacing:-.01em;
+  font-variation-settings:"opsz" 48;line-height:1;}
+.logo span{color:var(--messing-hell);}
+.logo{transition:color var(--t-kurz) ease;}
+@media(hover:hover) and (pointer:fine){
+  .logo:hover{text-decoration:none;color:#fff;}
+}
+.logo:active{transform:scale(.98);}
+.nav{display:flex;align-items:center;gap:4px;}
+.nav a{color:var(--auf-filz-2);padding:8px 13px;font-size:15.5px;font-weight:600;border-radius:var(--r-klein);
+  position:relative;transition:color var(--t-kurz) ease;}
+/* Der Strich waechst aus der Mitte, nicht von links. Das liest sich als
+   Markierung des Eintrags und nicht als Ladebalken. */
+.nav a::after{content:"";position:absolute;left:13px;right:13px;bottom:3px;height:2px;border-radius:2px;
+  background:var(--messing-hell);transform:scaleX(0);transform-origin:center;
+  transition:transform var(--t-mittel) var(--aus);}
+@media(hover:hover) and (pointer:fine){
+  .nav a:hover{color:#fff;text-decoration:none;}
+  .nav a:hover::after{transform:scaleX(1);}
+}
+.nav a[aria-current="page"]::after{transform:scaleX(1);}
+.nav a[aria-current="page"],.nav a.is-section{color:#fff;}
+.nav a.is-section::after{transform:scaleX(1);opacity:.55;}
+.nav-toggle{display:none;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;padding:0 11px;
+  background:transparent;border:1px solid var(--linie-filz);border-radius:var(--r-klein);cursor:pointer;}
+.nav-toggle span{display:block;height:2px;width:100%;background:var(--auf-filz);border-radius:2px;transition:transform .22s ease,opacity .2s ease;}
+
+/* ---------- Knoepfe ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--messing);color:var(--tinte);
+  font-family:var(--font-text);font-weight:700;font-size:16px;line-height:1.25;padding:13px 22px;border-radius:var(--r-knopf);
+  border:1px solid rgba(0,0,0,.08);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 1px 2px rgba(0,0,0,.12);
+  white-space:nowrap;cursor:pointer;
+  transition:background var(--t-kurz) ease,box-shadow var(--t-kurz) var(--aus),transform var(--t-druck) var(--aus);}
+/* Hover nur auf Geraeten mit echtem Zeiger. Auf Touch loest die Beruehrung
+   sonst den Hover aus und der Knopf bleibt danach hell stehen. */
+@media(hover:hover) and (pointer:fine){
+  .btn:hover{background:var(--messing-hell);color:var(--tinte);text-decoration:none;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 2px 7px rgba(0,0,0,.17);}
+}
+/* Der Druck skaliert, statt nach unten zu rutschen: Verschieben laesst den
+   Knopf wegkippen, Skalieren laesst ihn nachgeben. */
+.btn:active{transform:scale(.97);}
+.btn-lg{padding:15px 26px;font-size:17px;}
+.btn-sm{padding:8px 14px;font-size:14px;}
+.btn-ghost{background:transparent;color:var(--filz);border:1.5px solid var(--filz);box-shadow:none;}
+@media(hover:hover) and (pointer:fine){
+  .btn-ghost:hover{background:var(--filz);color:var(--auf-filz);}
+}
+
+/* ---------- Kennzeichen ----------
+   Kategorie- und Seitenkennzeichen in normaler Schreibung, nicht in
+   gesperrten Grossbuchstaben ueber jeder Ueberschrift. */
+.badge{display:inline-block;background:var(--blass-filz);color:var(--filz);border-radius:var(--r-klein);
+  padding:4px 11px;font-size:14px;font-weight:700;line-height:1.4;margin-bottom:14px;}
+.eyebrow{display:block;color:var(--link);font-size:15px;font-weight:700;margin-bottom:6px;}
+.chip{display:inline-flex;align-items:center;gap:7px;background:var(--karton);border:1px solid var(--linie);
+  border-radius:var(--r-klein);padding:7px 12px;font-size:14px;
+  transition:border-color var(--t-kurz) ease,box-shadow var(--t-kurz) var(--aus);}
+a.chip{color:var(--tinte);}
+@media(hover:hover) and (pointer:fine){
+  a.chip:hover{border-color:var(--linie-stark);box-shadow:var(--e1);text-decoration:none;}
+}
+.chip .k{color:var(--tinte-3);font-size:13px;display:block;line-height:1.1;margin-bottom:2px;}
+
+/* ---------- Abschnitte ---------- */
+.section{padding:clamp(40px,5vw,72px) 0;}
+.section-alt{background:var(--karton);border-top:1px solid var(--linie);border-bottom:1px solid var(--linie);}
+/* Die Messingkante des Spieltischs kehrt als Gliederungszeichen wieder: ein
+   kurzer Strich ueber jeder Abschnittsueberschrift. Ein Motiv, das an drei
+   Stellen auftaucht, bindet die Seite zusammen; drei verschiedene taeten es
+   nicht. */
+.section-head{max-width:700px;margin-bottom:var(--s6);}
+.section-head::before{content:"";display:block;width:34px;height:2px;border-radius:2px;
+  background:var(--messing);margin-bottom:var(--s4);}
+.section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+.section-head.center::before{margin-left:auto;margin-right:auto;}
+/* Auf dem Filz traegt das hellere Messing. */
+.table .section-head::before{background:var(--messing-hell);}
+.section-head h2{margin:0 0 10px;}
+.section-head p{color:var(--tinte-2);font-size:18px;margin:0;}
+.section-lead{color:var(--tinte-2);max-width:680px;font-size:18.5px;margin:0 0 14px;}
+.h2-accent::after{content:none;}
+
+/* ---------- Lese-Blatt ----------
+   Artikel stehen auf einem weissen Blatt auf dem Grund. Die Klasse .sheet
+   traegt die schmale Spalte; baut main.js die Seite zweispaltig um, uebernimmt
+   .blog-main das Blatt und die aeussere Huelle wird wieder durchsichtig. */
+.sheet{background:var(--karton);border-radius:var(--r-flaeche);box-shadow:var(--schatten-blatt);
+  padding:clamp(22px,4.2vw,54px);}
+.sheet.blog-wrap{background:none;box-shadow:none;padding:0 28px;border-radius:0;}
+.blog-main{background:var(--karton);border-radius:var(--r-flaeche);box-shadow:var(--schatten-blatt);
+  padding:clamp(22px,4.2vw,54px);}
+
+/* ---------- Brotkrumen, Meta, Autorenzeile ---------- */
+.crumbs{font-size:14px;color:var(--tinte-3);margin-bottom:18px;}
+.crumbs a{color:var(--tinte-2);}
+.crumbs span{color:var(--tinte-2);}
+.meta{color:var(--tinte-2);font-size:15px;margin-bottom:18px;}
+/* Steht direkt darunter die Autorenzeile, sagt die Redaktions-Metazeile nichts Neues. */
+.meta:has(+ .byline){display:none;}
+.avatar{display:inline-flex;align-items:center;justify-content:center;flex:none;border-radius:50%;
+  background:var(--filz);color:var(--auf-filz);font-family:var(--font-display);font-weight:700;letter-spacing:.02em;}
+.avatar:hover{text-decoration:none;color:#fff;}
+.byline{display:flex;align-items:center;gap:13px;border-top:1px solid var(--linie);border-bottom:1px solid var(--linie);
+  padding:14px 0;margin:0 0 26px;}
+.byline .avatar{width:44px;height:44px;font-size:16px;}
+.byline-info{font-size:15px;line-height:1.45;color:var(--tinte-2);}
+.byline-info .by-name{color:var(--tinte);font-weight:600;}
+.byline-info .by-name a{color:var(--tinte);text-decoration:underline;text-decoration-color:var(--linie-stark);text-underline-offset:3px;}
+.byline-info .by-meta{display:block;margin-top:2px;font-size:14px;}
+
+/* ---------- Artikel ---------- */
+.article{margin:24px 0 0;}
+.article > *:first-child{margin-top:0;}
+/* Die Einheit ch meint die Breite der Ziffer Null, in dieser Schrift deutlich
+   breiter als ein Durchschnittszeichen. 68ch ergaben gemessene 82 Zeichen pro
+   Zeile, weit ueber der komfortablen Spanne. Nachgemessen ist ein ch hier
+   1,32 Durchschnittszeichen breit, 53ch treffen also rund 70. */
+.article p,.article li{max-width:53ch;hyphens:auto;}
+/* Der Abstand ueber einer Ueberschrift gehoert zu ihr, nicht zum Absatz
+   darueber. Grosszuegig oben, knapp unten: so bindet sie sich an ihren
+   eigenen Text und trennt vom vorigen. */
+.article h2{font-size:clamp(25px,2.6vw,32px);margin-top:var(--s9);margin-bottom:var(--s4);}
+.article h2:first-child{margin-top:0;}
+/* Der erste Absatz traegt den Einstieg und darf das zeigen. Klassischer
+   Zeitschriftengriff, kostet nichts und ordnet die Seite sofort. */
+.article > p:first-of-type{font-size:19.5px;line-height:1.58;color:var(--tinte);max-width:50ch;}
+.article a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;
+  text-decoration-color:rgba(28,107,80,.45);}
+.article a:hover{text-decoration-color:var(--link);}
+.article ul,.article ol{padding-left:var(--s5);margin:0 0 var(--s5);}
+.article li{margin-bottom:var(--s3);}
+.article li::marker{font-variant-numeric:tabular-nums;}
+/* Verschachtelte Listen bekommen Luft, aber keinen doppelten Abstand. */
+.article li > ul,.article li > ol{margin:var(--s3) 0 0;}
+.article li::marker{color:var(--filz-hell);}
+/* Das Zitat steht auf dem Filzton statt nur an einer Linie. Die Didone
+   traegt hier, weil die Groesse stimmt. */
+.article blockquote{margin:var(--s7) 0;padding:var(--s5) var(--s6);border-left:3px solid var(--messing);
+  background:var(--blass-messing);border-radius:0 var(--r-karte) var(--r-karte) 0;
+  font-family:var(--font-display);font-size:23px;line-height:1.42;color:var(--tinte);}
+.article blockquote p{margin:0;max-width:none;}
+.article blockquote p + p{margin-top:var(--s4);}
+figure.article-img{margin:0 0 26px;}
+figure.article-img img{width:100%;height:auto;border-radius:var(--r-karte);display:block;aspect-ratio:1200/627;object-fit:cover;background:var(--panel-3);}
+figure.article-img figcaption{font-size:13.5px;color:var(--tinte-3);margin-top:var(--s2);text-align:right;
+  padding-right:var(--s1);border-top:1px solid var(--linie);padding-top:var(--s2);}
+figure.article-img figcaption a{color:var(--tinte-3);}
+
+/* Inhaltsverzeichnis: ruhiges Feld im Blatt, zweispaltig ab genug Breite. */
+/* Verzeichnis im Fliesstext. Auf breiten Schirmen uebernimmt die Seitenleiste,
+   hier steht es fuer schmale Schirme und fuer den Fall ohne Seitenleiste. */
+.toc{margin:0 0 var(--s7);padding:var(--s5);background:var(--panel-2);border-radius:var(--r-karte);
+  border:1px solid var(--linie);}
+.toc strong{display:block;font-size:15px;font-weight:700;color:var(--tinte);margin-bottom:10px;}
+.toc ul{list-style:none;margin:0;padding:0;display:grid;gap:0 26px;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));}
+.article .toc li{margin:0;max-width:none;}
+.toc a{display:block;padding:6px 0 6px 16px;position:relative;color:var(--tinte-2);font-size:15px;line-height:1.4;text-decoration:none;}
+.toc a::before{content:"";position:absolute;left:0;top:calc(.7em + 6px);width:7px;height:1.5px;background:var(--messing);}
+/* Bewegt werden nur transform und Farbe. Vorher liefen hier padding-left
+   und width, beide loesen in jedem Einzelbild ein Neuberechnen des Layouts
+   aus. Der Strich hat jetzt seine volle Breite und wird gestaucht gezeigt,
+   das Wachsen ist ein scaleX und kostet nichts. */
+.toc a{transition:color var(--t-kurz) ease,transform var(--t-kurz) var(--aus);}
+.toc a::before{width:13px;transform:scaleX(.54);transform-origin:left center;
+  transition:transform var(--t-kurz) var(--aus),background var(--t-kurz) ease;}
+@media(hover:hover) and (pointer:fine){
+  .toc a:hover{color:var(--link);transform:translateX(5px);}
+  .toc a:hover::before{transform:scaleX(1);background:var(--filz);}
+}
+
+/* Hinweiskaesten */
+/* Hinweiskasten. Etwas mehr Innenraum und eine eigene Radienform, damit er
+   als Einschub gelesen wird und nicht als eingefaerbter Absatz. */
+.disclosure{background:var(--blass-messing);border-left:3px solid var(--messing);
+  border-radius:0 var(--r-karte) var(--r-karte) 0;
+  padding:var(--s4) var(--s5);font-size:15.5px;color:var(--tinte-2);margin:var(--s6) 0;line-height:1.62;
+  box-shadow:var(--e1);}
+.disclosure strong{color:var(--tinte);}
+.article .disclosure p{max-width:none;}
+.article .disclosure > *:last-child{margin-bottom:0;}
+.pros-cons{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:26px 0;}
+.pros,.cons{background:var(--panel-2);border-radius:var(--r-karte);padding:var(--s5) var(--s5) var(--s4);border-top:3px solid var(--filz);
+  box-shadow:var(--e1);}
+.article .pros li,.article .cons li{max-width:none;margin-bottom:var(--s2);}
+.pros ul,.cons ul{margin-bottom:0;}
+.cons{border-top-color:var(--rot);}
+.pros h3,.cons h3{margin-top:0;font-size:17px;}
+.pros h3{color:var(--filz);}
+.cons h3{color:var(--rot);}
+.related{margin-top:var(--s9);padding:var(--s6);background:var(--blass-filz);border-radius:var(--r-flaeche);}
+.related h2{margin:0 0 12px;font-size:22px;}
+.related ul{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px 26px;}
+.related li{margin:0;}
+.related a{color:var(--filz);font-weight:600;font-size:15.5px;
+  transition:color var(--t-kurz) ease;}
+@media(hover:hover) and (pointer:fine){
+  .related a:hover{color:var(--link);}
+}
+
+/* Tabellen */
+.table-scroll{overflow-x:auto;margin:22px 0 12px;-webkit-overflow-scrolling:touch;border:1px solid var(--linie);border-radius:var(--r-karte);background:var(--karton);}
+table.compare,table.specs{width:100%;border-collapse:collapse;}
+table.compare{min-width:640px;}
+table.specs{min-width:420px;}
+table.compare th,table.compare td,table.specs th,table.specs td{padding:var(--s3) var(--s5);text-align:left;border-bottom:1px solid var(--linie);vertical-align:middle;font-size:15.5px;}
+/* Zahlen in Tabellen laufen auf gleicher Breite, sonst tanzen die Spalten. */
+table.compare td,table.specs td{font-variant-numeric:tabular-nums;}
+/* Zeile unter dem Zeiger hervorheben: bei breiten Tabellen verliert man
+   sonst die Zeile beim Wandern nach rechts. */
+@media(hover:hover) and (pointer:fine){
+  table.compare tbody tr,table.specs tbody tr{transition:background var(--t-kurz) ease;}
+  table.compare tbody tr:hover,table.specs tbody tr:hover{background:var(--panel-2);}
+  table.compare tr.is-top:hover{background:#F1E6CD;}
+}
+table.compare thead th,table.specs thead th{background:var(--panel-2);color:var(--tinte-2);font-size:14px;font-weight:700;}
+table.specs th{color:var(--tinte-2);font-weight:600;width:42%;}
+table.compare tbody tr:last-child td,table.specs tr:last-child th,table.specs tr:last-child td{border-bottom:none;}
+table.compare td.rank{width:56px;text-align:center;}
+table.compare td.rank span{display:inline-grid;place-items:center;width:32px;height:32px;border-radius:50%;
+  font-family:var(--font-display);font-weight:800;font-size:17px;border:1.5px solid var(--linie-stark);}
+table.compare tbody tr:nth-child(1) td.rank span{background:var(--messing);border-color:transparent;}
+table.compare td.bonus{font-weight:700;}
+table.compare tr.is-top{background:var(--blass-messing);}
+table.compare tr.is-soon td{color:var(--tinte-3);}
+.small-link{font-size:14px;}
+
+/* ---------- Casino-Logos ----------
+   CrocoSlots und BitKingz liefern helle Logos fuer dunklen Grund. Jedes
+   Logo steht deshalb auf einem dunklen Schild, auch auf weissen Flaechen. */
+.casino-logo,.casino-logo-sm,.review-logo{display:block;object-fit:contain;object-position:left center;}
+.casino-logo{width:auto;max-width:180px;height:48px;}
+.casino-logo.is-square{max-width:56px;height:56px;}
+.casino-logo-sm{width:110px;height:38px;margin-bottom:4px;}
+.review-logo{width:auto;max-width:200px;height:60px;margin:0 0 16px;}
+.card .info h3.has-logo{display:inline-flex;align-items:center;background:var(--filz-tief);border-radius:var(--r-knopf);
+  padding:9px 14px;margin:0 0 12px;}
+
+/* ---------- Bewertung ---------- */
+.stars{color:var(--messing-text);font-size:15px;letter-spacing:2px;}
+.score{color:var(--tinte-2);font-size:14px;font-weight:700;letter-spacing:0;}
+.score-ring{position:relative;width:62px;height:62px;border-radius:50%;display:grid;place-items:center;
+  background:conic-gradient(var(--messing) calc(var(--p,90)*1%),rgba(243,239,227,.16) 0);}
+.score-ring::before{content:"";position:absolute;inset:4px;border-radius:50%;background:var(--ring-bg,var(--filz-tief));}
+.score-ring b{position:relative;z-index:1;font-family:var(--font-display);font-weight:800;font-size:21px;color:var(--auf-filz);
+  font-variation-settings:"opsz" 28;}
+.lbl{display:block;font-size:12.5px;color:var(--auf-filz-2);margin-top:5px;}
+
+/* ---------- Startseite: der Spieltisch ---------- */
+.table{background:var(--filz);color:var(--auf-filz);position:relative;overflow:hidden;
+  padding:clamp(36px,5vw,64px) 0 clamp(40px,5vw,64px);}
+/* Eine Messinglinie als Tischkante, darunter feines Filzkorn aus zwei
+   Verlaeufen - keine Bilddatei, kein Muster, das sich wiederholt. */
+.table::before{content:"";position:absolute;inset:14px;border:1px solid rgba(217,181,104,.28);border-radius:28px;pointer-events:none;}
+.table::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.55;
+  background:radial-gradient(1200px 520px at 50% -10%,rgba(255,255,255,.07),transparent 60%),
+             radial-gradient(900px 400px at 50% 120%,rgba(0,0,0,.28),transparent 60%);}
+.table .wrap{position:relative;z-index:1;}
+.table-head{max-width:760px;margin:6px auto 36px;text-align:center;}
+.table-head h1{color:var(--auf-filz);margin-bottom:14px;}
+.table-head p{color:var(--auf-filz-2);font-size:clamp(17px,1.7vw,19.5px);margin:0 auto;max-width:620px;}
+.table-foot{max-width:900px;margin:30px auto 0;display:grid;gap:12px;}
+.table-note{margin:0;font-size:15px;line-height:1.6;color:var(--auf-filz-2);padding-left:16px;border-left:2px solid rgba(217,181,104,.5);}
+.table-note strong{color:var(--auf-filz);}
+.table-note a{color:var(--messing-hell);}
+
+.hand{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;align-items:stretch;}
+/* Das Austeilen: der einzige Bewegungsmoment der Seite. Jede Karte kommt
+   leicht gedreht von oben und legt sich gerade hin. Bewusst ohne Deckkraft:
+   haelt eine Umgebung Animationen an (Hintergrund-Tab, Vorschau-Renderer),
+   bleiben die Karten trotzdem sichtbar, nur leicht schraeg. */
+@keyframes austeilen{
+  from{transform:translateY(-26px) rotate(var(--dreh,0deg));}
+  to{transform:none;}
+}
+.hand .ccard{animation:austeilen .72s cubic-bezier(.2,.75,.25,1) both;}
+.hand .ccard:nth-child(1){--dreh:-5deg;animation-delay:.05s;}
+.hand .ccard:nth-child(2){--dreh:2deg;animation-delay:.17s;}
+.hand .ccard:nth-child(3){--dreh:6deg;animation-delay:.29s;}
+
+/* ---------- Vergleichskarten (Spielkarten) ---------- */
+.compare-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;}
+.ccard{min-width:0;position:relative;display:flex;flex-direction:column;background:var(--elfenbein);color:var(--tinte);
+  border-radius:var(--r-karte);overflow:hidden;box-shadow:var(--schatten-karte);}
+.ccard.is-top{box-shadow:0 0 0 2px var(--messing),var(--schatten-karte);}
+.ccard-ribbon{position:absolute;top:0;right:18px;z-index:2;background:var(--messing);color:var(--tinte);
+  font-size:13.5px;font-weight:700;padding:5px 12px 6px;border-radius:0 0 var(--r-klein) var(--r-klein);}
+/* Kartenkopf: dunkles Schild fuer Logo und Note, links der Karten-Index. */
+.ccard-top{display:flex;align-items:center;gap:14px;padding:22px 20px 18px;background:var(--filz-tief);}
+.ccard-rank{display:flex;flex-direction:column;align-items:center;line-height:1;flex:none;width:30px;
+  font-family:var(--font-display);font-weight:900;font-size:36px;color:var(--auf-filz);font-variation-settings:"opsz" 11;}
+.ccard-rank::after{font-family:var(--font-text);font-size:18px;margin-top:8px;color:var(--auf-filz-2);}
+.ccard:nth-child(1) .ccard-rank::after{content:"\2660";}
+.ccard:nth-child(2) .ccard-rank::after{content:"\2665";color:#E38A80;}
+.ccard:nth-child(3) .ccard-rank::after{content:"\2666";color:#E38A80;}
+.ccard.is-top .ccard-rank{color:var(--messing-hell);}
+.ccard-logo{height:44px;width:auto;max-width:130px;object-fit:contain;object-position:left center;}
+.ccard-logo.is-square{height:52px;max-width:52px;}
+.ccard-score{margin-left:auto;text-align:center;}
+.ccard-stars{display:flex;align-items:center;gap:8px;padding:16px 22px 0;}
+.ccard-stars .st{color:var(--messing-text);letter-spacing:2px;font-size:15px;}
+.ccard-stars .sc{color:var(--tinte-2);font-size:14px;font-weight:700;}
+.ccard-bonus{padding:10px 22px 16px;border-bottom:1px solid var(--linie);}
+.ccard-bonus .k{display:block;font-size:14px;color:var(--tinte-3);font-weight:600;}
+.ccard-bonus b{display:block;font-family:var(--font-display);font-size:25px;font-weight:700;line-height:1.15;margin-top:2px;
+  font-variation-settings:"opsz" 32;}
+.ccard-bonus .code{font-size:14px;color:var(--tinte-2);margin-top:6px;}
+.ccard-specs{display:grid;grid-template-columns:1fr 1fr;padding:0 22px;}
+.ccard-specs div{border-bottom:1px solid var(--linie);padding:10px 0;min-width:0;overflow-wrap:anywhere;}
+.ccard-specs div:nth-child(odd){padding-right:12px;border-right:1px solid var(--linie);}
+.ccard-specs div:nth-child(even){padding-left:14px;}
+.ccard-specs div.is-wide{grid-column:1/-1;padding-left:0;padding-right:0;border-right:none;}
+.ccard-specs .k{display:block;font-size:13px;color:var(--tinte-3);}
+.ccard-specs b{display:block;font-size:15px;font-weight:700;margin-top:1px;}
+.ccard-pros{list-style:none;margin:0;padding:16px 22px 0;display:grid;gap:8px;}
+.ccard-pros li{position:relative;padding-left:24px;font-size:15px;color:var(--tinte-2);line-height:1.45;}
+.ccard-pros li::before{content:"";position:absolute;left:1px;top:5px;width:13px;height:8px;
+  border-left:2.5px solid var(--filz);border-bottom:2.5px solid var(--filz);transform:rotate(-45deg);}
+.ccard-con{margin:14px 22px 0;padding-top:12px;border-top:1px solid var(--linie);font-size:14.5px;line-height:1.45;color:var(--tinte-2);}
+.ccard-con b{color:var(--rot);}
+.ccard-cta{margin-top:auto;padding:18px 22px 20px;}
+.ccard-cta .btn{width:100%;white-space:normal;text-align:center;}
+.ccard-cta .rev{display:block;text-align:center;margin-top:4px;font-size:15px;}
+.ccard-cta .rev a{display:block;padding:10px 8px;color:var(--filz);font-weight:600;text-decoration:underline;text-underline-offset:3px;}
+
+/* ---------- Startseite: Gewichtung ---------- */
+.weights{display:grid;gap:0;margin:8px 0 0;border-top:1px solid var(--linie);}
+.w-row{display:grid;grid-template-columns:minmax(170px,1.1fr) minmax(0,1.3fr) minmax(0,2.4fr);gap:8px 28px;align-items:center;
+  padding:18px 0;border-bottom:1px solid var(--linie);}
+.w-name{font-weight:700;font-size:17.5px;}
+.w-bar{display:flex;align-items:center;gap:14px;}
+.w-track{flex:1;height:12px;border-radius:6px;background:var(--panel-3);overflow:hidden;}
+.w-track i{display:block;height:100%;border-radius:6px;background:var(--filz);}
+.w-row:first-child .w-track i{background:var(--messing);}
+.w-val{font-family:var(--font-display);font-weight:700;font-size:24px;line-height:1;min-width:64px;text-align:right;white-space:nowrap;font-variation-settings:"opsz" 24;}
+.w-row p{margin:0;color:var(--tinte-2);font-size:15.5px;line-height:1.5;}
+.weights-more{margin:24px 0 0;}
+
+/* ---------- Startseite: Themen ---------- */
+.hubs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;}
+.section-alt .hub{background:var(--panel-2);box-shadow:none;}
+.hub{background:var(--karton);border-radius:var(--r-karte);padding:22px 22px 18px;box-shadow:var(--schatten-blatt);}
+.hub h3{margin:0 0 4px;font-size:20px;font-family:var(--font-display);font-weight:700;font-variation-settings:"opsz" 24;}
+.hub > p{margin:0 0 12px;color:var(--tinte-2);font-size:15px;line-height:1.5;}
+.hub ul{list-style:none;margin:0;padding:0;}
+.hub li{border-top:1px solid var(--linie);}
+.hub li a{display:block;padding:9px 0;color:var(--tinte);font-weight:600;font-size:15.5px;line-height:1.35;}
+.hub li a:hover{color:var(--link);}
+
+/* ---------- Spielerschutz-Block ---------- */
+.care{display:grid;grid-template-columns:1.25fr 1fr;gap:28px 48px;background:var(--karton);border-radius:var(--r-flaeche);
+  padding:clamp(24px,4vw,46px);box-shadow:var(--schatten-blatt);border-top:4px solid var(--filz);}
+.care h2{margin:0 0 12px;}
+.care p{color:var(--tinte-2);}
+.care-help{background:var(--panel-2);border-radius:var(--r-karte);padding:20px 22px;align-self:start;}
+.care-help strong{display:block;font-size:17px;margin-bottom:4px;}
+.care-help .tel{display:block;font-family:var(--font-display);font-weight:700;font-size:30px;color:var(--filz);margin:6px 0 2px;
+  font-variation-settings:"opsz" 36;}
+.care ul{list-style:none;padding:0;margin:16px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
+.care li{border-top:1px solid var(--linie);}
+.care li a{display:block;padding:9px 0;font-weight:600;color:var(--filz);}
+
+/* ---------- Karten-Raster, Magazin-Karten ---------- */
+/* min(...,100%) ist hier kein Schmuck: ohne das fordert eine Spalte ihre
+   Mindestbreite auch dann, wenn der Schirm schmaler ist, und schiebt die
+   ganze Seite waagerecht auf. Genau das passierte auf /reviews bei 320 px. */
+.grid-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr));gap:var(--s5);margin-top:var(--s5);}
+.grid-4{grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));}
+.grid-news{grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:20px;}
+.news-card{display:flex;flex-direction:column;background:var(--karton);border-radius:var(--r-karte);overflow:hidden;color:var(--tinte);
+  box-shadow:var(--e2);
+  transition:box-shadow var(--t-mittel) var(--aus),transform var(--t-mittel) var(--aus);}
+@media(hover:hover) and (pointer:fine){
+  .news-card:hover{text-decoration:none;transform:translateY(-3px);box-shadow:var(--e3);}
+  .news-card:hover h3{color:var(--link);}
+  /* Das Bild zieht minimal nach, damit die Karte als ein Koerper wirkt und
+     nicht als Rahmen mit Inhalt. 1,04 ist die Grenze, an der es noch nicht
+     nach Effekt aussieht. */
+  .news-card:hover .news-img img{transform:scale(1.04);}
+}
+.news-card:active{transform:translateY(-1px) scale(.994);transition-duration:var(--t-druck);}
+.news-card h3{transition:color var(--t-kurz) ease;}
+.news-img{aspect-ratio:16/9;overflow:hidden;background:var(--panel-3);}
+.news-img img{width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform var(--t-lang) var(--aus);}
+.news-body{padding:16px 18px 18px;display:flex;flex-direction:column;flex:1;}
+.news-cat{align-self:flex-start;color:var(--filz);background:var(--blass-filz);border-radius:var(--r-klein);
+  font-size:13px;font-weight:700;padding:2px 9px;margin-bottom:10px;}
+.news-body h3{margin:0 0 7px;font-size:18px;line-height:1.3;}
+.news-body p{margin:0 0 12px;color:var(--tinte-2);font-size:15px;line-height:1.5;}
+.news-meta{margin-top:auto;font-size:13.5px;color:var(--tinte-3);}
+
+/* Startseite: sechs Magazin-Karten gehen in zwei volle Reihen auf */
+#news .grid-news{grid-template-columns:repeat(3,minmax(0,1fr));}
+@media(max-width:980px){#news .grid-news{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(max-width:600px){#news .grid-news{grid-template-columns:1fr;}}
+
+.mini-card{display:block;background:var(--karton);border-radius:var(--r-karte);padding:var(--s5);color:var(--tinte);box-shadow:var(--e2);
+  transition:box-shadow var(--t-mittel) var(--aus),transform var(--t-mittel) var(--aus);}
+.mini-card h3{transition:color var(--t-kurz) ease;}
+@media(hover:hover) and (pointer:fine){
+  .mini-card:hover{text-decoration:none;transform:translateY(-3px);box-shadow:var(--e3);}
+  .mini-card:hover h3{color:var(--link);}
+}
+.mini-card:active{transform:translateY(-1px) scale(.994);transition-duration:var(--t-druck);}
+.mini-card h3{margin:0 0 6px;font-size:18px;}
+.mini-card p{margin:0;color:var(--tinte-2);font-size:15px;}
+.feature{background:var(--karton);border-radius:var(--r-karte);padding:22px;box-shadow:var(--schatten-blatt);}
+.feature-num{font-family:var(--font-display);font-size:26px;font-weight:700;color:var(--messing-text);margin-bottom:6px;}
+.feature h3{margin:0 0 6px;font-size:18px;}
+.feature p{margin:0;color:var(--tinte-2);font-size:15.5px;}
+
+/* ---------- Magazin- und Ratgeber-Uebersicht ---------- */
+.topic-nav{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 8px;padding:0;list-style:none;}
+.topic-nav a{display:inline-flex;align-items:center;gap:8px;background:var(--karton);color:var(--tinte);border:1px solid var(--linie);
+  border-radius:999px;padding:7px 14px;font-weight:600;font-size:15px;}
+.topic-nav a{transition:border-color var(--t-kurz) ease,color var(--t-kurz) ease,background var(--t-kurz) ease,transform var(--t-druck) var(--aus);}
+@media(hover:hover) and (pointer:fine){
+  .topic-nav a:hover{border-color:var(--filz);color:var(--filz);background:var(--blass-filz);text-decoration:none;}
+}
+.topic-nav a:active{transform:scale(.97);}
+.topic-nav small{font-size:13px;color:var(--tinte-3);font-weight:700;}
+.topic{padding-top:34px;scroll-margin-top:84px;}
+/* Dasselbe Messingzeichen wie ueber den Abschnitten der Startseite, statt
+   einer zweiten, schwereren gruenen Linie. Ein Motiv, nicht zwei. Der Strich
+   sitzt an der Ueberschrift, nicht am Behaelter: der ist ein Flex-Container,
+   ein ::before darin wuerde zum Flex-Element und die Zeile sprengen. */
+.topic-head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s4);flex-wrap:wrap;
+  border-bottom:1px solid var(--linie);padding-bottom:var(--s3);margin-bottom:var(--s5);}
+.topic-head h2::before{content:"";display:block;width:34px;height:2px;border-radius:2px;
+  background:var(--messing);margin-bottom:var(--s3);}
+.topic-head h2{margin:0;}
+.topic-head p{margin:0;color:var(--tinte-2);font-size:15.5px;max-width:560px;}
+.overview-intro{max-width:760px;}
+.overview-about{margin-top:56px;}
+
+/* ---------- Review-Seiten ---------- */
+.review-hero{background:var(--filz);color:var(--auf-filz);border-radius:var(--r-flaeche);padding:24px 26px 26px;margin:0 0 22px;position:relative;overflow:hidden;}
+.review-hero::before{content:"";position:absolute;inset:9px;border:1px solid rgba(217,181,104,.26);border-radius:12px;pointer-events:none;}
+.review-hero > *{position:relative;}
+.rh-top{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding-bottom:18px;margin-bottom:18px;border-bottom:1px solid var(--linie-filz);}
+.rh-stage{width:96px;height:72px;flex:none;display:grid;place-items:center;padding:9px;background:var(--filz-tief);border-radius:12px;}
+.rh-stage img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block;}
+.rh-id{min-width:0;}
+.rh-id .badge{background:rgba(243,239,227,.12);color:var(--auf-filz);margin-bottom:6px;}
+.rh-name{margin:0;font-family:var(--font-display);font-weight:700;font-size:24px;color:var(--auf-filz);line-height:1.15;}
+.rh-score{margin-left:auto;text-align:center;flex:none;--ring-bg:var(--filz);}
+.rh-score .score-ring{width:68px;height:68px;margin:0 auto;}
+.rh-score .stars{display:block;font-size:13px;margin-top:6px;color:var(--messing-hell);}
+.review-hero h1{color:var(--auf-filz);margin:0 0 10px;font-size:clamp(28px,3.4vw,40px);}
+.review-hero .meta{margin:0;color:var(--auf-filz-2);}
+.review-hero .meta a{color:var(--messing-hell);}
+.rating-box{display:flex;gap:24px;align-items:center;background:var(--blass-messing);border-radius:var(--r-karte);padding:22px 24px;margin:6px 0 24px;flex-wrap:wrap;}
+.rating-verdict{flex:1;min-width:220px;font-size:16.5px;line-height:1.62;}
+@media(max-width:560px){
+  .rh-top{gap:12px;}
+  .rh-stage{width:78px;height:58px;order:1;}
+  .rh-score{order:2;}
+  .rh-id{order:3;flex:1 0 100%;}
+  .review-hero{padding:20px 18px 22px;}
+}
+
+/* Test-Liste auf /reviews */
+.card{display:flex;gap:22px;align-items:center;flex-wrap:wrap;background:var(--karton);border-radius:var(--r-karte);
+  padding:22px 24px;margin:16px 0;box-shadow:var(--schatten-blatt);position:relative;}
+.card-featured{box-shadow:0 0 0 2px var(--messing),var(--schatten-blatt);}
+.featured-tag{position:absolute;top:0;left:24px;transform:translateY(-50%);background:var(--messing);color:var(--tinte);
+  font-weight:700;font-size:13.5px;padding:3px 11px;border-radius:var(--r-klein);}
+.card .rank{font-family:var(--font-display);font-size:30px;font-weight:800;color:var(--tinte);min-width:36px;text-align:center;}
+.card-featured .rank{color:var(--messing-text);}
+.card .info{flex:1;min-width:220px;}
+.card .bonus{font-family:var(--font-display);font-weight:700;font-size:22px;margin:6px 0 0;}
+.card .cta{text-align:center;min-width:190px;}
+.card .cta a:not(.btn){display:inline-block;padding:10px 8px;font-weight:600;}
+
+/* Angebots-Box in Reviews */
+.offer-box{background:var(--filz);color:var(--auf-filz);border-radius:var(--r-karte);padding:26px 28px;margin:30px 0;text-align:center;}
+.offer-box .offer-badge{display:inline-block;background:var(--messing);color:var(--tinte);font-weight:700;font-size:13.5px;padding:3px 11px;border-radius:var(--r-klein);margin-bottom:10px;}
+.offer-box h3{margin:4px 0 8px;font-size:22px;color:var(--auf-filz);}
+.offer-box p{color:var(--auf-filz-2);margin:0 auto 18px;max-width:580px;}
+.offer-box .offer-note{margin-top:14px;font-size:13px;color:var(--auf-filz-2);}
+
+/* ---------- Redaktion ---------- */
+.author-box{display:flex;gap:15px;align-items:flex-start;background:var(--panel-2);border-radius:var(--r-karte);padding:22px;margin:32px 0 0;}
+.author-box .avatar{width:56px;height:56px;font-size:20px;}
+.author-box h4{margin:0 0 4px;}
+.author-box .role{color:var(--link);font-size:14px;font-weight:600;margin:0 0 8px;}
+.author-box p{margin:0;font-size:15px;color:var(--tinte-2);}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:18px;margin-top:26px;}
+.team-card{background:var(--panel-2);border-radius:var(--r-karte);padding:24px;scroll-margin-top:90px;}
+.team-card:target{box-shadow:0 0 0 2px var(--messing);}
+.team-card .avatar{width:58px;height:58px;font-size:21px;margin-bottom:12px;}
+.team-card h3{margin:0 0 2px;font-size:19px;}
+.team-card .role{color:var(--link);font-size:14px;font-weight:600;}
+.team-card .field{display:inline-block;margin:10px 0 8px;background:var(--blass-filz);color:var(--filz);border-radius:var(--r-klein);padding:2px 10px;font-size:13.5px;font-weight:700;}
+.team-card p{margin:0;color:var(--tinte-2);font-size:15px;line-height:1.55;}
+
+/* ---------- HTML-Sitemap ---------- */
+.sitemap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px 30px;margin-top:28px;}
+.sitemap-col-wide{grid-column:1/-1;}
+.sitemap-col h2{font-size:24px;margin:0 0 12px;padding-bottom:8px;border-bottom:2px solid var(--filz);}
+.sitemap-col ul{list-style:none;margin:0;padding:0;}
+.sitemap-col li{margin-bottom:9px;font-size:15px;line-height:1.45;}
+.sitemap-news{columns:3 260px;column-gap:30px;}
+.sitemap-news li{break-inside:avoid;}
+
+/* ---------- Blog-Layout (Artikel + Seitenleiste) ---------- */
+.blog-wrap{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:36px;align-items:start;}
+.blog-main{min-width:0;}
+.blog-sidebar{position:sticky;top:84px;align-self:start;display:flex;flex-direction:column;gap:18px;max-height:calc(100vh - 100px);overflow-y:auto;scrollbar-width:thin;}
+.side-card{background:var(--karton);border-radius:var(--r-karte);padding:18px;box-shadow:var(--schatten-blatt);}
+.side-title{font-family:var(--font-display);font-size:21px;font-weight:700;margin:0 0 10px;}
+.cat-list{list-style:none;margin:0;padding:0;}
+.cat-list li{border-top:1px solid var(--linie);}
+.cat-list li:first-child{border-top:none;}
+.cat-list a{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 2px;color:var(--tinte);font-weight:600;font-size:15.5px;}
+.cat-list a{transition:color var(--t-kurz) ease,transform var(--t-kurz) var(--aus);}
+@media(hover:hover) and (pointer:fine){
+  .cat-list a:hover{color:var(--link);transform:translateX(4px);}
+}
+.cat-badge{color:var(--tinte-3);font-size:13.5px;font-weight:700;}
+.side-posts{display:flex;flex-direction:column;}
+.side-post{display:flex;gap:11px;align-items:center;padding:8px 0;border-top:1px solid var(--linie);color:var(--tinte);}
+.side-post:first-child{border-top:none;}
+.side-post{transition:background var(--t-kurz) ease;border-radius:var(--r-klein);}
+.side-post img{transition:transform var(--t-mittel) var(--aus);}
+@media(hover:hover) and (pointer:fine){
+  .side-post:hover{text-decoration:none;background:var(--panel-2);}
+  .side-post:hover .side-post-title{color:var(--link);}
+  .side-post:hover img{transform:scale(1.05);}
+}
+.side-post img{width:60px;height:46px;object-fit:cover;border-radius:6px;flex:none;background:var(--panel-3);}
+.side-post-body{min-width:0;}
+.side-post-title{margin:0;font-size:14.5px;font-weight:600;line-height:1.32;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.side-post-date{display:block;color:var(--tinte-3);font-size:13px;margin-top:2px;}
+
+/* Mitlaufendes Inhaltsverzeichnis in der Seitenleiste.
+   Steht es, wird das Verzeichnis im Fliesstext auf breiten Schirmen
+   ausgeblendet: zweimal dasselbe nebeneinander hilft niemandem. Auf
+   schmalen Schirmen gibt es keine Seitenleiste, dort bleibt es stehen. */
+.side-toc .toc-liste{list-style:none;margin:0;padding:0;counter-reset:toc;
+  max-height:min(56vh,520px);overflow-y:auto;scrollbar-width:thin;}
+.side-toc li{counter-increment:toc;}
+.side-toc a{display:block;position:relative;padding:7px 2px 7px 26px;font-size:14.8px;line-height:1.38;
+  color:var(--tinte-2);border-left:2px solid transparent;
+  transition:color var(--t-kurz) ease,border-color var(--t-kurz) ease,background var(--t-kurz) ease;}
+.side-toc a::before{content:counter(toc);position:absolute;left:8px;top:7px;
+  font-size:12px;font-weight:700;color:var(--tinte-3);font-variant-numeric:tabular-nums;
+  transition:color var(--t-kurz) ease;}
+@media(hover:hover) and (pointer:fine){
+  .side-toc a:hover{color:var(--link);background:var(--panel-2);text-decoration:none;}
+}
+/* Der gelesene Abschnitt traegt die Messingkante. Nur eine Markierung auf
+   einmal, sonst zeigt das Verzeichnis nicht mehr, wo man steht. */
+.side-toc a[aria-current]{color:var(--tinte);font-weight:700;border-left-color:var(--messing);
+  background:var(--blass-messing);}
+.side-toc a[aria-current]::before{color:var(--messing-text);}
+@media(min-width:1001px){
+  html.hat-seiten-toc .blog-main .article > h2#toc,
+  html.hat-seiten-toc .blog-main .article > ul.toc{display:none;}
+}
+/* Unter 1001 px rutscht die Leiste unter den Artikel. Dort ist das
+   Verzeichnis im Text die bessere Stelle, das der Leiste waere ein zweites
+   am falschen Ort. */
+@media(max-width:1000px){
+  .side-toc{display:none;}
+}
+
+/* Teilen: einheitlich statt vier Markenfarben nebeneinander */
+.share-bar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:36px 0 6px;border-top:1px solid var(--linie);padding-top:18px;}
+.share-title{font-weight:700;font-size:16px;margin:0;}
+.share-btns{display:flex;gap:8px;flex-wrap:wrap;}
+.share-btn{width:42px;height:42px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
+  color:var(--filz);border:1.5px solid var(--linie-stark);background:var(--karton);transition:background .15s,color .15s,border-color .15s;}
+.share-btn:hover,.share-btn:focus-visible{background:var(--filz);border-color:var(--filz);color:var(--auf-filz);text-decoration:none;}
+.share-btn svg{width:18px;height:18px;fill:currentColor;display:block;}
+.cat-filter-note{margin:8px 0 4px;padding:10px 15px;background:var(--blass-filz);border-radius:var(--r-klein);font-size:15px;}
+
+/* ---------- Fusszeile ---------- */
+.site-footer{background:var(--filz-tief);color:var(--auf-filz-2);padding:52px 0 36px;margin-top:64px;font-size:15px;}
+.site-footer a{color:var(--auf-filz);}
+.site-footer a:hover{color:#fff;}
+.footer-cols{display:grid;grid-template-columns:1.7fr 1fr 1fr 1.1fr 1.3fr;gap:30px 26px;padding-bottom:30px;margin-bottom:24px;border-bottom:1px solid var(--linie-filz);}
+.fcol h4{font-family:var(--font-display);color:var(--auf-filz);font-size:19px;margin:0 0 12px;font-weight:700;}
+/* Der Fussbereich traegt viele Links dicht beieinander. Ein kleiner Versatz
+   beim Zeigen sagt zuverlaessiger, welcher gemeint ist, als ein Farbwechsel
+   allein auf dunklem Grund. */
+.fcol a{display:block;margin-bottom:9px;font-size:15px;color:var(--auf-filz-2);width:fit-content;
+  transition:color var(--t-kurz) ease,transform var(--t-kurz) var(--aus);}
+@media(hover:hover) and (pointer:fine){
+  .fcol a:hover{color:#fff;transform:translateX(3px);}
+}
+.fcol-brand .logo{font-size:26px;margin-bottom:12px;display:inline-block;}
+.fcol-brand p{margin:0;max-width:320px;font-size:15px;line-height:1.6;}
+.site-footer .resp{border-left:3px solid var(--messing);padding:14px 18px;margin-bottom:20px;font-size:15px;background:rgba(243,239,227,.05);border-radius:0 var(--r-klein) var(--r-klein) 0;}
+.site-footer .resp a{color:var(--messing-hell);}
+.site-footer p{color:var(--auf-filz-2);}
+.footer-meta{border-top:1px solid var(--linie-filz);margin-top:22px;padding-top:18px;display:flex;flex-wrap:wrap;gap:6px 20px;justify-content:center;}
+
+/* ---------- Nach oben ---------- */
+.to-top{position:fixed;right:20px;bottom:20px;width:46px;height:46px;border-radius:50%;border:1px solid var(--linie-stark);
+  background:var(--karton);color:var(--filz);font-size:19px;cursor:pointer;box-shadow:var(--e2);
+  opacity:0;visibility:hidden;z-index:40;display:grid;place-items:center;
+  transition:opacity var(--t-mittel) var(--aus),visibility var(--t-mittel),background var(--t-kurz) ease,
+    color var(--t-kurz) ease,transform var(--t-druck) var(--aus),box-shadow var(--t-kurz) var(--aus);}
+.to-top.show{opacity:1;visibility:visible;}
+@media(hover:hover) and (pointer:fine){
+  .to-top:hover{background:var(--filz);color:var(--auf-filz);box-shadow:var(--e3);}
+}
+.to-top:active{transform:scale(.93);}
+/* Wo der Browser Scroll-Zeitachsen kennt, steuert CSS das Erscheinen selbst.
+   Die Klasse .show aus main.js bleibt als Rueckfall fuer alle anderen. */
+@keyframes hoch-einblenden{
+  from{opacity:0;visibility:hidden;transform:scale(.9);}
+  to{opacity:1;visibility:visible;transform:none;}
+}
+@supports (animation-timeline:scroll()){
+  .to-top{animation:hoch-einblenden linear both;animation-timeline:scroll(root block);animation-range:380px 520px;}
+}
+
+/* Die Scroll-Einblendung ist entfernt. Die Klasse bleibt wirkungslos stehen,
+   falls noch eine gecachte main.js sie setzt. */
+.reveal{opacity:1;transform:none;}
+
+/* ---------- Reduzierte Bewegung ----------
+   Vorher stand hier ein pauschales transition:none auf allem. Das nimmt auch
+   die Farbwechsel weg, die beim Verstehen helfen. Reduzierte Bewegung heisst
+   weniger und sanfter, nicht gar nichts: Ortswechsel und Groessenaenderungen
+   entfallen, Deckkraft und Farbe bleiben. */
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  .hand .ccard{animation:none;transform:none;}
+  .leseband{display:none;}
+  /* Alles, was sich bewegt, steht still. Farb- und Deckkraftwechsel bleiben. */
+  *{transition-property:opacity,color,background-color,border-color,box-shadow,text-decoration-color,fill !important;
+    transition-duration:var(--t-kurz) !important;animation:none !important;}
+  .btn:active,.news-card:active,.mini-card:active,.topic-nav a:active{transform:none !important;}
+  .news-card:hover,.mini-card:hover{transform:none !important;}
+  .news-card:hover .news-img img{transform:none !important;}
+  .nav{transition-property:opacity,visibility !important;}
+  .nav a{transform:none !important;}
+}
+
+/* ============================================================
+   Bewegung
+   Die Seite bewegt sich an drei Stellen, und nur an diesen drei:
+   1. Das Austeilen der Rangkarten auf der Startseite, einmal beim Laden.
+   2. Flaechen, die von unten ins Bild kommen, blenden gestaffelt auf.
+   3. Das Leseband zeigt, wie weit ein Artikel gelesen ist.
+   Der Artikeltext selbst bekommt bewusst keinen Eintritt. Lesen darf nicht
+   auf eine Animation warten, und was man bei jedem Aufruf sieht, stoert ab
+   dem dritten Mal.
+   ============================================================ */
+
+/* Flaechen tauchen auf, waehrend sie ins Bild kommen. Scroll-getrieben und
+   damit ohne Beobachter, ohne Skript und ausserhalb des Hauptthreads.
+   Der entscheidende Punkt steht im @supports: kennt ein Browser die
+   Eigenschaft nicht, laeuft keine Animation und alles ist sofort sichtbar.
+   Inhalt kann hier also nie unsichtbar haengenbleiben.
+   Fliesstext ist bewusst nicht dabei. Lesen wartet auf nichts. */
+@keyframes auftauchen{
+  from{opacity:0;transform:translateY(18px);}
+  to{opacity:1;transform:none;}
+}
+@supports (animation-timeline:view()){
+  @media(prefers-reduced-motion:no-preference){
+    .grid-cards > *,.topic > *,.section-head,.related,.care,.w-row{
+      animation:auftauchen linear both;
+      animation-timeline:view();
+      animation-range:entry 0% entry 46%;
+    }
+    /* Innerhalb einer Reihe versetzt: die zweite Karte startet etwas spaeter
+       als die erste. Das liest sich als Folge, ohne zu bremsen. */
+    .grid-cards > *:nth-child(3n+2){animation-range:entry 3% entry 49%;}
+    .grid-cards > *:nth-child(3n+3){animation-range:entry 6% entry 52%;}
+  }
+}
+
+/* Leseband. Wo der Browser Scroll-Zeitachsen kennt, laeuft es ohne eine
+   einzige Zeile JavaScript und damit ausserhalb des Hauptthreads. Sonst
+   setzt main.js die Variable, gedrosselt ueber requestAnimationFrame. */
+.leseband{position:fixed;top:0;left:0;right:0;height:2px;z-index:60;pointer-events:none;
+  background:linear-gradient(90deg,var(--messing),var(--messing-hell));
+  transform:scaleX(var(--fortschritt,0));transform-origin:0 50%;}
+@supports (animation-timeline:scroll()){
+  html.hat-scrollzeitachse .leseband{animation:leseband linear both;animation-timeline:scroll(root block);}
+  @keyframes leseband{from{transform:scaleX(0);}to{transform:scaleX(1);}}
+}
+
+/* ============ Responsive ============ */
+@media(max-width:1080px){
+  .hubs{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .footer-cols{grid-template-columns:1.6fr 1fr 1fr 1.2fr;}
+  .fcol:last-child{grid-column:span 2;}
+}
+@media(max-width:980px){
+  .hand{grid-template-columns:minmax(0,1fr);max-width:460px;margin:0 auto;}
+  .care{grid-template-columns:1fr;}
+  .blog-wrap{grid-template-columns:1fr;gap:22px;}
+  .blog-sidebar{position:static;max-height:none;overflow:visible;}
+  .sitemap-grid{grid-template-columns:1fr 1fr;}
+  .w-row{grid-template-columns:1fr auto;}
+  .w-row p{grid-column:1/-1;}
+  .w-bar{justify-content:flex-end;}
+}
+@media(max-width:760px){
+  .nav-toggle{display:flex;}
+  .site-header .wrap{position:relative;}
+  /* Das Menue lag vorher auf display:none und sprang dadurch ins Bild. Es
+     bleibt jetzt im Dokument und wird ueber Sichtbarkeit geschaltet: das laesst
+     sich animieren, und visibility:hidden nimmt es zugleich aus der
+     Tabulatorfolge, solange es zu ist. */
+  .nav{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;padding:8px 12px 14px;
+    background:var(--filz);border-bottom:1px solid var(--filz-tief);box-shadow:0 22px 34px -20px rgba(0,0,0,.55);
+    visibility:hidden;opacity:0;transform:translateY(-10px);transform-origin:top center;pointer-events:none;
+    transition:opacity var(--t-kurz) var(--aus),transform var(--t-mittel) var(--aus),visibility 0s linear var(--t-mittel);}
+  .site-header.nav-open .nav{visibility:visible;opacity:1;transform:none;pointer-events:auto;
+    transition:opacity var(--t-kurz) var(--aus),transform var(--t-mittel) var(--aus),visibility 0s;}
+  .nav a{padding:13px 10px;font-size:17px;border-bottom:1px solid var(--linie-filz);border-radius:0;
+    opacity:0;transform:translateY(-6px);
+    transition:opacity var(--t-kurz) var(--aus),transform var(--t-kurz) var(--aus),color var(--t-kurz) ease;}
+  /* Die Eintraege kommen gestaffelt nach. 45 ms sind genug, um als Folge
+     gelesen zu werden, und zu wenig, um zu bremsen. */
+  .site-header.nav-open .nav a{opacity:1;transform:none;}
+  .site-header.nav-open .nav a:nth-child(1){transition-delay:30ms;}
+  .site-header.nav-open .nav a:nth-child(2){transition-delay:75ms;}
+  .site-header.nav-open .nav a:nth-child(3){transition-delay:120ms;}
+  .site-header.nav-open .nav a:nth-child(4){transition-delay:165ms;}
+  .site-header.nav-open .nav a:nth-child(5){transition-delay:210ms;}
+  .nav a:last-child{border-bottom:none;}
+  .nav a::after{display:none;}
+  .nav a:active{background:var(--filz-hell);}
+  .site-header.nav-open .nav-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .site-header.nav-open .nav-toggle span:nth-child(2){opacity:0;}
+  .site-header.nav-open .nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  .footer-cols{grid-template-columns:1fr 1fr;gap:26px;}
+  .fcol:last-child{grid-column:auto;}
+  .fcol-brand{grid-column:1/-1;}
+  .card{flex-direction:column;align-items:stretch;}
+  .card .cta{width:100%;}
+  .related ul,.care ul{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  body{font-size:17px;}
+  .wrap{padding:0 16px;}
+  .sheet.blog-wrap{padding:0 16px;}
+  .sheet,.blog-main{padding:22px 18px 26px;border-radius:14px;}
+  main.section > .wrap.sheet:not(.blog-wrap){margin:0 10px;}
+  .hubs{grid-template-columns:1fr;}
+  .sitemap-grid{grid-template-columns:1fr;}
+  .table::before{inset:8px;border-radius:20px;}
+  .to-top{right:12px;bottom:12px;}
+  .article p,.article li{max-width:none;}
+  .btn{white-space:normal;text-align:center;}
+}
+@media(max-width:440px){
+  .footer-cols{grid-template-columns:1fr;}
+  .ccard-top,.ccard-bonus,.ccard-cta,.ccard-specs,.ccard-pros,.ccard-stars{padding-left:18px;padding-right:18px;}
+  .ccard-con{margin-left:18px;margin-right:18px;}
+}
