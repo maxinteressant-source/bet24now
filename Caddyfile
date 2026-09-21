@@ -55,7 +55,17 @@
 	# Ausgenommen bleiben Impressum und Datenschutz, weil sie erreichbar sein
 	# muessen, dazu robots.txt und die Dateien, die die Wartungsseite braucht.
 	# Zum Beenden: diesen Block loeschen oder auskommentieren.
+	# Privater Vorschau-Zugang. Einmal /?vorschau=Na08pjqYhR7F aufrufen, danach
+	# traegt der Browser ein Merkzeichen und die Seite laeuft zwei Wochen lang
+	# normal weiter. Alle anderen sehen unveraendert die Wartungsseite mit 503,
+	# Suchmaschinen eingeschlossen: Bots schicken weder den Parameter noch das
+	# Merkzeichen mit. Zum Widerrufen den Token hier aendern.
+	@vorschau_start query vorschau=Na08pjqYhR7F
+	header @vorschau_start Set-Cookie "b24vorschau=1; Path=/; Max-Age=1209600; SameSite=Lax"
+
 	@wartung {
+		not query vorschau=Na08pjqYhR7F
+		not header Cookie *b24vorschau=1*
 		not path /wartung.html
 		not path /impressum /impressum.html /datenschutz /datenschutz.html
 		not path /robots.txt /favicon.png /apple-touch-icon.png
