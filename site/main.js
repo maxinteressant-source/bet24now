@@ -177,7 +177,11 @@
     ".promo-go{color:var(--nacht,#0A0C0F);background:var(--jade,#2BE8A5);padding:3px 11px;border-radius:999px;" +
     "font-family:var(--font-mono,ui-monospace,monospace);font-weight:500;font-size:11px;letter-spacing:.1em;}" +
     "@media(max-width:600px){.promo-bar-inner{gap:6px;padding:6px 12px;flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scrollbar-width:none;-ms-overflow-style:none;}"+
-    ".promo-bar-inner::-webkit-scrollbar{display:none;}.promo-bar-label{display:none;}.promo-chip{font-size:13px;flex:0 0 auto;}}" +
+    ".promo-bar-inner::-webkit-scrollbar{display:none;}.promo-bar-label{display:none;}.promo-chip{font-size:13px;flex:0 0 auto;}" +
+    // Am rechten Rand ausblenden: das ist das einzige Zeichen dafuer, dass
+    // die Leiste weitergeht. Eine Bildlaufleiste zeigt der Browser hier nicht.
+    ".promo-bar-inner{-webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 26px),transparent 100%);" +
+    "mask-image:linear-gradient(90deg,#000 0,#000 calc(100% - 26px),transparent 100%);}}" +
     // Angebotsbox unter dem Artikel: dasselbe Datenblatt wie die Karten auf
     // der Startseite, damit unter dem Text kein fremder Baustein auftaucht.
     ".inline-offers{background:var(--nacht-2,#101319);border:1px solid rgba(255,255,255,.075);border-radius:4px;padding:26px 22px 22px;margin:54px 0 8px;}" +
